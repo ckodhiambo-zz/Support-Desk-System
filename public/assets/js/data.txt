@@ -1,0 +1,97 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "Quote": "Incs234",
+      "Product": "Incident",
+      "Business": "Laptop",
+      "Policy": "Kennedy Ochieng",
+      "Premium": "$1200",
+      "Status": "CICP",
+      "Updated": "25/04/2020"
+    },{
+      "id": "2",
+      "Quote": "Incs235",
+      "Product": "General Inquiry",
+      "Business": "Desk Phone",
+      "Policy": "Allan Musyoka",
+      "Premium": "25/04/2020",
+      "Status": "Tier Data Ltd",
+      "Updated": "25/04/2020"
+    },{
+      "id": "3",
+      "Quote": "Incs235",
+      "Product": "Problem",
+      "Business": "Mi-Fi/Dongo",
+      "Policy": "Steve Karechio",
+      "Premium": "25/04/2021",
+      "Status": "Nabo Capital",
+      "Updated": "25/04/2020"
+    },{
+      "id": "4",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Laptop Charger",
+      "Policy": "Evans Mburu",
+      "Premium": "25/06/2020",
+      "Status": "Tribus",
+      "Updated": "25/04/2020"
+    },{
+      "id": "5",
+      "Quote": "Incs235",
+      "Product": "Question",
+      "Business": "Laptop",
+      "Policy": "Jesse Thomas",
+      "Premium": "25/07/2020",
+      "Status": "Active",
+      "Updated": "25/04/2020"
+    },{
+      "id": "6",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Desktop",
+      "Policy": "Jesse Thomas",
+      "Premium": "$1200",
+      "Status": "Active",
+      "Updated": "25/04/2020"
+    },{
+      "id": "7",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Television",
+      "Policy": "Jesse Thomas",
+      "Premium": "$1200",
+      "Status": "Active",
+      "Updated": "25/04/2020"
+    },{
+      "id": "8",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Printer",
+      "Policy": "Jesse Thomas",
+      "Premium": "$1200",
+      "Status": "Expired",
+      "Updated": "25/04/2020"
+    },{
+      "id": "9",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Laptop Charger",
+      "Policy": "Jesse Thomas",
+      "Premium": "$1200",
+      "Status": "Active",
+      "Updated": "25/04/2020"
+    },{
+      "id": "10",
+      "Quote": "Incs235",
+      "Product": "Incident",
+      "Business": "Television",
+      "Policy": "Jesse Thomas",
+      "Premium": "$1200",
+      "Status": "In progress",
+      "Updated": "25/04/2020"
+    }
+
+    
+  ]
+}
