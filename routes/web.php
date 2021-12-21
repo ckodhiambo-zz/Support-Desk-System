@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Admin\AdminEditCompanyComponent;
+use App\Http\Livewire\Admin\TicketDetailsComponent;
 use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
 use App\Http\Livewire\Demo\DemoDashboardComponent;
@@ -30,6 +31,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function (){
 Route::middleware(['auth:sanctum', 'verified','defaultauth'])->group(function (){
     Route::get('/employee/dashboard',EmployeeDashboardComponent::class)->name('employee.dashboard');
     Route::get('/employee/dashboard/my-tickets',TicketsComponent::class)->name('employee.my-tickets');
+    Route::post('/employee/ticket/submit',[EmployeeDashboardComponent::class, 'submitTicket'])->name('employee.ticket.submit');
 
 });
 
@@ -39,5 +41,6 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
     Route::get('/admin/dashboard/companies', CompanyComponent::class)->name('home.companies');
     Route::get('/admin/dashboard/assets', AssetComponent::class)->name('home.assets');
     Route::get('/admin/dashboard/companies/edit/{company_id}',AdminEditCompanyComponent::class)->name('admin.edit_company');
+    Route::get('/admin/dashboard/ticket-details', TicketDetailsComponent::class)->name('ticket.details');
 
 });

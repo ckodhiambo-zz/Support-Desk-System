@@ -41,6 +41,11 @@
                         <p class="card-description">
                             Tickets are in <code>an ascending order.</code>
                         </p>
+                        @if(Session::has('message_sent'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('message_sent') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -58,48 +63,49 @@
                                         Created_at
                                     </th>
                                     <th>
-                                        Actions
+                                        Status
                                     </th>
                                     <th>
-
+                                        Actions
                                     </th>
+
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--                                @foreach($companies as $item)--}}
-                                <tr>
-                                    <td class="py-1">
-                                        {{--                                            {{ $item->id }}--}}
-                                    </td>
-                                    <td>
-                                        {{--                                            {{ $item->company_name }}--}}
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td>
-                                        {{--                                            {{ $item->created_at }}--}}
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                    id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                Actions
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                                                <h6 class="dropdown-header">Actions</h6>
-                                                <a class="dropdown-item" href="#">View Details</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#" style="color: red">Delete</a>
+                                @foreach($mytickets as $item)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $item->id }}
+                                        </td>
+                                        <td>
+                                            {{ $item->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($item->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $item->created_at }}
+                                        </td>
+                                        <td>
+                                            {{ $item->status->name }}
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuSizeButton3" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                                                    <h6 class="dropdown-header">Actions</h6>
+                                                    <a class="dropdown-item" href="#">View Details</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" style="color: red">Delete</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                {{--                                @endforeach--}}
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

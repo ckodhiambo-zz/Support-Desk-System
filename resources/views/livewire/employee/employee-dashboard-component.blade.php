@@ -27,8 +27,8 @@
     </head>
     <body>
 
-    <form>
-        @csrf
+
+
         <div class="content-wrapper">
             <div class="row">
                 <div class="col-md-12 grid-margin">
@@ -113,24 +113,26 @@
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
+
                             <h4 class="card-title">Ticket Form</h4>
                             <p class="card-description">
                                 Kindly fill in the necessary details inline with your request.
                             </p>
-                            <form class="forms-sample">
+                            <form class="forms-sample" action="{{ route('employee.ticket.submit') }}" method="post">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <strong><label>Ticket Subject</label></strong>
                                             <input type="text" class="form-control form-control-sm"
-                                                   placeholder="Ticket Subject"
+                                                   placeholder="Ticket Subject" name="subject"
                                                    aria-label="Username">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <strong><label>Asset Category</label></strong>
-                                            <select class="js-example-basic-single w-100" name="category_id" id="category_id">
+                                            <select class="js-example-basic-single w-100" name="asset_category" id="category_id">
                                                 @foreach ($categories as $category)
                                                     <option
                                                         value="{{$category->id}}">{{$category->category_name}}</option>
@@ -143,7 +145,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group" id="category_{{$category->id}}">
                                             <strong><label>Asset Name</label></strong>
-                                            <select class="js-example-basic-single w-100" name="asset_id">
+                                            <select class="js-example-basic-single w-100" name="asset_name">
                                                 @foreach ($categories as $category)
                                                     @foreach ($category->assets as $asset)
                                                         <option class="assets category_{{$category->id}}"
@@ -180,10 +182,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <strong><label>File upload</label></strong>
-                                            <input type="file" name="attachment" class="file-upload-default">
+{{--                                            <input type="file" name="attachment" class="file-upload-default">--}}
                                             <div class="input-group col-xs-12">
-                                                <input type="text" class="form-control file-upload-info" disabled
-                                                       placeholder="Upload Image"><span class="input-group-append">
+                                                <input type="file" class="form-control file-upload-info"
+                                                       placeholder="Upload Image" name="attachment"><span class="input-group-append">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                                             </div>
@@ -199,7 +201,7 @@
                 </div>
             </div>
         </div>
-    </form>
+
 
 
     <!-- plugins:js -->

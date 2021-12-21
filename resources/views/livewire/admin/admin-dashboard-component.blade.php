@@ -70,14 +70,6 @@
             <div class="col-md-6 grid-margin transparent">
                 <div class="row">
                     <div class="col-md-6 mb-4 stretch-card transparent">
-                        <div class="card card-tale">
-                            <div class="card-body">
-                                <p class="mb-4"> Total No. of Assigned Assets</p>
-                                <p class="fs-30 mb-2">6</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-4 stretch-card transparent">
                         <div class="card l-bg-cherry">
                             <div class="card-body">
                                 <p class="mb-4">Total No. of Tickets</p>
@@ -85,6 +77,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-6 mb-4 stretch-card transparent">
+                        <div class="card card-tale">
+                            <div class="card-body">
+                                <p class="mb-4"> Total No. of Assigned Assets</p>
+                                <p class="fs-30 mb-2">6</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
@@ -107,99 +108,135 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 grid-margin stretch-card">
+            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Ticket Form</h4>
+                        <h4 class="card-title">List of Latest Tickets</h4>
                         <p class="card-description">
-                            Kindly fill in the necessary details inline with your request.
+                            The tickets are <code>.in a descending order</code>
                         </p>
-                        <form class="forms-sample">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label>Ticket Subject</label></strong>
-                                        <input type="text" class="form-control form-control-sm"
-                                               placeholder="Ticket Subject"
-                                               aria-label="Username">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label>Asset Type</label></strong>
-                                        <select class="js-example-basic-single w-100" >
-                                            <option value="HW">Hardware</option>
-                                            <option value="SW">Software</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label>Asset Name</label></strong>
-                                        <select class="js-example-basic-single w-100" name="name">
-                                            <option value="Laptop">Laptop</option>
-                                            <option value="Laptop Charger">Laptop Charger</option>
-                                            <option value="SAP">SAP</option>
-                                            <option value="Sharepoint">Sharepoint</option>
-                                            <option value="Social Media">Social Media</option>
-                                            <option value="ESD">ESD</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label>Type of Issue</label></strong>
-                                        <select class="js-example-basic-single w-100" name="incident_name">
-                                            <option value="Access Right Request">Access Right Request</option>
-                                            <option value="Not booting">Not booting</option>
-                                            <option value="Spillage">Spillage</option>
-                                            <option value="Too slow/Hanging">Too slow/Hanging</option>
-                                            <option value="Restarts/Shuts down without permission">Restarts/Shuts down
-                                                without permission
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label for="exampleTextarea1">Detailed description</label></strong>
-                                        <textarea class="form-control" id="exampleTextarea1" name="description" rows="4"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <strong><label>File upload</label></strong>
-                                        <input type="file" name="attachment" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                   placeholder="Upload Image"><span class="input-group-append">
-                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                                </span>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Requester
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Agent
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Created at
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($alltickets as $item)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $item->id }}
+                                        </td>
+                                        <td>
+                                            {{ $item->requester->name }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($item->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            Not Assigned
+                                        </td>
+                                        <td>
+                                            {{ $item->status->name }}
+                                        </td>
+                                        <td>
+                                            {{ $item->created_at }}
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
+                                                        id="dropdownMenuSizeButton3" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                                                    <h6 class="dropdown-header"><strong>Actions</strong></h6>
+                                                    <a class="dropdown-item text-success" href="#" data-toggle="modal"
+                                                       data-target="#exampleModal">-- Assign / Edit Agent--</a>
+                                                    <a class="dropdown-item text-info" href="#">-- View Details --</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#" style="color: red">Archive</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-primary" id="exampleModalLabel">Assign an Agent</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <strong>* An email will be sent to the agent assigned *</strong>
+                                                    <br>
+                                                    <br>
+                                                    <div class="form-group">
+                                                        <label for="exampleFormControlSelect3">Select an Agent</label>
+                                                        <select class="form-control form-control-sm"
+                                                                id="exampleFormControlSelect3">
+                                                            <option>Kennedy</option>
+                                                            <option>Calvins</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                        Close
+                                                    </button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
+                                </tbody>
+                            </table>
 
-                            </div>
-
-                            <button type="submit" class="btn btn-primary mr-2 float-right">Submit</button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- plugins:js -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    </div>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"--}}
+    {{--                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
-    {{--<script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>--}}
+    <script src="{{ asset('js/script.js') }}"></script>
+
+    <!-- plugins:js -->
+
+    {{--    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>--}}
     <!-- endinject -->
     <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
