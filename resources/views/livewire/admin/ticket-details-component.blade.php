@@ -3,23 +3,17 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card position-relative">
                 <div class="card-body">
-                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
+                    <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2"
+                         data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
                                 <div class="row">
-{{--                                    <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">--}}
-{{--                                        <div class="ml-xl-4 mt-3">--}}
-{{--                                            <p class="card-title">01-Ticket Details</p>--}}
-
-{{--                                            <h3 class="font-weight-500 mb-xl-4 text-primary">North America</h3>--}}
-{{--                                            <p class="mb-2 mb-xl-0">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-                                     <div class="col-md-12 col-xl-12">
+                                    <div class="col-md-12 col-xl-12">
                                         <div class="row">
                                             <div class="col-md-4 border-right">
                                                 <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                    <h3 class="font-weight-500 mb-xl-4 text-primary" style="font-size: medium">Requester Details</h3>
+                                                    <h3 class="font-weight-500 mb-xl-4 text-primary"
+                                                        style="font-size: medium">Requester Details</h3>
                                                     <table class="table table-borderless report-table">
                                                         <tr>
                                                             <td class="text-muted">Name</td>
@@ -38,7 +32,8 @@
                                                         <tr>
                                                             <td class="text-muted">Email</td>
                                                             <td class="w-100 px-0">
-                                                                <h5 class="font-weight-bold mb-0">k.odhiambo@centum.co.ke</h5>
+                                                                <h5 class="font-weight-bold mb-0">
+                                                                    k.odhiambo@centum.co.ke</h5>
                                                             </td>
 
                                                         </tr>
@@ -59,7 +54,8 @@
                                                         <tr>
                                                             <td class="text-muted">Created at</td>
                                                             <td class="w-100 px-0">
-                                                                <h5 class="font-weight-bold mb-0">2021-12-19 21:28:30</h5>
+                                                                <h5 class="font-weight-bold mb-0">2021-12-19
+                                                                    21:28:30</h5>
                                                             </td>
 
                                                         </tr>
@@ -68,7 +64,8 @@
                                             </div>
                                             <div class="col-md-4 border-right">
                                                 <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                    <h3 class="font-weight-500 mb-xl-4 text-danger" style="font-size: medium">Ticket Details</h3>
+                                                    <h3 class="font-weight-500 mb-xl-4 text-danger"
+                                                        style="font-size: medium">Ticket Details</h3>
                                                     <table class="table table-borderless report-table">
                                                         <tr>
                                                             <td class="text-muted">Ticket ID</td>
@@ -94,7 +91,8 @@
                                                         <tr>
                                                             <td class="text-muted">Incident/Issue</td>
                                                             <td class="w-100 px-0">
-                                                                <h5 class="font-weight-bold mb-0">Access Right Request</h5>
+                                                                <h5 class="font-weight-bold mb-0">Access Right
+                                                                    Request</h5>
                                                             </td>
 
                                                         </tr>
@@ -117,7 +115,8 @@
                                             </div>
                                             <div class="col-md-4 border-right">
                                                 <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                    <h3 class="font-weight-100 mb-xl-4 text-success" style="font-size: medium">Agent Details</h3>
+                                                    <h3 class="font-weight-100 mb-xl-4 text-success"
+                                                        style="font-size: medium">Agent Details</h3>
                                                     <table class="table table-borderless report-table">
                                                         <tr>
                                                             <td class="text-muted">Name</td>
@@ -129,7 +128,8 @@
                                                         <tr>
                                                             <td class="text-muted">Email</td>
                                                             <td class="w-100 px-0">
-                                                                <h5 class="font-weight-bold mb-0">i.kagechu@gmail.com</h5>
+                                                                <h5 class="font-weight-bold mb-0">
+                                                                    i.kagechu@gmail.com</h5>
                                                             </td>
 
                                                         </tr>
@@ -150,28 +150,44 @@
                                                         <tr>
                                                             <td class="text-muted">Assigned on:</td>
                                                             <td class="w-100 px-0">
-                                                                <h5 class="font-weight-bold mb-0">2021-12-19 21:28:30</h5>
+                                                                <h5 class="font-weight-bold mb-0">2021-12-19
+                                                                    21:28:30</h5>
                                                             </td>
 
                                                         </tr>
-
                                                     </table>
                                                 </div>
                                             </div>
+
                                         </div>
+                                        <hr>
+                                        <button type="button" class="btn btn-outline-success btn-sm btn-icon-text float-right" style="margin-right: 8px">
+                                            <i class="ti-file btn-icon-prepend"></i>
+                                            CSV
+                                        </button>
+
+                                        <button type="button" class="btn btn-outline-info btn-sm  btn-icon-text float-right" style="margin-right: 8px">
+                                            Print
+                                            <i class="ti-printer btn-icon-append"></i>
+                                        </button>
+
+                                        <button type="button" class="btn btn-outline-dribbble btn-sm  btn-icon-text float-right" style="margin-right: 8px">
+                                            PDF
+                                            <i class="ti-file btn-icon-append"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-{{--                        <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">--}}
-{{--                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-{{--                            <span class="sr-only">Previous</span>--}}
-{{--                        </a>--}}
-{{--                        <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">--}}
-{{--                            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-{{--                            <span class="sr-only">Next</span>--}}
-{{--                        </a>--}}
+                        {{--                        <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">--}}
+                        {{--                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                        {{--                            <span class="sr-only">Previous</span>--}}
+                        {{--                        </a>--}}
+                        {{--                        <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">--}}
+                        {{--                            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+                        {{--                            <span class="sr-only">Next</span>--}}
+                        {{--                        </a>--}}
                     </div>
                 </div>
             </div>

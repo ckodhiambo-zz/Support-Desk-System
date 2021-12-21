@@ -73,7 +73,8 @@
                             </div>
                             <div class="preview-item-content">
                                 <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">Just now
+                                <p class="font-weight-light small-text mb-0 text-muted">
+                                    Just now
                                 </p>
                             </div>
                         </a>
@@ -343,21 +344,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
-                       aria-controls="reports">
-                        <i class="ti-file menu-icon"></i>
-                        <span class="menu-title">Tickets</span>
-                        <i class="menu-arrow"></i>
+                    <a class="nav-link" href="#">
+                        <i class="icon-bar-graph menu-icon"></i>
+                        <span class="menu-title">Ticket Reports</span>
                     </a>
-                    <div class="collapse" id="reports">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"> My Assigned Tickets</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> Ticket Reports </a></li>
-                        </ul>
-                    </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="icon-bell menu-icon"></i>

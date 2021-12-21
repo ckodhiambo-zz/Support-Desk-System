@@ -201,8 +201,9 @@
                                                         <label for="exampleFormControlSelect3">Select an Agent</label>
                                                         <select class="form-control form-control-sm"
                                                                 id="exampleFormControlSelect3">
-                                                            <option>Kennedy</option>
-                                                            <option>Calvins</option>
+                                                            <option value="{{ auth()->user()->id }}">{{ auth()->user()->name }} ({{ auth()->user()->email }})</option>
+                                                            <option>Kennedy Calvins (k.odhiambo@tierdata.co.ke)</option>
+                                                            <option>Eric Mwendwa (e.mwendwa@tierdata.co.ke)</option>
                                                         </select>
                                                     </div>
                                                 </div>
