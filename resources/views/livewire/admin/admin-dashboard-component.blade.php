@@ -155,7 +155,7 @@
                                             {{ \App\Models\Asset::find($item->asset_name)->name }}
                                         </td>
                                         <td>
-                                            Not Assigned
+                                            {{ $item->solver ? $item->solver->name : 'Not Assigned' }}
                                         </td>
                                         <td>
                                             {{ $item->status->name }}
@@ -172,8 +172,8 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
                                                     <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                    <a class="dropdown-item text-success" href="#" data-toggle="modal"
-                                                       data-target="#exampleModal">-- Assign / Edit Agent--</a>
+                                                    <button class="dropdown-item text-success" href="#" data-toggle="modal"
+                                                       data-target="#ticketModal" data-ticket-id="{{ $item->id }}">-- Assign / Edit Agent--</button>
                                                     <a class="dropdown-item text-info" href="#">-- View Details --</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#" style="color: red">Archive</a>
@@ -181,41 +181,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title text-primary" id="exampleModalLabel">Assign an Agent</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <strong>* An email will be sent to the agent assigned *</strong>
-                                                    <br>
-                                                    <br>
-                                                    <div class="form-group">
-                                                        <label for="exampleFormControlSelect3">Select an Agent</label>
-                                                        <select class="form-control form-control-sm"
-                                                                id="exampleFormControlSelect3">
-                                                            <option value="{{ auth()->user()->id }}">{{ auth()->user()->name }} ({{ auth()->user()->email }})</option>
-                                                            <option>Kennedy Calvins (k.odhiambo@tierdata.co.ke)</option>
-                                                            <option>Eric Mwendwa (e.mwendwa@tierdata.co.ke)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
-                                                        Close
-                                                    </button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 @endforeach
                                 </tbody>
                             </table>
@@ -227,9 +193,50 @@
         </div>
 
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog"
+         aria-labelledby="ticketModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary" id="ticketModalLabel">Assign an Agent</h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('solver.set') }}" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <strong>* An email will be sent to the agent assigned *</strong>
+                        <br>
+                        <br>
+                            <div class="form-group">
+                                <label id="ticket-label" for="exampleFormControlSelect3">Select an Agent</label>
+                                <input type="text" id="ticket" name="ticket" hidden>
+                                <select name="admin" class="form-control form-control-sm" id="exampleFormControlSelect3">
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}"> {{ $user->name }} {{ ($user->email) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <script src="{{ asset('js/app.js') }}"></script>
-    {{--        <script src="https://code.jquery.com/jquery-3.6.0.min.js"--}}
-    {{--                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>
@@ -268,6 +275,14 @@
     <script src="{{ asset('assets/js/typeahead.js') }}"></script>
     <script src="{{ asset('assets/js/select2.js') }}"></script>
     <!-- End custom js for this page-->
+
+    <script>
+        $(document).ready(function () {
+            $("#ticketModal").on("show.bs.modal", function (e) {
+                $('#ticket').val($(e.relatedTarget).data('ticket-id'));
+            });
+        });
+    </script>
     </body>
     </html>
 </div>

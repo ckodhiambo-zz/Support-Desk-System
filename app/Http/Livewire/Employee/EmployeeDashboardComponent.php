@@ -53,7 +53,7 @@ class EmployeeDashboardComponent extends Component
 
         $requester = Auth::user();
 
-        $status = status::whereName('New')  ->first();
+        $status = status::whereName('New')->first();
 
         $ticket->requester()->associate($requester);
 

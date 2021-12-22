@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class AssignedTicketsComponent extends Component
 {
     public function render()
     {
-        return view('livewire.admin.assigned-tickets-component');
+        $myassignedtickets = Auth::user()->solved;
+
+
+        return view('livewire.admin.assigned-tickets-component', compact('myassignedtickets'))->layout('layouts.support-admin-dashboard');
     }
 }

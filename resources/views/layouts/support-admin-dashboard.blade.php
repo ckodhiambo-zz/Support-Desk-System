@@ -23,6 +23,8 @@
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
     <!-- Template Main CSS File -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
 
     @livewireStyles
@@ -337,7 +339,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->is('admin/dashboard') ?? 'active' }}" href="{{ route('admin.dashboard') }}">
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -352,26 +354,26 @@
                     <div class="collapse" id="reports">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> My Assigned Tickets</a></li>
+                                <a class="nav-link {{ request()->is('admin/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
                             <li class="nav-item"><a class="nav-link" href="#"> Ticket Reports </a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
                         <i class="icon-bell menu-icon"></i>
                         <span class="menu-title">Notifications</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
-                       aria-controls="reports">
+                    <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
+                       aria-controls="accounts">
                         <i class="icon-head menu-icon"></i>
                         <span class="menu-title">Account Center</span>
                         <i class="menu-arrow"></i>
                     </a>
-                    <div class="collapse" id="reports">
+                    <div class="collapse" id="accounts">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
                                 <a class="nav-link" href="#"> Privacy and Security</a></li>
