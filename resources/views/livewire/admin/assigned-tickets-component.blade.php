@@ -1,7 +1,10 @@
 <div>
 
     <div class="row">
+
         <div class="col-lg-12 grid-margin stretch-card">
+            <br>
+            <br>
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">List of my Assigned Tickets</h4>
@@ -78,7 +81,7 @@
                                                 {{ \App\Models\Asset::find($item->asset_name)->name }}
                                             </td>
                                             <td>
-                                                {{ $item->status->name }}
+                                                <label class="badge badge-primary" style=" font-size: 0.9em;">{{ $item->status->name }}</label>
                                             </td>
                                             <td>
                                                 {{ $item->created_at }}
@@ -93,6 +96,9 @@
                                                     <div class="dropdown-menu"
                                                          aria-labelledby="dropdownMenuSizeButton3">
                                                         <h6 class="dropdown-header"><strong>Actions</strong></h6>
+                                                        <a class="dropdown-item text-primary" href="#"
+                                                           data-toggle="modal"
+                                                           data-target="#exampleModal">-- Contact Requester --</a>
                                                         <a class="dropdown-item text-success" href="#"
                                                            data-toggle="modal"
                                                            data-target="#exampleModal">-- Edit Status --</a>
