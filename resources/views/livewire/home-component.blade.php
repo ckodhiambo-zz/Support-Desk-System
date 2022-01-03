@@ -161,14 +161,14 @@
                             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="400">
                                 <div class="feature-box d-flex align-items-center">
                                     <i class="bi bi-check"></i>
-                                    <h3>Volup amet voluptas</h3>
+                                    <h3>Self Service Option</h3>
                                 </div>
                             </div>
 
                             <div class="col-md-6" data-aos="zoom-out" data-aos-delay="500">
                                 <div class="feature-box d-flex align-items-center">
                                     <i class="bi bi-check"></i>
-                                    <h3>Rerum omnis sint</h3>
+                                    <h3>Ticket Priority</h3>
                                 </div>
                             </div>
 
@@ -194,7 +194,8 @@
                 <!-- Feature Tabs -->
                 <div class="row feture-tabs" data-aos="fade-up">
                     <div class="col-lg-6">
-                        <h3>Neque officiis dolore maiores et exercitationem quae est seda lidera pat claero</h3>
+                        <h3>Bad customer service experience travels at the speed of light
+                        </h3>
 
                         <!-- Tabs -->
                         <ul class="nav nav-pills mb-3">

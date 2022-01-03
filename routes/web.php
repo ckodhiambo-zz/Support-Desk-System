@@ -3,6 +3,7 @@
 use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Admin\AdminEditCompanyComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
+use App\Http\Livewire\Admin\EditTicketDetailsComponent;
 use App\Http\Livewire\Admin\TicketDetailsComponent;
 use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
@@ -44,6 +45,6 @@ Route::middleware(['auth:sanctum', 'verified','authadmin'])->group(function (){
     Route::get('/admin/dashboard/companies/edit/{company_id}',AdminEditCompanyComponent::class)->name('admin.edit_company');
     Route::get('/admin/dashboard/ticket-details', TicketDetailsComponent::class)->name('ticket.details');
     Route::get('/admin/dashboard/my-assigned-tickets', AssignedTicketsComponent::class)->name('ticket.assigned-tickets');
-
     Route::post('/admin/solver/set', [AdminDashboardComponent::class, 'setSolver'])->name('solver.set');
+    Route::get('/admin/dashboard/my-assigned-tickets/edit',EditTicketDetailsComponent::class)->name('admin.edit-ticket');
 });
