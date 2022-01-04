@@ -45,7 +45,7 @@
                                    role="tab" aria-controls="home" aria-selected="true">Open</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-danger" id="pending-tab" data-toggle="tab" href="#pending"
+                                <a class="nav-link text-warning" id="pending-tab" data-toggle="tab" href="#pending"
                                    role="tab" aria-controls="profile" aria-selected="false">Pending</a>
                             </li>
                             <li class="nav-item">
@@ -72,6 +72,8 @@
                                    aria-controls="contact" aria-selected="false">Archived</a>
                             </li>
                         </ul>
+
+
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="open" role="tabpanel" aria-labelledby="open-tab">
                                 <div class="table-responsive">
@@ -102,50 +104,29 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($myassignedtickets as $item)
+                                        @foreach($open as $ticket)
                                             <tr>
                                                 <td>
-                                                    {{ $item->id }}
+                                                    {{ $ticket->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->requester->name }}
+                                                    {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->requester->email }}
+                                                    {{ $ticket->requester->email }}
                                                 </td>
                                                 <td>
-                                                    {{ \App\Models\Asset::find($item->asset_name)->name }}
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
                                                 </td>
                                                 <td>
                                                     <label class="badge badge-primary"
-                                                           style=" font-size: 0.9em;">{{ $item->status->name }}</label>
+                                                           style=" font-size: 0.9em;"><strong>{{ $ticket->status->name }}</strong></label>
                                                 </td>
                                                 <td>
-                                                    {{ $item->created_at }}
+                                                    {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-                                                    <div class="dropdown">
-                                                        <button class="btn btn-primary btn-sm dropdown-toggle"
-                                                                type="button"
-                                                                id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                                aria-haspopup="true" aria-expanded="false">
-                                                            Actions
-                                                        </button>
-                                                        <div class="dropdown-menu"
-                                                             aria-labelledby="dropdownMenuSizeButton3">
-                                                            <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                            <a class="dropdown-item text-primary" href="#">-- Contact
-                                                                Requester --</a>
-                                                            <a class="dropdown-item text-success" href="#"
-                                                               data-toggle="modal" data-target="#exampleModal">-- Edit
-                                                                Status --</a>
-                                                            <a class="dropdown-item text-info" href="#">-- View Details
-                                                                --</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="#"
-                                                               style="color: red">Archive</a>
-                                                        </div>
-                                                    </div>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}" class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -227,72 +208,56 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 T-ID
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Requester
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Asset
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Agent
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Status
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Created at
                                             </th>
-                                            <th class="text-danger">
+                                            <th class="text-primary">
                                                 Action
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $item)--}}
-                                        <tr>
-                                            <td class="py-1">
-                                                {{--                                                        {{ $item->id }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $item->requester->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($item->asset_name)->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        Not Assigned--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $item->status->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $item->created_at }}--}}
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                        @foreach($pending as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-warning"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}" class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
 
@@ -327,25 +292,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $item)--}}
+                                        {{--                                    @foreach($alltickets as $ticket)--}}
                                         <tr>
                                             <td class="py-1">
-                                                {{--                                                        {{ $item->id }}--}}
+                                                {{--                                                        {{ $ticket->id }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->requester->name }}--}}
+                                                {{--                                                        {{ $ticket->requester->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($item->asset_name)->name }}--}}
+                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
                                             </td>
                                             <td>
                                                 {{--                                                        Not Assigned--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->status->name }}--}}
+                                                {{--                                                        {{ $ticket->status->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->created_at }}--}}
+                                                {{--                                                        {{ $ticket->created_at }}--}}
                                             </td>
                                             <td>
                                                 <div class="dropdown">
@@ -403,25 +368,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $item)--}}
+                                        {{--                                    @foreach($alltickets as $ticket)--}}
                                         <tr>
                                             <td class="py-1">
-                                                {{--                                                        {{ $item->id }}--}}
+                                                {{--                                                        {{ $ticket->id }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->requester->name }}--}}
+                                                {{--                                                        {{ $ticket->requester->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($item->asset_name)->name }}--}}
+                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
                                             </td>
                                             <td>
                                                 {{--                                                        Not Assigned--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->status->name }}--}}
+                                                {{--                                                        {{ $ticket->status->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->created_at }}--}}
+                                                {{--                                                        {{ $ticket->created_at }}--}}
                                             </td>
                                             <td>
                                                 <div class="dropdown">
@@ -479,25 +444,25 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $item)--}}
+                                        {{--                                    @foreach($alltickets as $ticket)--}}
                                         <tr>
                                             <td class="py-1">
-                                                {{--                                                        {{ $item->id }}--}}
+                                                {{--                                                        {{ $ticket->id }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->requester->name }}--}}
+                                                {{--                                                        {{ $ticket->requester->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($item->asset_name)->name }}--}}
+                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
                                             </td>
                                             <td>
                                                 {{--                                                        Not Assigned--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->status->name }}--}}
+                                                {{--                                                        {{ $ticket->status->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $item->created_at }}--}}
+                                                {{--                                                        {{ $ticket->created_at }}--}}
                                             </td>
                                             <td>
                                                 <div class="dropdown">

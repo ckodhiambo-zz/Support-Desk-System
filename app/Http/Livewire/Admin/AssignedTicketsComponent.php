@@ -11,7 +11,20 @@ class AssignedTicketsComponent extends Component
     {
         $myassignedtickets = Auth::user()->solved;
 
+        $open = [];
+        $pending = [];
 
-        return view('livewire.admin.assigned-tickets-component', compact('myassignedtickets'))->layout('layouts.support-admin-dashboard');
+        $myassignedtickets->each(function ($item) use (&$open, &$pending) {
+            if ($item->status->name == 'Open')
+            {
+                $open[] = $item;
+            }
+            if ($item->status->name == 'Pending')
+            {
+                $pending[] = $item;
+            }
+        });
+
+        return view('livewire.admin.assigned-tickets-component', compact('open', 'pending'))->layout('layouts.support-admin-dashboard');
     }
 }
