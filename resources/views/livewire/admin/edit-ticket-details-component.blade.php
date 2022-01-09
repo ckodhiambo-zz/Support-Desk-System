@@ -50,8 +50,6 @@
                             <hr class="border border-primary">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-
-
                                     <div class="row">
                                         <div class="col-md-12 col-xl-12">
                                             <div class="row">
@@ -117,7 +115,8 @@
                                                                 <td class="text-muted">Ticket ID</td>
                                                                 <td class="">
                                                                     <h6 class="font-weight-500"
-                                                                        style="font-size: medium">TD-{{ $ticket->id }}</h6>
+                                                                        style="font-size: medium">
+                                                                        TD-{{ $ticket->id }}</h6>
                                                                 </td>
 
                                                             </tr>
@@ -168,43 +167,41 @@
                                             </div>
                                             <hr class="border border-primary">
                                             <div class="row">
-
-                                                <div class="col-md-12">
+                                                <div class="col-md-6 border-right border-info">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <h3 class="font-weight-100 mb-xl-4 text-info"
-                                                            style="font-size: medium">Description</h3>
+                                                            style="font-size: medium">Requester's reason / description on the ticket</h3>
+                                                        {{--                                                        <div class="card-body">--}}
+                                                        <blockquote class="blockquote blockquote-info">
+                                                            <p style="text-align: justify">{{ $ticket->description ?? 'No reason currently available'}}</p>
+                                                            <footer
+                                                                class="blockquote-footer">{{ $ticket->requester->name }}</footer>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 border-right">
+                                                    <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                        <h3 class="font-weight-100 mb-xl-4 text-info"
+                                                            style="font-size: medium">Agent's reason / description on the ticket</h3>
                                                         {{--                                                        <div class="card-body">--}}
                                                         <blockquote class="blockquote blockquote-info">
                                                             <p style="text-align: justify">{{ $ticket->admin_reason ?? 'No reason currently available'}}</p>
-                                                            <footer class="blockquote-footer">{{ $ticket->requester->name }}</footer>
+                                                            <footer
+                                                                class="blockquote-footer">{{ auth()->user()->name }}</footer>
                                                         </blockquote>
-                                                        {{--                                                        </div>--}}
-                                                        {{--                                                        <p class="" style="text-align: justify"><strong>"No Description is available"</strong></p>--}}
                                                     </div>
                                                 </div>
-
-
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                            {{--                        <a class="carousel-control-prev" href="#detailedReports" role="button" data-slide="prev">--}}
-                            {{--                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-                            {{--                            <span class="sr-only">Previous</span>--}}
-                            {{--                        </a>--}}
-                            {{--                        <a class="carousel-control-next" href="#detailedReports" role="button" data-slide="next">--}}
-                            {{--                            <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-                            {{--                            <span class="sr-only">Next</span>--}}
-                            {{--                        </a>--}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
+        <!-- Modal Opening -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -217,15 +214,17 @@
                     </div>
                     <form action="{{ route('admin.update-ticket', $ticket) }}" method="post">
                         @csrf
-                        <div class="modal-body" >
+                        <div class="modal-body">
                             {{--                        <strong>Kindly note that an email address will be sent to</strong>--}}
                             <p>The ticket status will change from
-                                <label class="badge badge-warning" style=" font-size: 0.9em;color: #fff">{{ $ticket->status->name }}</label> to: </p>
+                                <strong>{{ $ticket->status->name }}</strong> to:
+                            </p>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <div class="form-check form-check-warning">
+                                    <div class="form-check form-check-primary">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="Pending" value="Pending">
+                                            <input type="radio" class="form-check-input" name="optionsRadios"
+                                                   id="Pending" value="Pending">
                                             Pending
                                         </label>
                                     </div>
@@ -233,7 +232,8 @@
                                 <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="On-Hold" value="On-Hold">
+                                            <input type="radio" class="form-check-input" name="optionsRadios"
+                                                   id="On-Hold" value="On-Hold">
                                             On-Hold
                                         </label>
                                     </div>
@@ -241,7 +241,8 @@
                                 <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="Solved" value="Solved">
+                                            <input type="radio" class="form-check-input" name="optionsRadios"
+                                                   id="Solved" value="Solved">
                                             Solved
                                         </label>
                                     </div>
@@ -252,7 +253,8 @@
                                 <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="Cancelled" value="Cancelled">
+                                            <input type="radio" class="form-check-input" name="optionsRadios"
+                                                   id="Cancelled" value="Cancelled">
                                             Cancelled
                                         </label>
                                     </div>
@@ -260,7 +262,8 @@
                                 <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios" id="Closed" value="Closed">
+                                            <input type="radio" class="form-check-input" name="optionsRadios"
+                                                   id="Closed" value="Closed">
                                             Closed
                                         </label>
                                     </div>
@@ -270,7 +273,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <strong><label for="exampleTextarea1">Kindly indicate the reason for status change if applicable</label></strong>
+                                        <strong><label for="exampleTextarea1">Kindly indicate the reason for status
+                                                change if applicable</label></strong>
                                         <textarea class="form-control" id="exampleTextarea1" name="description"
                                                   rows="4"></textarea>
                                     </div>
@@ -280,12 +284,14 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dribbble" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
+        <!-- End Modal Opening -->
+
     </div>
     </body>
     </html>

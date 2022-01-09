@@ -73,7 +73,7 @@
                         <div class="card l-bg-cherry">
                             <div class="card-body">
                                 <p class="mb-4">Total No. of Tickets</p>
-                                <p class="fs-30 mb-2">61344</p>
+                                <p class="fs-30 mb-2">{{$alltickets->count()}}</p>
                             </div>
                         </div>
                     </div>
@@ -115,6 +115,11 @@
                         <p class="card-description">
                             The tickets are <code>.in a descending order</code>
                         </p>
+                        @if(Session::has('message_sent'))
+                            <div class="alert alert-success" role="alert">
+                                {{ Session::get('message_sent') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -172,8 +177,11 @@
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
                                                     <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                    <button class="dropdown-item text-success" href="#" data-toggle="modal"
-                                                       data-target="#ticketModal" data-ticket-id="{{ $item->id }}">-- Assign / Edit Agent--</button>
+                                                    <button class="dropdown-item text-success" href="#"
+                                                            data-toggle="modal"
+                                                            data-target="#ticketModal" data-ticket-id="{{ $item->id }}">
+                                                        -- Assign / Edit Agent--
+                                                    </button>
                                                     <a class="dropdown-item text-info" href="#">-- View Details --</a>
                                                     <div class="dropdown-divider"></div>
                                                     <a class="dropdown-item" href="#" style="color: red">Archive</a>
@@ -212,19 +220,33 @@
                         <strong>* An email will be sent to the agent assigned *</strong>
                         <br>
                         <br>
-                            <div class="form-group">
-                                <label id="ticket-label" for="exampleFormControlSelect3">Select an Agent</label>
-                                <input type="text" id="ticket" name="ticket" hidden>
-                                <select name="admin" class="form-control form-control-sm" id="exampleFormControlSelect3">
-                                    @foreach($users as $user)
-                                        <option value="{{ $user->id }}"> {{ $user->name }} {{ ($user->email) }}</option>
-                                    @endforeach
-                                </select>
+                        <div class="form-group">
+                            <label id="ticket-label" for="exampleFormControlSelect3">Select an Agent</label>
+                            <input type="text" id="ticket" name="ticket" hidden>
+                            <select name="admin" class="form-control form-control-sm" id="exampleFormControlSelect3"
+                                    required>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}"> {{ $user->name }} - {{ ($user->email) }} -
+                                        {{$user->phone_number}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <hr class="border-primary">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <strong>
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="phone_number" value="true">
+                                        Send SMS to the selected agent
+                                    </label>
+                                </strong>
                             </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Assign Ticket</button>
                     </div>
                 </form>
             </div>
@@ -232,11 +254,9 @@
     </div>
 
 
-
-
     <script src="{{ asset('js/app.js') }}"></script>
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-                    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
             crossorigin="anonymous"></script>

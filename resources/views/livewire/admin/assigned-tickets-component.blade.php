@@ -38,7 +38,6 @@
                         <p class="card-description">
                             The tickets are <code>.in a descending order</code>
                         </p>
-                        {{--                    table-reponsive was here--}}
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active text-primary" id="open-tab" data-toggle="tab" href="#open"
@@ -49,30 +48,25 @@
                                    role="tab" aria-controls="profile" aria-selected="false">Pending</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-info" id="onhold-tab" data-toggle="tab" href="#on-hold"
-                                   role="tab"
-                                   aria-controls="contact" aria-selected="false">On-hold</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link text-success" id="solved-tab" data-toggle="tab" href="#solved"
                                    role="tab"
                                    aria-controls="contact" aria-selected="false">Solved</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-muted" id="closed-tab" data-toggle="tab" href="#closed"
+                                <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab" href="#partially-solved"
                                    role="tab"
-                                   aria-controls="contact" aria-selected="false">Closed</a>
+                                   aria-controls="contact" aria-selected="false">Partially Solved</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-warning" id="cancelled-tab" data-toggle="tab" href="#cancelled"
+                                <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
                                    role="tab" aria-controls="contact" aria-selected="false">Cancelled</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-muted" id="archived-tab" data-toggle="tab" href="#archived" role="tab"
+                                <a class="nav-link text-info" id="archived-tab" data-toggle="tab" href="#archived"
+                                   role="tab"
                                    aria-controls="contact" aria-selected="false">Archived</a>
                             </li>
                         </ul>
-
 
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="open" role="tabpanel" aria-labelledby="open-tab">
@@ -126,7 +120,8 @@
                                                     {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}" class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -139,7 +134,8 @@
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">Edit
-                                                        Ticket Status from <strong class="text-primary">Open</strong> to:</h5>
+                                                        Ticket Status from <strong class="text-primary">Open</strong>
+                                                        to:</h5>
                                                     <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
@@ -150,7 +146,9 @@
                                                         <div class="col-md-4">
                                                             <div class="form-check form-check-warning">
                                                                 <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                                                    <input type="radio" class="form-check-input"
+                                                                           name="optionsRadios" id="optionsRadios1"
+                                                                           value="">
                                                                     Pending
                                                                 </label>
                                                             </div>
@@ -158,7 +156,9 @@
                                                         <div class="col-md-4">
                                                             <div class="form-check form-check-info">
                                                                 <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                                                    <input type="radio" class="form-check-input"
+                                                                           name="optionsRadios" id="optionsRadios1"
+                                                                           value="">
                                                                     On-Hold
                                                                 </label>
                                                             </div>
@@ -166,7 +166,9 @@
                                                         <div class="col-md-4">
                                                             <div class="form-check form-check-success">
                                                                 <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                                                    <input type="radio" class="form-check-input"
+                                                                           name="optionsRadios" id="optionsRadios1"
+                                                                           value="">
                                                                     Solved
                                                                 </label>
                                                             </div>
@@ -177,7 +179,9 @@
                                                         <div class="col-md-4">
                                                             <div class="form-check form-check-danger">
                                                                 <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                                                    <input type="radio" class="form-check-input"
+                                                                           name="optionsRadios" id="optionsRadios1"
+                                                                           value="">
                                                                     Cancelled
                                                                 </label>
                                                             </div>
@@ -185,7 +189,9 @@
                                                         <div class="col-md-4">
                                                             <div class="form-check form-check-secondary">
                                                                 <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="">
+                                                                    <input type="radio" class="form-check-input"
+                                                                           name="optionsRadios" id="optionsRadios1"
+                                                                           value="">
                                                                     Closed
                                                                 </label>
                                                             </div>
@@ -254,7 +260,8 @@
                                                     {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}" class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -263,74 +270,58 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="on-hold" role="tabpanel" aria-labelledby="on-hold-tab">
+                            <div class="tab-pane fade" id="partially-solved" role="tabpanel" aria-labelledby="partially-solved-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 T-ID
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Requester
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Asset
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Agent
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Status
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Created at
                                             </th>
-                                            <th class="text-info">
+                                            <th class="text-primary">
                                                 Action
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $ticket)--}}
+                                        {{--                                                                            @foreach($alltickets as $ticket)--}}
                                         <tr>
                                             <td class="py-1">
-                                                {{--                                                        {{ $ticket->id }}--}}
+{{--                                                {{ $ticket->id }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $ticket->requester->name }}--}}
+{{--                                                {{ $ticket->requester->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
+{{--                                                {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        Not Assigned--}}
+{{--                                                Not Assigned--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $ticket->status->name }}--}}
+{{--                                                {{ $ticket->status->name }}--}}
                                             </td>
                                             <td>
-                                                {{--                                                        {{ $ticket->created_at }}--}}
+{{--                                                {{ $ticket->created_at }}--}}
                                             </td>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
+                                                <a href="#"
+                                                   class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                             </td>
                                         </tr>
 
@@ -344,147 +335,57 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 T-ID
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Requester
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Asset
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Agent
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Status
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Created at
                                             </th>
-                                            <th class="text-success">
+                                            <th class="text-primary">
                                                 Action
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                    @foreach($alltickets as $ticket)--}}
-                                        <tr>
-                                            <td class="py-1">
-                                                {{--                                                        {{ $ticket->id }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->requester->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        Not Assigned--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->status->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->created_at }}--}}
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="closed" role="tabpanel" aria-labelledby="closed-tab">
-                                <div class="table-responsive">
-                                    <table class="table table-striped">
-                                        <thead>
-                                        <tr>
-                                            <th class="text-muted">
-                                                T-ID
-                                            </th>
-                                            <th class="text-muted">
-                                                Requester
-                                            </th>
-                                            <th class="text-muted">
-                                                Asset
-                                            </th>
-                                            <th class="text-muted">
-                                                Agent
-                                            </th>
-                                            <th class="text-muted">
-                                                Status
-                                            </th>
-                                            <th class="text-muted">
-                                                Created at
-                                            </th>
-                                            <th class="text-muted">
-                                                Action
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {{--                                    @foreach($alltickets as $ticket)--}}
-                                        <tr>
-                                            <td class="py-1">
-                                                {{--                                                        {{ $ticket->id }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->requester->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        Not Assigned--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->status->name }}--}}
-                                            </td>
-                                            <td>
-                                                {{--                                                        {{ $ticket->created_at }}--}}
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach($solved as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-success"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
                                         </tbody>
                                     </table>
@@ -496,67 +397,58 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 T-ID
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Requester
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Asset
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Agent
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Status
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Created at
                                             </th>
-                                            <th class="text-warning">
+                                            <th class="text-primary">
                                                 Action
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
 
-                                        <tr>
-                                            <td class="py-1">
-
-                                            </td>
-                                            <td>
-
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @foreach($cancelled as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-danger"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
 
                                         </tbody>
                                     </table>
@@ -568,25 +460,25 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 T-ID
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Requester
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Asset
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Agent
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Status
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Created at
                                             </th>
-                                            <th class="text-muted">
+                                            <th class="text-primary">
                                                 Action
                                             </th>
                                         </tr>

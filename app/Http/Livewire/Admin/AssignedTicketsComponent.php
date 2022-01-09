@@ -13,18 +13,29 @@ class AssignedTicketsComponent extends Component
 
         $open = [];
         $pending = [];
+        $partially_solved = [];
+        $cancelled = [];
+        $solved = [];
 
-        $myassignedtickets->each(function ($item) use (&$open, &$pending) {
-            if ($item->status->name == 'Open')
-            {
+        $myassignedtickets->each(function ($item) use (&$open, &$pending, &$partially_solved, &$cancelled, &$solved ) {
+            if ($item->status->name == 'Open') {
                 $open[] = $item;
             }
-            if ($item->status->name == 'Pending')
-            {
+            if ($item->status->name == 'Pending') {
                 $pending[] = $item;
             }
+            if ($item->status->name == 'Partially_solved') {
+                $partially_solved[] = $item;
+            }
+            if ($item->status->name == 'Cancelled') {
+                $cancelled[] = $item;
+            }
+            if ($item->status->name == 'Solved') {
+                $solved[] = $item;
+            }
+
         });
 
-        return view('livewire.admin.assigned-tickets-component', compact('open', 'pending'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.assigned-tickets-component', compact('open', 'pending','partially_solved','cancelled','solved'))->layout('layouts.support-admin-dashboard');
     }
 }

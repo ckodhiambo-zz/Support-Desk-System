@@ -184,7 +184,9 @@
                     <div class="add-items d-flex px-3 mb-0">
                         <form class="form w-100">
                             <div class="form-group d-flex">
-                                <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                                <label>
+                                    <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
+                                </label>
                                 <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add
                                 </button>
                             </div>
@@ -355,13 +357,13 @@
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
                                 <a class="nav-link {{ request()->is('admin/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> Ticket Reports </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{route('admin.ticket-report')}}"> Ticket Reports </a></li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link " href="{{ route('admin.dashboard') }}">
                         <i class="icon-bell menu-icon"></i>
                         <span class="menu-title">Notifications</span>
                     </a>
