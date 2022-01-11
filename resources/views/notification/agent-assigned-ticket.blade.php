@@ -234,7 +234,7 @@
                                                     <p style="font-size: 14px; line-height: 140%;"><span
                                                             style="font-size: 28px; line-height: 39.2px;"><strong><span
                                                                     style="line-height: 39.2px; font-size: 28px;"><span
-                                                                        style="font-size: 20px; line-height: 28px;">Update on Ticket ID-#{{ $ticket->id }}</span>&nbsp;</span>
+                                                                        style="font-size: 20px; line-height: 28px;">Update on Ticket-ID-#{{$ticket->id}}</span>&nbsp;</span>
                                   </strong>
                                   </span>
                                                     </p>
@@ -295,7 +295,7 @@
                                                     </p>
                                                     <p style="font-size: 14px; line-height: 160%; text-align: justify;">
                                                         <span
-                                                            style="font-size: 18px; line-height: 28.8px;">Your <strong>Ticket-ID-#{{$ticket->id}}</strong> status now reflects as <strong>{{$ticket->status->name}}</strong>. We endeavour to resolve your ticket in the soonest time possible. Kindly click on the button below to view more details. </span>
+                                                            style="font-size: 18px; line-height: 28.8px;">Your <strong>Ticket-ID-#{{$ticket->id}}</strong> has been assigned to our agent <strong>{{$ticket->solver->name}}</strong>. The ticket status now stands as <strong>{{$ticket->status->name}}</strong>. We endeavour to have your ticket resolved in the soonest time possible. Kindly click on the button below to view more details. </span>
                                                     </p>
                                                     <p style="font-size: 14px; line-height: 160%;"><span
                                                             style="font-size: 18px; line-height: 28.8px;"><strong>Thank you for your patience!</strong>&nbsp;</span>
@@ -356,10 +356,10 @@
                                                 <div
                                                     style="line-height: 160%; text-align: center; word-wrap: break-word;">
                                                     <p style="line-height: 160%; font-size: 14px;"><span
-                                                            style="font-size: 18px; line-height: 28.8px;">Thanks,</span>
+                                                            style="font-size: 18px; line-height: 28.8px;">Regards,</span>
                                                     </p>
                                                     <p style="line-height: 160%; font-size: 14px;"><span
-                                                            style="font-size: 18px; line-height: 28.8px;">Precision Desk</span>
+                                                            style="font-size: 18px; line-height: 28.8px;">Precision Desk Team</span>
                                                     </p>
                                                 </div>
 

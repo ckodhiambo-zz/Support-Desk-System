@@ -186,8 +186,8 @@
                                             <td style="overflow-wrap:break-word;word-break:break-word;padding:33px 55px;font-family:'Cabin',sans-serif;" align="left">
 
                                                 <div style="line-height: 160%; text-align: center; word-wrap: break-word;">
-                                                    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">Hi Joy Ngugi, </span></p>
-                                                    <p style="font-size: 14px; line-height: 160%; text-align: justify;"><span style="font-size: 18px; line-height: 28.8px;">Your ticket request<strong> (Ticket ID-#23) </strong>has been resolved. The ticket status now stands as <strong>solved</strong>. If you have any questions, or feedback, feel free to reply to this email.</span></p>
+                                                    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">Hi {{$ticket->requester->name}}, </span></p>
+                                                    <p style="font-size: 14px; line-height: 160%; text-align: justify;"><span style="font-size: 18px; line-height: 28.8px;">Your ticket request<strong> (Ticket ID-#{{$ticket->id}}) </strong>has been <strong>resolved</strong>. The ticket status now stands as <strong>{{$ticket->status->name}}</strong>. If you have any questions, or feedback, feel free to reply to this email.</span></p>
                                                     <p style="font-size: 14px; line-height: 160%; text-align: justify;"><span style="font-size: 18px; line-height: 28.8px;">If you would like to raise an appeal of the solved ticket, kindly do so <strong> within 48 hours of receiving this notification else the ticket be archived </strong>. If you have any questions, or feedback, kindly contact us.</span></p>
                                                 </div>
 

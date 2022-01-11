@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TicketClosure;
+use App\Mail\TicketStatusNotification;
 use App\Models\status;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class TicketsController extends Controller
 {
@@ -23,6 +26,16 @@ class TicketsController extends Controller
 
         $ticket->refresh()->status()->associate(status::whereName($request->input('optionsRadios'))->first())->save();
 
+
+        if ($ticket->status->name == 'Solved')
+        {
+            Mail::to($ticket->requester->email)->send(new TicketClosure($ticket));
+        }
+        else
+        {
+            Mail::to($ticket->requester->email)->send(new TicketStatusNotification($ticket));
+        }
+
         // Update the tickets timestamps table after the main ticket model has been updated to ensure the record makes sense
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
@@ -31,9 +44,6 @@ class TicketsController extends Controller
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString()
         ]);
-
-
-
 
         return redirect('/admin/dashboard/my-assigned-tickets');
     }

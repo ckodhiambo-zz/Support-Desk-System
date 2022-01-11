@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Helpers\AfricasTalking\AfricasTalkingAPI;
+use App\Mail\AssignedToRequester;
 use App\Mail\FirstAgentNotification;
 use App\Models\status;
 use App\Models\Tickets;
@@ -59,7 +60,8 @@ class AdminDashboardComponent extends Component
         ]);
 
         Mail::to($ticket->solver->email)->send(new FirstAgentNotification($ticket));
+        Mail::to($ticket->requester->email)->send(new AssignedToRequester($ticket));
 
-        return back()->with('message_sent', 'An email has been sent successfully to the assigned agent!');
+        return back()->with('message_sent', 'An email has been sent successfully to the assigned agent and the requester!');
     }
 }

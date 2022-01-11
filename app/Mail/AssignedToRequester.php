@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RequesterFirstNotification extends Mailable
+class AssignedToRequester extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -15,11 +15,11 @@ class RequesterFirstNotification extends Mailable
 
     public function __construct($ticket)
     {
-        $this->ticket = $ticket;
+        $this->ticket=$ticket;
     }
 
     public function build()
     {
-        return $this->subject('New Support Ticket Request!')->view('notification.requester-email');
+        return $this->subject('Ticket Status Update!')->view('notification.agent-assigned-ticket');
     }
 }
