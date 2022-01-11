@@ -179,12 +179,19 @@
                                                                     <th>
                                                                         Date Updated
                                                                     </th>
+                                                                    <th>Duration</th>
                                                                 </tr>
                                                                 </thead>
                                                                 <tbody>
-{{--                                                                    @foreach($history as $row)--}}
-{{--                                                                        {{ $row }}--}}
-{{--                                                                    @endforeach--}}
+                                                                @foreach($history->where('ticket_id', $ticket->id) as $index => $row)
+                                                                    <tr>
+                                                                        <td>{{ $row->old_status }}</td>
+                                                                        <td>{{ $row->new_status }}</td>
+                                                                        <td>{{ $row->created_at }}</td>
+                                                                        <td>{{ $loop->first ? '-' :
+                                                                                    \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' days' . ' ' . \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInHours(\Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' hours' . ' ' . \Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInMinutes(\Carbon\Carbon::createFromFormat('Y-m-d H:s:i', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' minutes' }}</td>
+                                                                    </tr>
+                                                                @endforeach
                                                                 </tbody>
                                                             </table>
                                                         </blockquote>
