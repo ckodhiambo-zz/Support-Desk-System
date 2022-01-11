@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RaisedTicketMail extends Mailable
+class RequesterFirstNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,11 +16,12 @@ class RaisedTicketMail extends Mailable
     public function __construct($ticket)
     {
         $this->ticket = $ticket;
+
     }
 
 
     public function build()
     {
-        return $this->subject('New Ticket Request!')->view('notification.raisednotification');
+        return $this->subject('New Support Ticket Request!')->view('notification.requester-email');
     }
 }

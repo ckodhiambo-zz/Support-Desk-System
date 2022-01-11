@@ -13,7 +13,7 @@ class EditTicketDetailsComponent extends Component
 
     public function mount(Tickets $ticket)
     {
-        $this->post = $ticket;
+        $this->ticket = $ticket;
     }
 
     public function render(Tickets $ticket)

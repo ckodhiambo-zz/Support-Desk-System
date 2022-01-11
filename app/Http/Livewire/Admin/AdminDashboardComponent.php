@@ -7,13 +7,14 @@ use App\Models\status;
 use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class AdminDashboardComponent extends Component
 {
     public function render()
     {
-        $alltickets = Tickets::orderBy('id', 'DESC')->paginate(8);
+        $alltickets = Tickets::orderBy('id', 'DESC')->paginate(5);
 
         $users = User::where('user_type', 'Administrator')->get();
 
@@ -27,7 +28,9 @@ class AdminDashboardComponent extends Component
 
         $ticket = Tickets::find($request->input('ticket'));
 
-//        $user = User::find($request->input('admin'));
+        $old_status = $ticket->status->name;
+
+        $new_status = 'Open';
 
         $ticket->solver()->associate($user);
 
@@ -38,12 +41,21 @@ class AdminDashboardComponent extends Component
         if ($request->input('phone_number') == 'true') {
             $at = new AfricasTalkingAPI();
 
-            $response = $at->sms($user->phone_number, 'Precision Desk - Dear ' . $user->name . ', You have an open ticket that has been assigned to you by your administrator. Kindly proceed to your precision desk dashboard to assist in resolving the ticket.');
+            $response = $at->sms($user->phone_number, 'Precision Desk - Dear ' . $user->name . ', You have been assigned ticket-id #' . $ticket->id . ' from: '.$ticket->requester->name.'. Kindly login to your portal for more info: support.tierdata.co.ke.');
 
             if ($response['status'] == 'success') {
                 return back()->with('message_sent', 'An email and SMS notification has been sent successfully to the assigned agent!');
             }
         }
+
+
+        DB::table('ticket_timestamps')->insert([
+            'ticket_id' => $ticket->id,
+            'old_status' => $old_status,
+            'new_status' => $new_status,
+            'created_at' => now()->toDateTimeString(),
+            'updated_at' => now()->toDateTimeString()
+        ]);
 
         return back()->with('message_sent', 'An email has been sent successfully to the assigned agent!');
     }

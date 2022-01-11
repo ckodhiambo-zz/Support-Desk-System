@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Employee;
 
 use App\Mail\RaisedTicketMail;
+use App\Mail\RequesterFirstNotification;
 use App\Models\Asset;
 use App\Models\AssetType;
 use App\Models\Category;
@@ -59,9 +60,11 @@ class EmployeeDashboardComponent extends Component
 
         $ticket->status()->associate($status);
 
+        $ticket->save();
+
         Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
 
-        $ticket->save();
+        Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));
 
         return redirect('/employee/dashboard/my-tickets')->with('message_sent','Your ticket has been successfully raised and an email sent to our team!');
 

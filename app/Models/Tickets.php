@@ -11,18 +11,11 @@ class   Tickets extends Model
 {
     use HasFactory;
 
-//    protected $fillable = [
-//        'subject',
-//        'attachment',
-//        'description'
-//    ];
+
 
     protected $guarded = ['status_id', 'requester_id'];
 
-//    public function user(): BelongsToMany
-//    {
-//        return $this->belongsToMany(User::class);
-//    }
+
 
     public function asset(): BelongsToMany
     {

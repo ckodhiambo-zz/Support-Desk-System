@@ -92,14 +92,6 @@
                                                                 </td>
 
                                                             </tr>
-                                                            <tr>
-                                                                <td class="text-muted">Created at</td>
-                                                                <td class="">
-                                                                    <h6 class="font-weight-500"
-                                                                        style="font-size: medium">{{ $ticket->created_at }}</h6>
-                                                                </td>
-
-                                                            </tr>
                                                         </table>
 
                                                         {{--                                                        </blockquote>--}}
@@ -166,11 +158,46 @@
                                                 </div>
                                             </div>
                                             <hr class="border border-primary">
+                                            <br>
+                                            <h3 class="font-weight-100 mb-xl-4 text-info"
+                                                style="font-size: medium">Ticket History</h3>
+                                            <div class="row">
+
+                                                <div class="col-md-12">
+                                                    <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                        {{--                                                        <div class="card-body">--}}
+                                                        <blockquote class="blockquote blockquote-info">
+                                                            <table class="table table-striped">
+                                                                <thead>
+                                                                <tr>
+                                                                    <th>
+                                                                        Previous Status
+                                                                    </th>
+                                                                    <th>
+                                                                        New Status
+                                                                    </th>
+                                                                    <th>
+                                                                        Date Updated
+                                                                    </th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+{{--                                                                    @foreach($history as $row)--}}
+{{--                                                                        {{ $row }}--}}
+{{--                                                                    @endforeach--}}
+                                                                </tbody>
+                                                            </table>
+                                                        </blockquote>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="border border-primary">
                                             <div class="row">
                                                 <div class="col-md-6 border-right border-info">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <h3 class="font-weight-100 mb-xl-4 text-info"
-                                                            style="font-size: medium">Requester's reason / description on the ticket</h3>
+                                                            style="font-size: medium">Requester's reason / description
+                                                            on the ticket</h3>
                                                         {{--                                                        <div class="card-body">--}}
                                                         <blockquote class="blockquote blockquote-info">
                                                             <p style="text-align: justify">{{ $ticket->description ?? 'No reason currently available'}}</p>
@@ -182,7 +209,8 @@
                                                 <div class="col-md-6 border-right">
                                                     <div class="table-responsive mb-3 mb-md-0 mt-3">
                                                         <h3 class="font-weight-100 mb-xl-4 text-info"
-                                                            style="font-size: medium">Agent's reason / description on the ticket</h3>
+                                                            style="font-size: medium">Agent's reason / description on
+                                                            the ticket</h3>
                                                         {{--                                                        <div class="card-body">--}}
                                                         <blockquote class="blockquote blockquote-info">
                                                             <p style="text-align: justify">{{ $ticket->admin_reason ?? 'No reason currently available'}}</p>
