@@ -3,11 +3,10 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RequesterFirstNotification extends Mailable
+class FirstAgentNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +17,9 @@ class RequesterFirstNotification extends Mailable
         $this->ticket = $ticket;
     }
 
-
     public function build()
     {
-        return $this->subject('New Support Ticket Request!')->view('notification.requester-email');
+        return $this->subject('Support Ticket Notification')->view('notification.solver-email');
+
     }
 }
