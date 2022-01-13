@@ -65,31 +65,50 @@
                 @if(Route::has('login'))
                     @auth
                         @if(Auth::user()->user_type==='Administrator')
-                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('admin.dashboard') }}">Dashboard (Admin)</a></li>
-                                    <li><a href="#"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></a></li>
+                                    <li><a href="#"><a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                                Out</a></a></li>
                                 </ul>
                             </li>
                         @elseif(Auth::user()->user_type==='default_user')
-                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('employee.dashboard') }}">Dashboard (D.User)</a></li>
-                                    <li><a href="#"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></a></li>
+                                    <li><a href="#"><a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                                Out</a></a></li>
+                                </ul>
+                            </li>
+                        @elseif(Auth::user()->user_type==='Agent')
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="{{ route('agent.dashboard') }}">Dashboard (Agent)</a></li>
+                                    <li><a href="#"><a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                                Out</a></a></li>
                                 </ul>
                             </li>
                         @else
-                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i class="bi bi-chevron-down"></i></a>
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="{{ route('demo.dashboard') }}">Dashboard (Demo)</a></li>
-                                    <li><a href="#"><a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a></a></li>
+                                    <li><a href="#"><a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                                Out</a></a></li>
                                 </ul>
                             </li>
 
                         @endif
-                            <form id="logout-form" method="post" action="{{ route('logout') }}">
-                                @csrf
-                            </form>
+                        <form id="logout-form" method="post" action="{{ route('logout') }}">
+                            @csrf
+                        </form>
                     @else
                         <li><a class="getstarted scrollto" href="{{route('login')}}">Sign In</a></li>
                         <li><a class="getstarted scrollto" href="{{route('register')}}">Get an Account</a></li>
@@ -132,7 +151,7 @@
                 <div class="col-lg-5 col-md-12 footer-info">
                     <a href="index.html" class="logo d-flex align-items-center">
                         <img src="{{ asset('website-assets/img/logo.png') }}" alt="">
-                        <span>FlexStart</span>
+                        <span>Precision Desk</span>
                     </a>
                     <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita
                         valies
@@ -185,14 +204,7 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright <strong><span>FlexStart</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            &copy; Copyright <strong><span>Precision Desk</span></strong>. All Rights Reserved
         </div>
     </div>
 </footer><!-- End Footer -->

@@ -232,12 +232,19 @@
                                 @endforeach
                             </select>
                         </div>
+{{--                        <hr class="border-primary">--}}
+{{--                        <div class="form-group">--}}
+{{--                            <strong><label for="exampleTextarea1">Comments</label></strong>--}}
+{{--                            <textarea class="form-control" id="exampleTextarea1" name="description"--}}
+{{--                                      rows="4"></textarea>--}}
+{{--                        </div>--}}
                         <hr class="border-primary">
                         <div class="form-group">
                             <div class="form-check">
                                 <strong>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" name="phone_number" value="true">
+                                        <input type="checkbox" class="form-check-input" name="phone_number"
+                                               value="true">
                                         Send SMS to the selected agent
                                     </label>
                                 </strong>

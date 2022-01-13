@@ -152,6 +152,14 @@
                                                                 </td>
 
                                                             </tr>
+                                                            <tr>
+                                                                <td class="text-muted">Date raised</td>
+                                                                <td class="">
+                                                                    <h6 class="font-weight-500"
+                                                                        style="font-size: medium">{{ $ticket->created_at }}</h6>
+                                                                </td>
+
+                                                            </tr>
                                                         </table>
                                                         {{--                                                        </blockquote>--}}
                                                     </div>
@@ -188,12 +196,13 @@
                                                                         <td>{{ $row->old_status }}</td>
                                                                         <td>{{ $row->new_status }}</td>
                                                                         <td>{{ $row->created_at }}</td>
+                                                                        {{-- Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
+
                                                                         <td>{{ $loop->first ? '-' :
                                                                                     \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' days' . ' ' .
                                                                                     \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInHours(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' hours' . ' ' .
                                                                                     \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInMinutes(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' minutes' }}</td>
                                                                     </tr>
-                                                                    {{-- Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
                                                                 @endforeach
                                                                 </tbody>
                                                             </table>
