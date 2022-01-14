@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthAdmin;
+use App\Http\Middleware\AuthAgent;
 use App\Http\Middleware\DefaultUser;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -41,6 +42,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         'authadmin' => AuthAdmin::class,
+        'authagent' => AuthAgent::class,
         'defaultauth' => DefaultUser::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

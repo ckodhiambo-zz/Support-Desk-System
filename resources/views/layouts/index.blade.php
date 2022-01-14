@@ -88,7 +88,7 @@
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
                                         class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="{{ route('agent.dashboard') }}">Dashboard (Agent)</a></li>
+                                    <li><a href="{{ route('ticket.agent-assigned-tickets') }}">Dashboard (Agent)</a></li>
                                     <li><a href="#"><a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                                                 Out</a></a></li>

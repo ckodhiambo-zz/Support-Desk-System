@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Agent;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class AssignedTicketsComponent extends Component
+class AgentAssignedTicketsComponent extends Component
 {
     public function render()
     {
@@ -36,7 +36,6 @@ class AssignedTicketsComponent extends Component
 
         });
 
-        return view('livewire.admin.assigned-tickets-component', compact('open', 'pending','partially_solved','cancelled','solved'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.agent.agent-assigned-tickets-component', compact('open', 'pending','partially_solved','cancelled','solved'))->layout('layouts.support-agent-dashboard');
     }
-
 }

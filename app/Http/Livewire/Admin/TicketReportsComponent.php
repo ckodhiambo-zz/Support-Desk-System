@@ -4,12 +4,38 @@ namespace App\Http\Livewire\Admin;
 
 use App\Charts\TicketsChart;
 use App\Models\Tickets;
+use App\Models\User;
 use Livewire\Component;
 
 class TicketReportsComponent extends Component
 {
     public function render()
     {
+        $tickets_per_user = Tickets::whereHas('status', function($query){
+            $query->where('name', '!=', 'Solved');
+        })->with('solver')->get()->groupBy('solver.name');
+
+//        dd($tickets_per_user);
+
+        $labels = $values = array();
+
+        foreach ($tickets_per_user as $k => $v)
+        {
+            $labels[] = $k;
+            $values[] = $v->count();
+        }
+
+        $chart2 = new TicketsChart();
+
+        $chart2->labels($labels)->dataset(
+            'Tickets per Agent',
+            'bar',
+            $values
+        )->backgroundcolor('red');
+
+
+        ######################################
+
         $tickets = Tickets::with('status')
             ->get()
             ->groupBy('status.name');
@@ -31,6 +57,6 @@ class TicketReportsComponent extends Component
             $values
         )->backgroundcolor('#4b49ac');
 
-        return view('livewire.admin.ticket-reports-component', compact('chart1'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.ticket-reports-component', compact('chart1', 'chart2'))->layout('layouts.support-admin-dashboard');
     }
 }

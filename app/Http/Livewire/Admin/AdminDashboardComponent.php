@@ -19,7 +19,7 @@ class AdminDashboardComponent extends Component
     {
         $alltickets = Tickets::orderBy('id', 'DESC')->paginate(5);
 
-        $users = User::where('user_type', 'Administrator')->get();
+        $users = User::where('user_type', 'Agent')->get();
 
         return view('livewire.admin.admin-dashboard-component', compact('alltickets', 'users'))->layout('layouts.support-admin-dashboard');
     }
@@ -27,7 +27,6 @@ class AdminDashboardComponent extends Component
     public function setSolver(Request $request)
     {
         $user = User::find($request->input('admin'));
-
 
         $ticket = Tickets::find($request->input('ticket'));
 

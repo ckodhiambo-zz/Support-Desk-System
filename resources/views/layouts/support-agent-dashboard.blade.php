@@ -35,7 +35,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
+            <a href="{{ route('ticket.agent-assigned-tickets') }}" class="logo d-flex align-items-center">
                 <img src="{{ asset('website-assets/img/logo.png') }}" alt="">
                 <span>Precision Desk</span>
             </a>
@@ -112,7 +112,7 @@
                         <img src="{{ asset('assets/images/faces/face28.jpg') }}" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="{{ route('home.companies') }}">
+                        <a class="dropdown-item" href="#">
                             <i class="ti-settings text-primary"></i>
                             Companies
                         </a>
@@ -341,33 +341,17 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/dashboard') ?? 'active' }}" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->is('/agent/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.agent-assigned-tickets') }}">
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
-                       aria-controls="reports">
-                        <i class="ti-file menu-icon"></i>
-                        <span class="menu-title">Tickets</span>
-                        <i class="menu-arrow"></i>
+                    <a class="nav-link {{ request()->is('/agent/dashboard/ticket-reports') ?? 'active' }}" href="{{ route('agent.ticket-report') }}">
+                        <i class="icon-bar-graph menu-icon"></i>
+                        <span class="menu-title">My Tickets Reports</span>
                     </a>
-                    <div class="collapse" id="reports">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('admin.ticket-report')}}"> Ticket Reports </a></li>
-                        </ul>
-                    </div>
                 </li>
-
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link " href="{{ route('admin.dashboard') }}">--}}
-{{--                        <i class="icon-bell menu-icon"></i>--}}
-{{--                        <span class="menu-title">Notifications</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
                        aria-controls="accounts">
