@@ -4,6 +4,7 @@ use App\Http\Controllers\AgentTicketsController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Admin\AdminEditCompanyComponent;
+use App\Http\Livewire\Admin\AdminSearchComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
 use App\Http\Livewire\Admin\EditTicketDetailsComponent;
 use App\Http\Livewire\Admin\TicketDetailsComponent;
@@ -34,11 +35,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/demo/dashboard', DemoDashboardComponent::class)->name('demo.dashboard');
 });
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/demo/dashboard', DemoDashboardComponent::class)->name('demo.dashboard');
+});
+
+
 //For Admin
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () {
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin.dashboard');
     Route::get('/admin/dashboard/companies', CompanyComponent::class)->name('home.companies');
     Route::get('/admin/dashboard/assets', AssetComponent::class)->name('home.assets');
+    Route::get('/admin/dashboard/all-tickets',AdminSearchComponent::class)->name('admin.all-tickets');
     Route::get('/admin/dashboard/companies/edit/{company_id}', AdminEditCompanyComponent::class)->name('admin.edit_company');
     Route::get('/admin/dashboard/ticket-details', TicketDetailsComponent::class)->name('ticket.details');
     Route::get('/admin/dashboard/my-assigned-tickets', AssignedTicketsComponent::class)->name('ticket.assigned-tickets');
@@ -47,6 +54,11 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::post('/admin/dashboard/my-assigned-tickets/update/{ticket}', [TicketsController::class, 'updateStatus'])->name('admin.update-ticket');
     Route::get('/admin/dashboard/ticket-reports', TicketReportsComponent::class)->name('admin.ticket-report');
 });
+
+// --------------------Login-with-Google-------------------------------
+
+Route::get('auth/redirect', 'App\Http\Controllers\SocialController@redirect');
+Route::get('auth/callback', 'App\Http\Controllers\SocialController@callback');
 
 //For Agent
 Route::middleware(['auth:sanctum', 'verified', 'authagent'])->group(function () {

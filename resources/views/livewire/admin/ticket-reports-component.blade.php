@@ -24,51 +24,51 @@
                 color: #fff;
             }
         </style>
-{{--        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--}}
-{{--        <script type="text/javascript">--}}
-{{--            google.charts.load('current', {'packages':['line']});--}}
-{{--            google.charts.setOnLoadCallback(drawChart);--}}
+        {{--        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--}}
+        {{--        <script type="text/javascript">--}}
+        {{--            google.charts.load('current', {'packages':['line']});--}}
+        {{--            google.charts.setOnLoadCallback(drawChart);--}}
 
-{{--            function drawChart() {--}}
+        {{--            function drawChart() {--}}
 
-{{--                var data = new google.visualization.DataTable();--}}
-{{--                data.addColumn('number', 'Day');--}}
-{{--                data.addColumn('number', 'Tier Data');--}}
-{{--                data.addColumn('number', 'CCAP');--}}
-{{--                data.addColumn('number', 'Pearl Marina');--}}
+        {{--                var data = new google.visualization.DataTable();--}}
+        {{--                data.addColumn('number', 'Day');--}}
+        {{--                data.addColumn('number', 'Tier Data');--}}
+        {{--                data.addColumn('number', 'CCAP');--}}
+        {{--                data.addColumn('number', 'Pearl Marina');--}}
 
 
-{{--                data.addRows([--}}
-{{--                    [1,  37.8, 80.8, 41.8],--}}
-{{--                    [2,  30.9, 69.5, 32.4],--}}
-{{--                    [3,  25.4,   57, 25.7],--}}
-{{--                    [4,  11.7, 18.8, 10.5],--}}
-{{--                    [5,  11.9, 17.6, 10.4],--}}
-{{--                    [6,   8.8, 13.6,  7.7],--}}
-{{--                    [7,   7.6, 12.3,  9.6],--}}
-{{--                    [8,  12.3, 29.2, 10.6],--}}
-{{--                    [9,  16.9, 42.9, 14.8],--}}
-{{--                    [10, 12.8, 30.9, 11.6],--}}
-{{--                    [11,  5.3,  7.9,  4.7],--}}
-{{--                    [12,  6.6,  8.4,  5.2],--}}
-{{--                    [13,  4.8,  6.3,  3.6],--}}
-{{--                    [14,  4.2,  6.2,  3.4]--}}
-{{--                ]);--}}
+        {{--                data.addRows([--}}
+        {{--                    [1,  37.8, 80.8, 41.8],--}}
+        {{--                    [2,  30.9, 69.5, 32.4],--}}
+        {{--                    [3,  25.4,   57, 25.7],--}}
+        {{--                    [4,  11.7, 18.8, 10.5],--}}
+        {{--                    [5,  11.9, 17.6, 10.4],--}}
+        {{--                    [6,   8.8, 13.6,  7.7],--}}
+        {{--                    [7,   7.6, 12.3,  9.6],--}}
+        {{--                    [8,  12.3, 29.2, 10.6],--}}
+        {{--                    [9,  16.9, 42.9, 14.8],--}}
+        {{--                    [10, 12.8, 30.9, 11.6],--}}
+        {{--                    [11,  5.3,  7.9,  4.7],--}}
+        {{--                    [12,  6.6,  8.4,  5.2],--}}
+        {{--                    [13,  4.8,  6.3,  3.6],--}}
+        {{--                    [14,  4.2,  6.2,  3.4]--}}
+        {{--                ]);--}}
 
-{{--                var options = {--}}
-{{--                    chart: {--}}
-{{--                        title: 'Centum Entities',--}}
-{{--                        subtitle: 'in hundreds'--}}
-{{--                    },--}}
-{{--                    width: 900,--}}
-{{--                    height: 500--}}
-{{--                };--}}
+        {{--                var options = {--}}
+        {{--                    chart: {--}}
+        {{--                        title: 'Centum Entities',--}}
+        {{--                        subtitle: 'in hundreds'--}}
+        {{--                    },--}}
+        {{--                    width: 900,--}}
+        {{--                    height: 500--}}
+        {{--                };--}}
 
-{{--                var chart = new google.charts.Line(document.getElementById('linechart_material'));--}}
+        {{--                var chart = new google.charts.Line(document.getElementById('linechart_material'));--}}
 
-{{--                chart.draw(data, google.charts.Line.convertOptions(options));--}}
-{{--            }--}}
-{{--        </script>--}}
+        {{--                chart.draw(data, google.charts.Line.convertOptions(options));--}}
+        {{--            }--}}
+        {{--        </script>--}}
     </head>
     <body>
     <div>
@@ -99,33 +99,36 @@
                                         <div class="col-md-12 col-xl-12">
                                             <div class="row">
                                                 <div class="col-md-12 border-right border-primary">
-                                                    <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                        <h3 class="font-weight-500 mb-xl-4 text-info"
-                                                            style="font-size: medium">No. of Tickets per Status</h3>
-                                                    </div>
-                                                    <div style="overflow-x: scroll">
-                                                        <div style="width: 600px; height: 500px">
-                                                            {!! $chart1->container() !!}
+                                                    <blockquote class="blockquote blockquote-info">
+                                                        <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                            <h3 class="font-weight-500 mb-xl-4 text-info"
+                                                                style="font-size: medium">No. of Tickets per Status</h3>
                                                         </div>
-                                                    </div>
-
+                                                        <div style="overflow-x: scroll">
+                                                            <div style="width: 600px; height: 500px">
+                                                                {!! $chart1->container() !!}
+                                                            </div>
+                                                        </div>
+                                                    </blockquote>
                                                 </div>
                                             </div>
                                             <br>
                                             <hr class="border border-primary">
                                             <br>
-
                                             <div class="row">
                                                 <div class="col-md-12 border-right border-primary">
-                                                    <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                        <h3 class="font-weight-500 mb-xl-4 text-info"
-                                                            style="font-size: medium;color: red">No. of Unsolved Tickets per Agent</h3>
-                                                    </div>
-                                                    <div style="overflow-x: scroll">
-                                                        <div style="width: 600px; height: 500px">
-                                                            {!! $chart2->container() !!}
+                                                    <blockquote class="blockquote blockquote-danger">
+                                                        <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                            <h3 class="font-weight-500 mb-xl-4 text-danger"
+                                                                style="font-size: medium;">No. of Unsolved
+                                                                Tickets per Agent</h3>
                                                         </div>
-                                                    </div>
+                                                        <div style="overflow-x: scroll">
+                                                            <div style="width: 700px; height: 500px">
+                                                                {!! $chart2->container() !!}
+                                                            </div>
+                                                        </div>
+                                                    </blockquote>
 
                                                 </div>
                                             </div>

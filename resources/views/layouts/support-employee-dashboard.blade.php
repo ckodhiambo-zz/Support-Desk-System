@@ -338,21 +338,17 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->is('/employee/dashboard') ?? 'active' }}"
+                       href="{{ route('employee.dashboard') }}">
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
+
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link #" href="#">
                         <i class="icon-bar-graph menu-icon"></i>
-                        <span class="menu-title">Ticket Reports</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="icon-bell menu-icon"></i>
-                        <span class="menu-title">Notifications</span>
+                        <span class="menu-title">My Tickets Reports</span>
                     </a>
                 </li>
                 <li class="nav-item">

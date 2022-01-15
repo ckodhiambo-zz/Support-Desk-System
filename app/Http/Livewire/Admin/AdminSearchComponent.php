@@ -13,17 +13,17 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
-class AdminDashboardComponent extends Component
+class AdminSearchComponent extends Component
 {
     public function render()
     {
         $alltickets = Tickets::orderBy('id', 'DESC')->paginate(5);
 
-        $users = User::where('user_type', 'Agent'&&'Administrator')->get();
+        $users = User::where('user_type', 'Agent' && 'Administrator')->get();
 
-        return view('livewire.admin.admin-dashboard-component', compact('alltickets', 'users'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.admin-search-component', compact('alltickets', 'users'))->layout('layouts.support-admin-dashboard');
+
     }
-
     public function setSolver(Request $request)
     {
         $user = User::find($request->input('agent'));
@@ -63,5 +63,4 @@ class AdminDashboardComponent extends Component
 
         return back()->with('message_sent', 'An email has been sent successfully to the assigned agent and the requester!');
     }
-
 }

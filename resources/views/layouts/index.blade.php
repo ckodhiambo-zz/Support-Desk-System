@@ -84,6 +84,8 @@
                                                 Out</a></a></li>
                                 </ul>
                             </li>
+{{--                            <li><a class="getstarted scrollto" href="{{route('register')}}">Create User Account</a></li>--}}
+
                         @elseif(Auth::user()->user_type==='Agent')
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
                                         class="bi bi-chevron-down"></i></a>
@@ -111,7 +113,6 @@
                         </form>
                     @else
                         <li><a class="getstarted scrollto" href="{{route('login')}}">Sign In</a></li>
-                        <li><a class="getstarted scrollto" href="{{route('register')}}">Get an Account</a></li>
                     @endif
                 @endif
 

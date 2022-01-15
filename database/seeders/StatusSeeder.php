@@ -17,13 +17,16 @@ class StatusSeeder extends Seeder
             'name' => 'Open'
         ]);
         status::firstorcreate([
-            'name' => 'Partially Solved'
+            'name' => 'Partially_Solved'
+        ]);
+        status::firstorcreate([
+            'name' => 'In-Progress'
         ]);
         status::firstorcreate([
             'name' => 'Solved'
         ]);
         status::firstorcreate([
-            'name' => 'On-Hold/Pending'
+            'name' => 'On-Hold'
         ]);
         status::firstorcreate([
             'name' => 'Cancelled'

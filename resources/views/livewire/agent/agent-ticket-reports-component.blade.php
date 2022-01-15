@@ -55,15 +55,18 @@
                                         <div class="col-md-12 col-xl-12">
                                             <div class="row">
                                                 <div class="col-md-12 border-right border-primary">
-                                                    <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                        <h3 class="font-weight-500 mb-xl-4 text-info"
-                                                            style="font-size: medium">Requester Details</h3>
-                                                    </div>
-                                                    <div style="overflow-x: scroll">
-                                                        <div style="width: 900px; height: 500px">
-                                                            {!! $chart1->container() !!}
+                                                    <blockquote class="blockquote blockquote-info">
+                                                        <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                            <h3 class="font-weight-500 mb-xl-4 text-info"
+                                                                style="font-size: medium">My No. of Tickets per
+                                                                Status</h3>
                                                         </div>
-                                                    </div>
+                                                        <div style="overflow-x: scroll">
+                                                            <div style="width: 200px; height: 500px">
+                                                                {!! $chart1->container() !!}
+                                                            </div>
+                                                        </div>
+                                                    </blockquote>
 
                                                 </div>
                                             </div>

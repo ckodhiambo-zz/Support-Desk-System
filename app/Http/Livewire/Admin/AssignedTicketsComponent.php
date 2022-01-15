@@ -12,19 +12,23 @@ class AssignedTicketsComponent extends Component
         $myassignedtickets = Auth::user()->solved;
 
         $open = [];
-        $pending = [];
+        $in_progress = [];
+        $on_hold = [];
         $partially_solved = [];
         $cancelled = [];
         $solved = [];
 
-        $myassignedtickets->each(function ($item) use (&$open, &$pending, &$partially_solved, &$cancelled, &$solved ) {
+        $myassignedtickets->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved ) {
             if ($item->status->name == 'Open') {
                 $open[] = $item;
             }
-            if ($item->status->name == 'Pending') {
-                $pending[] = $item;
+            if ($item->status->name == 'In-progress') {
+                $in_progress[] = $item;
             }
-            if ($item->status->name == 'Partially_solved') {
+            if ($item->status->name == 'On-Hold') {
+                $on_hold[] = $item;
+            }
+            if ($item->status->name == 'Partially_Solved') {
                 $partially_solved[] = $item;
             }
             if ($item->status->name == 'Cancelled') {
@@ -36,7 +40,7 @@ class AssignedTicketsComponent extends Component
 
         });
 
-        return view('livewire.admin.assigned-tickets-component', compact('open', 'pending','partially_solved','cancelled','solved'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.assigned-tickets-component', compact('open', 'in_progress','on_hold','partially_solved','cancelled','solved'))->layout('layouts.support-admin-dashboard');
     }
 
 }

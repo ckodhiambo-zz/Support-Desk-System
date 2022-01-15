@@ -12,7 +12,7 @@ class TicketReportsComponent extends Component
     public function render()
     {
         $tickets_per_user = Tickets::whereHas('status', function($query){
-            $query->where('name', '!=', 'Solved');
+            $query->whereNotIn('name', array( 'Solved', 'Cancelled'));
         })->with('solver')->get()->groupBy('solver.name');
 
 //        dd($tickets_per_user);

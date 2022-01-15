@@ -13,9 +13,6 @@ class TicketsComponent extends Component
         // Fetch user object
         $mytickets = Auth::user()->requested;
 
-//        dd($user);
-
-//        $mytickets = Tickets::orderBy('id', 'ASC')->paginate(10);
 
         return view('livewire.employee.tickets-component', compact('mytickets'))->layout('layouts.support-admin-dashboard');
     }

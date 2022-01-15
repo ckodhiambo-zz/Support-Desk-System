@@ -271,11 +271,12 @@
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="optionsRadios"
-                                                   id="Pending" value="Pending">
-                                            Pending
+                                                   id="In-progress" value="In-progress">
+                                            In-progress
                                         </label>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
@@ -303,15 +304,6 @@
                                             <input type="radio" class="form-check-input" name="optionsRadios"
                                                    id="Cancelled" value="Cancelled">
                                             Cancelled
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios"
-                                                   id="Closed" value="Closed">
-                                            Closed
                                         </label>
                                     </div>
                                 </div>

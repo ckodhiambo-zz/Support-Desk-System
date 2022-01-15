@@ -196,7 +196,7 @@
                                                                         <td>{{ $row->old_status }}</td>
                                                                         <td>{{ $row->new_status }}</td>
                                                                         <td>{{ $row->created_at }}</td>
-                                                                        {{-- Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
+                                                                         Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record
 
                                                                         <td>{{ $loop->first ? '-' :
                                                                                     \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index]->created_at)->diffInDays(\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $history->where('ticket_id', $ticket->id)[$index-1]->created_at)) . ' days' . ' ' .
@@ -259,7 +259,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('admin.update-ticket', $ticket) }}" method="post">
+                    <form action="{{ route('agent.update-ticket', $ticket) }}" method="post">
                         @csrf
                         <div class="modal-body">
                             {{--                        <strong>Kindly note that an email address will be sent to</strong>--}}
@@ -271,12 +271,10 @@
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="optionsRadios"
-                                                   id="Pending" value="Pending">
-                                            Pending
+                                                   id="In-progress" value="In-progress">
+                                            In-progress
                                         </label>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="optionsRadios"
@@ -303,15 +301,6 @@
                                             <input type="radio" class="form-check-input" name="optionsRadios"
                                                    id="Cancelled" value="Cancelled">
                                             Cancelled
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-check form-check-primary">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="optionsRadios"
-                                                   id="Closed" value="Closed">
-                                            Closed
                                         </label>
                                     </div>
                                 </div>

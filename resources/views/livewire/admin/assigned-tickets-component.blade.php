@@ -44,8 +44,12 @@
                                    role="tab" aria-controls="home" aria-selected="true">Open</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
+                                   role="tab" aria-controls="home" aria-selected="true">In-Progress</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link text-warning" id="pending-tab" data-toggle="tab" href="#pending"
-                                   role="tab" aria-controls="profile" aria-selected="false">Pending</a>
+                                   role="tab" aria-controls="profile" aria-selected="false">On-Hold</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-success" id="solved-tab" data-toggle="tab" href="#solved"
@@ -53,7 +57,8 @@
                                    aria-controls="contact" aria-selected="false">Solved</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab" href="#partially-solved"
+                                <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab"
+                                   href="#partially-solved"
                                    role="tab"
                                    aria-controls="contact" aria-selected="false">Partially Solved</a>
                             </li>
@@ -144,16 +149,6 @@
                                                 <div class="modal-body">
                                                     <div class="row">
                                                         <div class="col-md-4">
-                                                            <div class="form-check form-check-warning">
-                                                                <label class="form-check-label">
-                                                                    <input type="radio" class="form-check-input"
-                                                                           name="optionsRadios" id="optionsRadios1"
-                                                                           value="">
-                                                                    Pending
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-4">
                                                             <div class="form-check form-check-info">
                                                                 <label class="form-check-label">
                                                                     <input type="radio" class="form-check-input"
@@ -209,7 +204,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                            <div class="tab-pane fade" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -238,7 +233,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($pending as $ticket)
+                                        @foreach($in_progress as $ticket)
                                             <tr>
                                                 <td>
                                                     {{ $ticket->id }}
@@ -270,7 +265,7 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="partially-solved" role="tabpanel" aria-labelledby="partially-solved-tab">
+                            <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -299,32 +294,97 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {{--                                                                            @foreach($alltickets as $ticket)--}}
-                                        <tr>
-                                            <td class="py-1">
-{{--                                                {{ $ticket->id }}--}}
-                                            </td>
-                                            <td>
-{{--                                                {{ $ticket->requester->name }}--}}
-                                            </td>
-                                            <td>
-{{--                                                {{ \App\Models\Asset::find($ticket->asset_name)->name }}--}}
-                                            </td>
-                                            <td>
-{{--                                                Not Assigned--}}
-                                            </td>
-                                            <td>
-{{--                                                {{ $ticket->status->name }}--}}
-                                            </td>
-                                            <td>
-{{--                                                {{ $ticket->created_at }}--}}
-                                            </td>
-                                            <td>
-                                                <a href="#"
-                                                   class="btn btn-outline-info btn-sm btn-fw">View Details</a>
-                                            </td>
-                                        </tr>
+                                        @foreach($on_hold as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-warning"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
 
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="partially-solved" role="tabpanel"
+                                 aria-labelledby="partially-solved-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-primary">
+                                                T-ID
+                                            </th>
+                                            <th class="text-primary">
+                                                Requester
+                                            </th>
+                                            <th class="text-primary">
+                                                Asset
+                                            </th>
+                                            <th class="text-primary">
+                                                Agent
+                                            </th>
+                                            <th class="text-primary">
+                                                Status
+                                            </th>
+                                            <th class="text-primary">
+                                                Created at
+                                            </th>
+                                            <th class="text-primary">
+                                                Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($partially_solved as $ticket)
+                                            <tr>
+                                                <td class="py-1">
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-warning"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('agent.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
 

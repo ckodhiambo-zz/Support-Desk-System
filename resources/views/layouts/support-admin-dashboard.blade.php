@@ -341,7 +341,7 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('admin/dashboard') ?? 'active' }}" href="{{ route('admin.dashboard') }}">
+                    <a class="nav-link {{ request()->is('/admin/dashboard') ?? 'active' }}" href="{{ route('admin.dashboard') }}">
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
@@ -356,7 +356,7 @@
                     <div class="collapse" id="reports">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('admin/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
+                                <a class="nav-link {{ request()->is('/admin/dashboard/my-assigned-tickets') ?? 'active' }}" href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{route('admin.ticket-report')}}"> Ticket Reports </a></li>
                         </ul>
                     </div>

@@ -26,7 +26,7 @@ class EmployeeDashboardComponent extends Component
     public function render()
     {
         $categories = Category::with('assets')->get();
-        return view('livewire.employee.employee-dashboard-component', ['categories' => $categories])->layout('layouts.support-admin-dashboard');
+        return view('livewire.employee.employee-dashboard-component', ['categories' => $categories])->layout('layouts.support-employee-dashboard');
     }
 
     public function submitTicket(Request $request)
