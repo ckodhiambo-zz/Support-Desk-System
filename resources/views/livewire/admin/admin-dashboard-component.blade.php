@@ -198,7 +198,7 @@
                             </table>
                             <br>
                             <a href="{{ route('admin.all-tickets') }}">
-                                <button type="submit" class="btn btn-info btn-sm ti-files" style="font: bold">&nbsp;View all tickets</button>
+                                <button type="submit" class="btn btn-info btn-sm ti-files">&nbsp; <strong>VIEW ALL TICKETS</strong></button>
                             </a>
                         </div>
                     </div>

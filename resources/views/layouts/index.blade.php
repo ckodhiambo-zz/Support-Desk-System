@@ -68,7 +68,7 @@
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
                                         class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="{{ route('admin.dashboard') }}">Dashboard (Admin)</a></li>
+                                    <li><a href="{{ route('admin.dashboard') }}">My Dashboard</a></li>
                                     <li><a href="#"><a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                                                 Out</a></a></li>
@@ -78,7 +78,7 @@
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
                                         class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="{{ route('employee.dashboard') }}">Dashboard (D.User)</a></li>
+                                    <li><a href="{{ route('employee.dashboard') }}">My Dashboard</a></li>
                                     <li><a href="#"><a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                                                 Out</a></a></li>
@@ -90,7 +90,7 @@
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
                                         class="bi bi-chevron-down"></i></a>
                                 <ul>
-                                    <li><a href="{{ route('ticket.agent-assigned-tickets') }}">Dashboard (Agent)</a></li>
+                                    <li><a href="{{ route('ticket.agent-assigned-tickets') }}">My Dashboard</a></li>
                                     <li><a href="#"><a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
                                                 Out</a></a></li>

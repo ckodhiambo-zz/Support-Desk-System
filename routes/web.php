@@ -17,6 +17,7 @@ use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
 use App\Http\Livewire\Demo\DemoDashboardComponent;
 use App\Http\Livewire\Employee\EmployeeDashboardComponent;
+use App\Http\Livewire\Employee\MyRaisedTicketDetailsComponent;
 use App\Http\Livewire\Employee\TicketsComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
@@ -73,6 +74,8 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
     Route::get('/employee/dashboard', EmployeeDashboardComponent::class)->name('employee.dashboard');
     Route::get('/employee/dashboard/my-tickets', TicketsComponent::class)->name('employee.my-tickets');
     Route::post('/employee/ticket/submit', [EmployeeDashboardComponent::class, 'submitTicket'])->name('employee.ticket.submit');
+    Route::get('/employee/dashboard/my-tickets/{ticket}', MyRaisedTicketDetailsComponent::class)->name('employee.ticket-details');
+
 
 });
 

@@ -8,13 +8,19 @@ use Livewire\Component;
 
 class TicketsComponent extends Component
 {
-    public function render()
+    public $ticket;
+
+    public function mount(Tickets $ticket)
+    {
+        $this->ticket = $ticket;
+    }
+
+    public function render(Tickets $ticket)
     {
         // Fetch user object
         $mytickets = Auth::user()->requested;
 
-
-        return view('livewire.employee.tickets-component', compact('mytickets'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.employee.tickets-component', compact('mytickets','ticket'))->layout('layouts.support-admin-dashboard');
     }
 
 

@@ -44,7 +44,8 @@
                                    role="tab" aria-controls="home" aria-selected="true">Open</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
+                                <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab"
+                                   href="#in-progress"
                                    role="tab" aria-controls="home" aria-selected="true">In-Progress</a>
                             </li>
                             <li class="nav-item">
@@ -194,7 +195,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
+                            <div class="tab-pane fade" id="in-progress" role="tabpanel"
+                                 aria-labelledby="in-progress-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -245,7 +247,7 @@
                                                     {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                    <a href="{{ route('agent.edit-ticket', $ticket) }}"
                                                        class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                                 </td>
                                             </tr>
@@ -534,41 +536,33 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td class="py-1">
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                            </td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
-                                                    </button>
-                                                    <div class="dropdown-menu"
-                                                         aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <a class="dropdown-item text-success" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#exampleModal">-- Edit Status --</a>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details
-                                                            --</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
+                                        @foreach($archived as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->email }}
+                                                </td>
+                                                <td>
+                                                    {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-danger"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('agent.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tbody>
                                     </table>
 

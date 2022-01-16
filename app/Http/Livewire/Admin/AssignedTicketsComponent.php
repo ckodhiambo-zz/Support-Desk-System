@@ -17,12 +17,13 @@ class AssignedTicketsComponent extends Component
         $partially_solved = [];
         $cancelled = [];
         $solved = [];
+        $archived = [];
 
-        $myassignedtickets->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved ) {
+        $myassignedtickets->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved, &$archived ) {
             if ($item->status->name == 'Open') {
                 $open[] = $item;
             }
-            if ($item->status->name == 'In-progress') {
+            if ($item->status->name == 'In-Progress') {
                 $in_progress[] = $item;
             }
             if ($item->status->name == 'On-Hold') {
@@ -37,10 +38,13 @@ class AssignedTicketsComponent extends Component
             if ($item->status->name == 'Solved') {
                 $solved[] = $item;
             }
+            if ($item->status->name == 'Archived') {
+                $archived[] = $item;
+            }
 
         });
 
-        return view('livewire.admin.assigned-tickets-component', compact('open', 'in_progress','on_hold','partially_solved','cancelled','solved'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.assigned-tickets-component', compact('open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-admin-dashboard');
     }
 
 }

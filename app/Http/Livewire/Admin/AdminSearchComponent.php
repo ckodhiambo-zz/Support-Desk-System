@@ -19,7 +19,7 @@ class AdminSearchComponent extends Component
     {
         $alltickets = Tickets::orderBy('id', 'DESC')->paginate(5);
 
-        $users = User::where('user_type', 'Agent' && 'Administrator')->get();
+        $users = User::where('user_type', 'Agent')->orWhere('user_type', 'Administrator')->get();
 
         return view('livewire.admin.admin-search-component', compact('alltickets', 'users'))->layout('layouts.support-admin-dashboard');
 

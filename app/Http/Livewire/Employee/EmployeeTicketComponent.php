@@ -16,7 +16,7 @@ class EmployeeTicketComponent extends Component
 {
     public function render()
     {
-        return view('livewire.employee.employee-ticket-component')->layout('layouts.support-admin-dashboard');
+        return view('livewire.employee.employee-ticket-component')->layout('layouts.support-employee-dashboard');
     }
 
 

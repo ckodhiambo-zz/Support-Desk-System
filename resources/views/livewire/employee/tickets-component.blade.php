@@ -66,7 +66,7 @@
                                         Status
                                     </th>
                                     <th>
-                                        Actions
+                                        Action
                                     </th>
 
                                 </tr>
@@ -90,19 +90,8 @@
                                             {{ $item->status->name }}
                                         </td>
                                         <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary btn-sm dropdown-toggle" type="button"
-                                                        id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                    Actions
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                                                    <h6 class="dropdown-header">Actions</h6>
-                                                    <a class="dropdown-item" href="#">View Details</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" style="color: red">Delete</a>
-                                                </div>
-                                            </div>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
                                 @endforeach
