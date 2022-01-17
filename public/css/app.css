@@ -1102,6 +1102,17 @@ select {
 .prose > :last-child {
 	margin-bottom: 0;
 }
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
 .fixed {
 	position: fixed;
 }
@@ -1157,9 +1168,13 @@ select {
 	margin-left: 0.5rem;
 	margin-right: 0.5rem;
 }
-.my-2 {
-	margin-top: 0.5rem;
-	margin-bottom: 0.5rem;
+.my-4 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+.mx-3 {
+	margin-left: 0.75rem;
+	margin-right: 0.75rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1358,6 +1373,9 @@ select {
 }
 .flex-shrink-0 {
 	flex-shrink: 0;
+}
+.border-collapse {
+	border-collapse: collapse;
 }
 .origin-top-left {
 	transform-origin: top left;
@@ -1716,9 +1734,6 @@ select {
 .pr-3 {
 	padding-right: 0.75rem;
 }
-.pt-3 {
-	padding-top: 0.75rem;
-}
 .text-left {
 	text-align: left;
 }
@@ -1852,10 +1867,6 @@ select {
 .text-gray-300 {
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
-}
-.text-black {
-	--tw-text-opacity: 1;
-	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
