@@ -13,7 +13,7 @@
                     <div data-aos="fade-up" data-aos-delay="600">
                         <div class="text-center text-lg-start">
                             <a href="#about"
-                               class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
+                               class="btn-get-started scrollto d-inline-flex align-items-center l-bg-cherry justify-content-center align-self-center">
                                 <span>Book a Demo</span>
                                 <i class="bi bi-arrow-right"></i>
                             </a>
@@ -87,7 +87,8 @@
                                         src="{{ asset('website-assets/img/product-images/SAP.png') }}" class="img-fluid"
                                         alt=""></div>
                                 <div class="swiper-slide"><img
-                                        src="{{ asset('website-assets/img/product-images/sophos-logo.png') }}" class="img-fluid"
+                                        src="{{ asset('website-assets/img/product-images/sophos-logo.png') }}"
+                                        class="img-fluid"
                                         alt=""></div>
                                 <div class="swiper-slide"><img
                                         src="{{ asset('website-assets/img/product-images/office-365-logo.png') }}"
@@ -154,7 +155,7 @@
                 <div class="row gy-4">
 
                     <div class="col-lg-3 col-md-6">
-                        <div class="count-box">
+                        <div class="count-box ">
                             <i class="bi bi-emoji-smile"></i>
                             <div>
                 <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1"
@@ -454,25 +455,28 @@
                             <ul>
                                 <li>Provides first touch resolutions; Typically about 10-30 minutes</li>
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy" style="background-color: #07d5c0;border: none;color: #fff">Check Out</a>
+
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
                         <div class="box">
-                            <span class="featured">Featured</span>
+                            <span class="featured" style="background-color: #65c600;">Featured</span>
                             <h3 style="color: #65c600;">Tier Two</h3>
                             <img src="{{ asset('website-assets/img/pricing-starter.png') }}" class="img-fluid" alt="">
                             <ul>
                                 <li>Involves minimal root cause analysis, Involves minimal Troubleshooting
                                 </li>
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy" style="background-color: #65c600;border: none;color: #fff">Check Out</a>
+
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
                         <div class="box">
+                            <span class="featured" style="background-color: #ff901c;">Expert</span>
                             <h3 style="color: #ff901c;">Tier Three</h3>
                             <img src="{{ asset('website-assets/img/pricing-business.png') }}" class="img-fluid" alt="">
                             <ul>
@@ -480,7 +484,7 @@
                                     engineering support
                                 </li>
                             </ul>
-                            <a href="#" class="btn-buy">Buy Now</a>
+                            <a href="#" class="btn-buy" style="background-color:#ff901c;border: none;color: #fff">Check Out</a>
                         </div>
                     </div>
 
@@ -744,7 +748,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit">Send Message</button>
+                                    <button type="submit" class="l-bg-cherry">Send Message</button>
                                 </div>
 
                             </div>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Sky Desk</title>
+    <title>Precision Desk Support</title>
     <meta content="" name="description">
 
     <meta content="" name="keywords">
@@ -29,6 +29,12 @@
 
     <!-- Template Main CSS File -->
     <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        .l-bg-cherry {
+            background: linear-gradient(to right, #0d47a1, #8d188e) !important;
+            color: #fff;
+        }
+    </style>
     @livewireStyles
 </head>
 
@@ -38,7 +44,7 @@
 <header id="header" class="header fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/" class="logo d-flex align-items-center">
             <img src="{{ asset('website-assets/img/logo.png') }}" alt="">
             <span>Precision Desk</span>
         </a>
@@ -112,7 +118,7 @@
                             @csrf
                         </form>
                     @else
-                        <li><a class="getstarted scrollto" href="{{route('login')}}">Sign In</a></li>
+                        <li><a class="getstarted scrollto l-bg-cherry" href="{{route('login')}}">Sign In</a></li>
                     @endif
                 @endif
 

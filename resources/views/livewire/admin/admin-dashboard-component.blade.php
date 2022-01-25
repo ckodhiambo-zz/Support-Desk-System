@@ -119,7 +119,7 @@
                             The tickets are <code>.in a descending order</code>
                         </p>
 
-                    @if(Session::has('message_sent'))
+                        @if(Session::has('message_sent'))
                             <div class="alert alert-success" role="alert">
                                 {{ Session::get('message_sent') }}
                             </div>
@@ -238,12 +238,6 @@
                                 @endforeach
                             </select>
                         </div>
-{{--                        <hr class="border-primary">--}}
-{{--                        <div class="form-group">--}}
-{{--                            <strong><label for="exampleTextarea1">Comments</label></strong>--}}
-{{--                            <textarea class="form-control" id="exampleTextarea1" name="description"--}}
-{{--                                      rows="4"></textarea>--}}
-{{--                        </div>--}}
                         <hr class="border-primary">
                         <div class="form-group">
                             <div class="form-check">

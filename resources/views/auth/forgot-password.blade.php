@@ -41,6 +41,10 @@
                     height: 100%;
                 }
             }
+            .l-bg-cherry {
+                background: linear-gradient(to right, #0d47a1, #8d188e) !important;
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -85,7 +89,7 @@
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-rounded btn-lg"
+                            <button type="submit" class="btn l-bg-cherry btn-rounded btn-lg"
                                     style="padding-left: 2.5rem; padding-right: 2.5rem;">
                                 <strong>{{ __('Send Password Reset Link') }}</strong>
                             </button>
@@ -96,7 +100,7 @@
             </div>
         </div>
         <div
-            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
+            class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 l-bg-cherry">
             <!-- Copyright -->
             <div class="text-white mb-3 mb-md-0">
                 Copyright © 2022. All rights reserved.

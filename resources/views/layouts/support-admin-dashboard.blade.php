@@ -5,10 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Precision Desk</title>
-    <!-- plugins:css -->
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
@@ -21,12 +17,12 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
-    <!-- Template Main CSS File -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
-
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <!-- End plugin css for this page -->
     @livewireStyles
 </head>
 
@@ -362,12 +358,12 @@
                     </div>
                 </li>
 
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link " href="{{ route('admin.dashboard') }}">--}}
-{{--                        <i class="icon-bell menu-icon"></i>--}}
-{{--                        <span class="menu-title">Notifications</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.custom-ticket-request') }}">
+                        <i class="icon-paragraph menu-icon"></i>
+                        <span class="menu-title">Custom ticket request</span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
                        aria-controls="accounts">
@@ -400,7 +396,7 @@
     <!-- container-scroller -->
 
     <!-- plugins:js -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+{{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -415,13 +411,16 @@
     <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
+
+
+
     @livewireScripts
     <!-- End custom js for this page-->
+
 </div>
 </body>
 </html>

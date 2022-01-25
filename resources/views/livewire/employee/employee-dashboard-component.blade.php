@@ -294,7 +294,7 @@
 
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary mr-2 float-right">Send Request</button>
+                                    <button type="submit" class="btn l-bg-cherry mr-2 float-right" style="color: #fff">Send Request</button>
 
                                     <div class="overlay"></div>
                                     <div class="spanner">
