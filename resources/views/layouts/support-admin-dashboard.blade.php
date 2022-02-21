@@ -365,6 +365,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="icon-help menu-icon"></i>
+                        <span class="menu-title">Manage Users</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
                        aria-controls="accounts">
                         <i class="icon-head menu-icon"></i>

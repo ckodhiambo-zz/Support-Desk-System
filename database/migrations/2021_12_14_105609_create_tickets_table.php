@@ -16,6 +16,7 @@ class CreateTicketsTable extends Migration
             $table->string('attachment');
             $table->string('subject');
             $table->string('description');
+            $table->string('priority')->nullable();
             $table->string('admin_reason')->nullable();
             $table->timestamps();
         });

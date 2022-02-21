@@ -27,7 +27,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e, #f09) !important;
+                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
                 color: #fff;
             }
         </style>
@@ -35,94 +35,104 @@
     <body>
     <div class="content-wrapper">
         <div class="row">
-            <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card">
+            <div class="col-12 grid-margin stretch-card">
+                <br>
+                <div class="card card-outline-primary">
                     <div class="card-body">
-                        <h4 class="card-title">List of Latest Tickets</h4>
-                        <p class="card-description">
-                            The tickets are <code>.in a descending order</code>
-                        </p>
-
-                        @if(Session::has('message_sent'))
-                            <div class="alert alert-success" role="alert">
-                                {{ Session::get('message_sent') }}
+                        <div class="row">
+                            <div class="col">
+                                <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
+                                    <div class="card-header l-bg-cherry" style="border-radius: 10px">
+                                        <h5>List of All Tickets</h5>
+                                    </div>
+                                </div>
                             </div>
-                        @endif
-                        <div class="table-responsive">
-                            <table id="example2" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        T-ID
-                                    </th>
-                                    <th>
-                                        Requester
-                                    </th>
-                                    <th>
-                                        Asset
-                                    </th>
-                                    <th>
-                                        Agent
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        Created at
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($alltickets as $item)
+                            <p class="card-description">
+                                The tickets are <code>.in a descending order</code>
+                            </p>
+
+                            @if(Session::has('message_sent'))
+                                <div class="alert alert-success" role="alert">
+                                    {{ Session::get('message_sent') }}
+                                </div>
+                            @endif
+                            <div class="table-responsive">
+                                <table id="example2" class="table table-striped">
+                                    <thead>
                                     <tr>
-                                        <td class="py-1">
-                                            {{ $item->id }}
-                                        </td>
-                                        <td>
-                                            {{ $item->requester->name }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($item->asset_name)->name }}
-                                        </td>
-                                        <td>
-                                            {{ $item->solver ? $item->solver->name : 'Not Assigned' }}
-                                        </td>
-                                        <td>
-                                            {{ $item->status->name }}
-                                        </td>
-                                        <td>
-                                            {{ $item->created_at }}
-                                        </td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn btn-primary dropdown-toggle" type="button"
-                                                        id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                    Actions
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                                                    <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                    <button class="dropdown-item text-primary" href="#"
-                                                            data-toggle="modal"
-                                                            data-target="#ticketModal" data-ticket-id="{{ $item->id }}">
-                                                        <strong> -- Assign / Edit Agent--
-                                                        </strong>
-                                                    </button>
-                                                    <a class="dropdown-item text-info" href="#">
-                                                      <strong>-- View Details --</strong>  </a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" href="#" style="color: red">Archive</a>
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <th>
+                                            T-ID
+                                        </th>
+                                        <th>
+                                            Requester
+                                        </th>
+                                        <th>
+                                            Asset
+                                        </th>
+                                        <th>
+                                            Agent
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Created at
+                                        </th>
+                                        <th>
+                                            Action
+                                        </th>
                                     </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($alltickets as $item)
+                                        <tr>
+                                            <td class="py-1">
+                                                {{ $item->id }}
+                                            </td>
+                                            <td>
+                                                {{ $item->requester->name }}
+                                            </td>
+                                            <td>
+                                                {{ \App\Models\Asset::find($item->asset_name)->name }}
+                                            </td>
+                                            <td>
+                                                {{ $item->solver ? $item->solver->name : 'Not Assigned' }}
+                                            </td>
+                                            <td>
+                                                {{ $item->status->name }}
+                                            </td>
+                                            <td>
+                                                {{ $item->created_at }}
+                                            </td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-primary dropdown-toggle" type="button"
+                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
+                                                            aria-haspopup="true" aria-expanded="false">
+                                                        Actions
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
+                                                        <button class="dropdown-item text-primary" href="#"
+                                                                data-toggle="modal"
+                                                                data-target="#ticketModal" data-ticket-id="{{ $item->id }}">
+                                                            <strong> -- Assign / Edit Agent--
+                                                            </strong>
+                                                        </button>
+                                                        <a class="dropdown-item text-info" href="#">
+                                                            <strong>-- View Details --</strong>  </a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </div>

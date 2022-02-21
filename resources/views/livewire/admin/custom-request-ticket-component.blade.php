@@ -25,7 +25,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #0d47a1, #8d188e) !important;
+                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
                 color: #fff;
             }
 
@@ -120,19 +120,45 @@
                 <div class="row">
                     <div class="col">
                         <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
-                            <div class="card-header l-bg-cherry">
+                            <div class="card-header l-bg-cherry" style="border-radius: 10px">
                                 <h5>Custom Ticket Request</h5>
                             </div>
-
                         </div>
                     </div>
                 </div>
-                <form class="form-sample" enctype="multipart/form-data">
+                <form class="form-sample" enctype="multipart/form-data" action="{{ route('admin.custom-ticket.submit') }}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group col-sm-10">
+                                <strong><label class="text-primary">Ticket Subject</label></strong>
+                                <input type="text" class="form-control form-control-sm"
+                                       placeholder="Ticket Subject" name="subject"
+                                       aria-label="Username">
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group col-sm-10">
+                                <strong><label>Type of Issue</label></strong>
+                                <select class="js-example-basic-single w-100" name="incident_name">
+                                    <option value="Access Right Request">Access Right Request</option>
+                                    <option value="Not booting">Not booting</option>
+                                    <option value="Spillage">Spillage</option>
+                                    <option value="Too slow/Hanging">Too slow/Hanging</option>
+                                    <option value="Restarts/Shuts down without permission">Restarts/Shuts
+                                        down
+                                        without permission
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Requester Name</label></strong>
-                                <select class="js-example-basic-single w-100">
+                                <select class="js-example-basic-single w-100" name="requester_name">
                                     <option>Kennedy Calvins <strong>-</strong> (k.odhiambo@centum.co.ke)
                                         <strong>-</strong> (+254727497792)
                                     </option>
@@ -144,14 +170,15 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-sm-10">
+                            <div class="form-group col-sm-10" id="#">
                                 <strong><label class="text-primary">Asset Name</label></strong>
-                                <select class="js-example-basic-single w-100">
-                                    <option value="AL">Laptop</option>
-                                    <option value="WY">SAP</option>
-                                    <option value="AM">Wi-Fi</option>
-                                    <option value="CA">Desktop</option>
-                                    <option value="RU">Server</option>
+                                <select class="js-example-basic-single w-100" name="asset_name">
+{{--                                    @foreach ($categories as $category)--}}
+{{--                                        @foreach ($category->assets as $asset)--}}
+{{--                                            <option class="assets category_{{$category->id}}"--}}
+{{--                                                    value="{{$asset->id}}">{{$asset->name}}</option>--}}
+{{--                                        @endforeach--}}
+{{--                                    @endforeach--}}
                                 </select>
                             </div>
                         </div>
@@ -160,12 +187,13 @@
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Mode of Communication</label></strong>
-                                <select class="js-example-basic-single w-100">
+                                <select class="js-example-basic-single w-100" name="mode_communication">
                                     <option>Email Address</option>
-                                    <option>WhatsApp</option>
                                     <option>Phone Call</option>
+                                    <option>Microsoft Teams</option>
                                     <option>SMS</option>
                                     <option>Verbal</option>
+                                    <option>WhatsApp</option>
                                 </select>
                             </div>
                         </div>
@@ -176,8 +204,8 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="membershipRadios"
-                                                       id="membershipRadios1" value="" checked>
+                                                <input type="radio" class="form-check-input"
+                                                       id="membershipRadios1" value="option1" checked>
                                                 Low
                                             </label>
                                         </div>
@@ -185,7 +213,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="membershipRadios"
+                                                <input type="radio" class="form-check-input"
                                                        id="membershipRadios2" value="option2">
                                                 Medium
                                             </label>
@@ -194,8 +222,8 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="membershipRadios"
-                                                       id="membershipRadios2" value="option2">
+                                                <input type="radio" class="form-check-input"
+                                                       id="membershipRadios2" value="option3">
                                                 High
                                             </label>
                                         </div>
@@ -203,8 +231,8 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="membershipRadios"
-                                                       id="membershipRadios2" value="option2">
+                                                <input type="radio" class="form-check-input"
+                                                       id="membershipRadios2" value="option4">
                                                 Urgent
                                             </label>
                                         </div>
@@ -217,7 +245,7 @@
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Please describe the issue in detail</label></strong>
-                                <textarea id="editor"></textarea>
+                                <textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -229,10 +257,10 @@
                                         <div class="control-group" id="fields">
                                             <div class="controls">
                                                 <div class="entry input-group upload-input-group">
-                                                    <input class="form-control" name="fields[]" type="file">
+                                                    <input class="form-control" name="files[]" type="file">
                                                     <button class="btn btn-upload btn-success btn-add"
                                                             type="button">
-                                                        Upload <i class="fa fa-plus"> </i>
+                                                        Add Attachment <i class="fa fa-plus"> </i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -241,8 +269,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                     <hr class="border border-primary">
 
@@ -270,18 +296,15 @@
                          aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header l-bg-cherry" style="border-radius: 5px;padding: 1rem;">
                                     <h5 class="modal-title" id="exampleModalLabel">Assign an Agent</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                        <span aria-hidden="true" style="color: #fff;">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <strong>* An email will be sent to the agent assigned *</strong>
-                                    <br>
-                                    <br>
                                     <div class="form-group">
-                                        <label id="ticket-label" for="exampleFormControlSelect3">Select an Agent</label>
+                                        <label id="ticket-label" for="exampleFormControlSelect3"><strong>Kindly Select an Agent</strong></label>
                                         <input type="text" id="ticket" name="ticket" hidden>
                                         <select name="agent" class="form-control form-control-sm" id="exampleFormControlSelect3"
                                                 required>
@@ -292,7 +315,7 @@
 {{--                                            @endforeach--}}
                                         </select>
                                     </div>
-                                    <hr class="border-primary">
+                                    <hr class="border border-primary">
                                     <div class="form-group">
                                         <div class="form-check">
                                             <strong>
@@ -359,6 +382,7 @@
             menubar: false
         });
     </script>
+
     <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>

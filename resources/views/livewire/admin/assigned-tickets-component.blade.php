@@ -20,7 +20,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e, #f09) !important;
+                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
                 color: #fff;
             }
         </style>
@@ -32,9 +32,17 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <br>
                 <br>
-                <div class="card">
+                <div class="card card-outline-primary">
                     <div class="card-body">
-                        <h4 class="card-title">List of my Assigned Tickets</h4>
+                        <div class="row">
+                            <div class="col">
+                                <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
+                                    <div class="card-header l-bg-cherry" style="border-radius: 10px">
+                                        <h5>List of my Assigned Tickets</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <p class="card-description">
                             The tickets are <code>.in a descending order</code>
                         </p>
@@ -74,7 +82,7 @@
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="open" role="tabpanel" aria-labelledby="open-tab">
+                            <div class="tab-pane fade show active " id="open" role="tabpanel" aria-labelledby="open-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>

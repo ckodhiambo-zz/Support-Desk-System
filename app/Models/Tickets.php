@@ -13,7 +13,7 @@ class   Tickets extends Model
 
 
 
-    protected $guarded = ['status_id', 'requester_id'];
+    protected $guarded = ['status_id', 'requester_id', 'channel_id'];
 
 
 
@@ -42,6 +42,11 @@ class   Tickets extends Model
     public function solver(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public  function channels():BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class);
     }
 
 }

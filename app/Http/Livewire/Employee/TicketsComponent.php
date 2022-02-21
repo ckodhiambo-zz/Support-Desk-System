@@ -20,7 +20,7 @@ class TicketsComponent extends Component
         // Fetch user object
         $mytickets = Auth::user()->requested;
 
-        return view('livewire.employee.tickets-component', compact('mytickets','ticket'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.employee.tickets-component', compact('mytickets','ticket'))->layout('layouts.support-employee-dashboard');
     }
 
 

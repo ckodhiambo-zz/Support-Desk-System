@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             AssetsSeeder::class,
             IncidentSeeder::class,
             CategorySeeder::class,
-            StatusSeeder::class
+            StatusSeeder::class,
+            ChannelSeeder::class
         ]);
     }
 }

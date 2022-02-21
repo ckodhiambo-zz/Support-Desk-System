@@ -343,12 +343,11 @@
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
-
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link #" href="#">
-                        <i class="icon-bar-graph menu-icon"></i>
-                        <span class="menu-title">My Tickets Reports</span>
+                    <a class="nav-link #" href="{{route('employee.my-tickets')}}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">My Tickets</span>
                     </a>
                 </li>
                 <li class="nav-item">
