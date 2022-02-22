@@ -109,6 +109,10 @@
             .input-group > .form-control:not(:last-child) {
                 height: 45px;
             }
+            .l-bg-blue-dark {
+                background: linear-gradient(to right, #4286f4, #373b44) !important;
+                color: #fff;
+            }
         </style>
     </head>
 
@@ -120,7 +124,7 @@
                 <div class="row">
                     <div class="col">
                         <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
-                            <div class="card-header l-bg-cherry" style="border-radius: 10px">
+                            <div class="card-header l-bg-blue-dark" style="border-radius: 10px">
                                 <h5>Custom Ticket Request</h5>
                             </div>
                         </div>
@@ -135,12 +139,11 @@
                                 <input type="text" class="form-control form-control-sm"
                                        placeholder="Ticket Subject" name="subject"
                                        aria-label="Username">
-
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
-                                <strong><label>Type of Issue</label></strong>
+                                <strong><label class="text-primary">Type of Issue</label></strong>
                                 <select class="js-example-basic-single w-100" name="incident_name">
                                     <option value="Access Right Request">Access Right Request</option>
                                     <option value="Not booting">Not booting</option>
@@ -287,7 +290,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn l-bg-cherry float-right" style="color: #fff" data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" class="btn l-bg-blue-dark float-right" style="color: #fff" data-toggle="modal" data-target="#exampleModal">
                         Proceed to Delegate
                     </button>
 

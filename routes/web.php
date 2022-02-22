@@ -54,6 +54,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/ticket-details', TicketDetailsComponent::class)->name('ticket.details');
     Route::get('/admin/dashboard/my-assigned-tickets', AssignedTicketsComponent::class)->name('ticket.assigned-tickets');
     Route::post('/admin/solver/set', [AdminDashboardComponent::class, 'setSolver'])->name('solver.set');
+    Route::post('/admin/solver/set', [AdminSearchComponent::class, 'setSolver'])->name('solver.set');
     Route::get('/admin/dashboard/my-assigned-tickets/details/{ticket}', EditTicketDetailsComponent::class)->name('admin.edit-ticket');
     Route::post('/admin/dashboard/my-assigned-tickets/update/{ticket}', [TicketsController::class, 'updateStatus'])->name('admin.update-ticket');
     Route::get('/admin/dashboard/ticket-reports', TicketReportsComponent::class)->name('admin.ticket-report');
@@ -81,7 +82,6 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
     Route::post('/employee/ticket/submit', [EmployeeDashboardComponent::class, 'submitTicket'])->name('employee.ticket.submit');
     Route::get('/employee/dashboard/my-tickets/{ticket}', MyRaisedTicketDetailsComponent::class)->name('employee.ticket-details');
     Route::get('/employee/dashboard/my-solved-tickets',MySolvedTicketsComponent::class)->name('employee.my-solved-tickets');
-//    Route::get('/employee/dashboard/my-tickets/solved-tickets',SolvedTicketsComponent::class)->name('employee.my-solved-tickets');
 
 });
 

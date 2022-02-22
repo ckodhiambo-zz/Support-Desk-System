@@ -52,7 +52,7 @@
                             </p>
 
                             @if(Session::has('message_sent'))
-                                <div class="alert alert-success" role="alert">
+                                <div class="alert alert-info" role="alert">
                                     {{ Session::get('message_sent') }}
                                 </div>
                             @endif
@@ -168,12 +168,6 @@
                                 @endforeach
                             </select>
                         </div>
-                        {{--                        <hr class="border-primary">--}}
-                        {{--                        <div class="form-group">--}}
-                        {{--                            <strong><label for="exampleTextarea1">Comments</label></strong>--}}
-                        {{--                            <textarea class="form-control" id="exampleTextarea1" name="description"--}}
-                        {{--                                      rows="4"></textarea>--}}
-                        {{--                        </div>--}}
                         <hr class="border-primary">
                         <div class="form-group">
                             <div class="form-check">
@@ -201,6 +195,13 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ticketModal").on("show.bs.modal", function (e) {
+                $('#ticket').val($(e.relatedTarget).data('ticket-id'));
+            });
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $('#example2').DataTable();
