@@ -38,7 +38,7 @@
         <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
+                background: linear-gradient(to right, #8d188e, #0d47a1) !important;
                 color: #fff;
             }
         </style>
@@ -68,58 +68,440 @@
                         {{ Session::get('message_sent') }}
                     </div>
                 @endif
-                <div class="table-responsive">
-                    <table id="example3" class="table table-striped">
-                        <thead>
-                        <tr>
-                            <th>
-                                T-ID
-                            </th>
-                            <th>
-                                Issue
-                            </th>
-                            <th>
-                                Asset
-                            </th>
-                            <th>
-                                Created_at
-                            </th>
-                            <th>
-                                Status
-                            </th>
-                            <th>
-                                Action
-                            </th>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-primary" id="open-tab" data-toggle="tab" href="#open"
+                           role="tab" aria-controls="home" aria-selected="true">Open</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
+                           role="tab" aria-controls="home" aria-selected="true">In-Progress</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" id="pending-tab" data-toggle="tab" href="#pending"
+                           role="tab" aria-controls="profile" aria-selected="false">On-Hold</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" id="solved-tab" data-toggle="tab" href="#solved"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Solved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab"
+                           href="#partially-solved"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Partially Solved</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
+                           role="tab" aria-controls="contact" aria-selected="false">Cancelled</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-info" id="archived-tab" data-toggle="tab" href="#archived"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Archived</a>
+                    </li>
+                </ul>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($mytickets as $item)
-                            <tr>
-                                <td class="py-1">
-                                    {{ $item->id }}
-                                </td>
-                                <td>
-                                    {{ $item->issue }}
-                                </td>
-                                <td>
-                                    {{ \App\Models\Asset::find($item->asset_name)->name }}
-                                </td>
-                                <td>
-                                    {{ $item->created_at }}
-                                </td>
-                                <td>
-                                    {{ $item->status->name }}
-                                </td>
-                                <td>
-                                    <a href="#"
-                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active " id="open" role="tabpanel" aria-labelledby="open-tab">
+                        <div class="table-responsive">
+                            <table id="example3" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($open as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-info"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
+                        <div class="table-responsive">
+                            <table id="example16" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($in_progress as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-primary"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
+                        <div class="table-responsive">
+                            <table id="example17" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($on_hold as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-warning"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="partially-solved" role="tabpanel"
+                         aria-labelledby="partially-solved-tab">
+                        <div class="table-responsive">
+                            <table id="example18" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($partially_solved as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-dark"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="solved" role="tabpanel" aria-labelledby="solved-tab">
+                        <div class="table-responsive">
+                            <table id="example6" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($solved as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-success"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab">
+                        <div class="table-responsive">
+                            <table id="example19" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($cancelled as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-danger"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
+                        <div class="table-responsive">
+                            <table id="example20" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($archived as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-info"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="#"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -131,6 +513,36 @@
     <script>
         $(document).ready(function () {
             $('#example3').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example6').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example20').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example19').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example18').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example17').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example16').DataTable();
         });
     </script>
     </body>
