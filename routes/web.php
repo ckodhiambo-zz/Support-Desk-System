@@ -18,9 +18,10 @@ use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
 use App\Http\Livewire\Demo\DemoDashboardComponent;
 use App\Http\Livewire\Employee\EmployeeDashboardComponent;
+use App\Http\Livewire\Employee\IndividualTicketComponent;
 use App\Http\Livewire\Employee\MyRaisedTicketDetailsComponent;
 use App\Http\Livewire\Employee\MySolvedTicketsComponent;
-use App\Http\Livewire\Employee\SolvedTicketsComponent;
+//use App\Http\Livewire\Employee\SolvedTicketsComponent;
 use App\Http\Livewire\Employee\TicketsComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
@@ -80,8 +81,10 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
     Route::get('/employee/dashboard', EmployeeDashboardComponent::class)->name('employee.dashboard');
     Route::get('/employee/dashboard/my-tickets', TicketsComponent::class)->name('employee.my-tickets');
     Route::post('/employee/ticket/submit', [EmployeeDashboardComponent::class, 'submitTicket'])->name('employee.ticket.submit');
-    Route::get('/employee/dashboard/my-tickets/{ticket}', MyRaisedTicketDetailsComponent::class)->name('employee.ticket-details');
+//    Route::get('/employee/dashboard/my-tickets/{ticket}', MyRaisedTicketDetailsComponent::class)->name('employee.ticket-details');
     Route::get('/employee/dashboard/my-solved-tickets',MySolvedTicketsComponent::class)->name('employee.my-solved-tickets');
+    Route::get('/employee/dashboard/my-tickets/details/{ticket}', IndividualTicketComponent::class)->name('employee.ticket-detail');
+    Route::get('/employee/dashboard/my-tickets/details/download-PDF/{ticket}',[IndividualTicketComponent::class,'downloadPDF'])->name('employee.download-pdf');
 
 });
 

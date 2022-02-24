@@ -70,7 +70,11 @@
                 @endif
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active text-primary" id="open-tab" data-toggle="tab" href="#open"
+                        <a class="nav-link active text-dark" id="new-tab" data-toggle="tab" href="#new"
+                           role="tab" aria-controls="home" aria-selected="true">New</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-info" id="open-tab" data-toggle="tab" href="#open"
                            role="tab" aria-controls="home" aria-selected="true">Open</a>
                     </li>
                     <li class="nav-item">
@@ -104,9 +108,65 @@
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active " id="open" role="tabpanel" aria-labelledby="open-tab">
+                    <div class="tab-pane fade show active " id="new" role="tabpanel" aria-labelledby="new-tab">
                         <div class="table-responsive">
                             <table id="example3" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Issue
+                                    </th>
+                                    <th>
+                                        Asset
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($new as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->issue }}
+                                        </td>
+                                        <td>
+                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-dark"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="open" role="tabpanel" aria-labelledby="open-tab">
+                        <div class="table-responsive">
+                            <table id="example32" class="table table-striped">
                                 <thead>
                                 <tr>
                                     <th>
@@ -150,7 +210,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -206,7 +266,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -263,7 +323,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -319,7 +379,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -376,7 +436,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -433,7 +493,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -489,7 +549,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="#"
+                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -513,6 +573,11 @@
     <script>
         $(document).ready(function () {
             $('#example3').DataTable();
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#example32').DataTable();
         });
     </script>
     <script>

@@ -9,6 +9,7 @@ use App\Models\Tickets;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TicketsController extends Controller
 {
@@ -47,4 +48,10 @@ class TicketsController extends Controller
 
         return redirect('/admin/dashboard/my-assigned-tickets');
     }
+
+//    public function downloadPDF()
+//    {
+//        $pdf = Pdf::loadView('livewire.employee.individual-ticket-component');
+//        return $pdf->download('Ticket-Details.pdf');
+//    }
 }

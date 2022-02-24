@@ -19,6 +19,7 @@ class TicketsComponent extends Component
     {
         // Fetch user object
         $solved_ticket = Auth::user()->requested;
+        $new = [];
         $open = [];
         $in_progress = [];
         $on_hold = [];
@@ -27,7 +28,10 @@ class TicketsComponent extends Component
         $solved = [];
         $archived = [];
 
-        $solved_ticket ->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved, &$archived) {
+        $solved_ticket ->each(function ($item) use (&$new, &$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved, &$archived) {
+            if ($item->status->name == 'New') {
+                $new[] = $item;
+            }
             if ($item->status->name == 'Open') {
                 $open[] = $item;
             }
@@ -51,7 +55,7 @@ class TicketsComponent extends Component
             }
         });
 
-        return view('livewire.employee.tickets-component', compact('open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-employee-dashboard');
+        return view('livewire.employee.tickets-component', compact('new','open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-employee-dashboard');
     }
 
 
