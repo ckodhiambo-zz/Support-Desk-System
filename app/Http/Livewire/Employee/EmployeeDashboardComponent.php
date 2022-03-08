@@ -40,7 +40,7 @@ class EmployeeDashboardComponent extends Component
         $description = $request->input('description');
         $attachment = $request->file('attachment');
 
-        $destinationPath = 'files/tickets/attachments';
+        $destinationPath = 'files/tickets/attachments/';
 
         $path = Storage::put($destinationPath, $attachment);
 

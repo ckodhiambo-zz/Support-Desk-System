@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\AdminSearchComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
 use App\Http\Livewire\Admin\CustomRequestTicketComponent;
 use App\Http\Livewire\Admin\EditTicketDetailsComponent;
+use App\Http\Livewire\Admin\ListOfUsersComponent;
 use App\Http\Livewire\Admin\TicketDetailsComponent;
 use App\Http\Livewire\Admin\TicketReportsComponent;
 use App\Http\Livewire\Agent\AgentAssignedTicketsComponent;
@@ -61,6 +62,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/ticket-reports', TicketReportsComponent::class)->name('admin.ticket-report');
     Route::get('/admin/dashboard/custom-ticket-request', CustomRequestTicketComponent::class)->name('admin.custom-ticket-request');
     Route::post('/admin/dashboard/custom-ticket-submit', [CustomRequestTicketComponent::class, 'submitCustomTicket'])->name('admin.custom-ticket.submit');
+    Route::get('/admin/dashboard/list-of-users',ListOfUsersComponent::class)->name('admin.list-of-users');
 });
 
 // --------------------Login-with-Google-------------------------------

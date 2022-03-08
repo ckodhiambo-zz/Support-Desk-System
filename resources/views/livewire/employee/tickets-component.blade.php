@@ -262,7 +262,7 @@
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-primary"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
@@ -319,7 +319,7 @@
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-warning"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
@@ -432,7 +432,7 @@
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-success"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>

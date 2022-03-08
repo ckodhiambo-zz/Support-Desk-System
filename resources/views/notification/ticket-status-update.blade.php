@@ -330,7 +330,7 @@
                                                                     <center
                                                                         style="color:#FFFFFF;font-family:'Cabin',sans-serif;">
                                                     <![endif]-->
-                                                    <a href="http://127.0.0.1:8000/" target="_blank"
+                                                    <a href="{{ route('employee.ticket-detail', $ticket)}}" target="_blank"
                                                        style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
                                   <span style="display:block;padding:8px 44px 3px 30px;line-height:120%;"><span
                                           style="font-size: 16px; line-height: 19.2px;"><strong><span

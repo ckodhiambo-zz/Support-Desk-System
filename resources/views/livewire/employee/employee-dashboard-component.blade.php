@@ -180,7 +180,7 @@
                             <div class="card card-tale">
                                 <div class="card-body">
                                     <p class="mb-4"> Total No. of Assigned Assets</p>
-                                    <p class="fs-30 mb-2">6</p>
+                                    <p class="fs-30 mb-2">0</p>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +188,7 @@
                             <div class="card l-bg-cherry">
                                 <div class="card-body">
                                     <p class="mb-4">Total No. of Tickets</p>
-                                    <p class="fs-30 mb-2">61344</p>
+                                    <p class="fs-30 mb-2">3</p>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@
                             <div class="card card-light-blue">
                                 <div class="card-body">
                                     <p class="mb-4">Solved tickets</p>
-                                    <p class="fs-30 mb-2">34040</p>
+                                    <p class="fs-30 mb-2">1</p>
                                 </div>
                             </div>
                         </div>
@@ -206,7 +206,7 @@
                             <div class="card card-light-danger">
                                 <div class="card-body">
                                     <p class="mb-4">Your Unsolved tickets</p>
-                                    <p class="fs-30 mb-2">47033</p>
+                                    <p class="fs-30 mb-2">1</p>
                                 </div>
                             </div>
                         </div>

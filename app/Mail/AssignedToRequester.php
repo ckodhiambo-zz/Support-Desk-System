@@ -20,6 +20,6 @@ class AssignedToRequester extends Mailable
 
     public function build()
     {
-        return $this->subject('Ticket Status Update!')->view('notification.agent-assigned-ticket');
+        return $this->subject('New Ticket Request!')->view('notification.agent-assigned-ticket');
     }
 }

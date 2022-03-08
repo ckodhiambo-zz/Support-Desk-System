@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{--<x-guest-layout>--}}
     <!doctype html>
     <html lang="en">
     <head>
@@ -22,7 +22,7 @@
             rel="stylesheet"
         />
 
-        <title>Precision Desk | Login</title>
+        <title>Precision Desk | Forgot Password</title>
         <style>
             .divider:after,
             .divider:before {
@@ -138,7 +138,7 @@
     ></script>
     </body>
     </html>
-</x-guest-layout>
+{{--</x-guest-layout>--}}
 
 
 

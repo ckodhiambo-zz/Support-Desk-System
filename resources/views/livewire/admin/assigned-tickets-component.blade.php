@@ -388,7 +388,7 @@
                                                     {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('agent.edit-ticket', $ticket) }}"
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
                                                        class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                                 </td>
                                             </tr>

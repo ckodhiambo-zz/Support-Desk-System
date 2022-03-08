@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{--<x-guest-layout>--}}
     <!doctype html>
     <html lang="en">
     <head>
@@ -170,6 +170,6 @@
     ></script>
     </body>
     </html>
-</x-guest-layout>
+{{--</x-guest-layout>--}}
 
 

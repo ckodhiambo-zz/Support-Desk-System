@@ -145,14 +145,10 @@
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Type of Issue</label></strong>
                                 <select class="js-example-basic-single w-100" name="incident_name">
-                                    <option value="Access Right Request">Access Right Request</option>
-                                    <option value="Not booting">Not booting</option>
-                                    <option value="Spillage">Spillage</option>
-                                    <option value="Too slow/Hanging">Too slow/Hanging</option>
-                                    <option value="Restarts/Shuts down without permission">Restarts/Shuts
-                                        down
-                                        without permission
-                                    </option>
+                                    @foreach(App\Models\Incidents::all() as $incident)
+                                    <option value="{{ $incident->id }}">{{ $incident->incident_name }}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>
@@ -161,27 +157,22 @@
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Requester Name</label></strong>
-                                <select class="js-example-basic-single w-100" name="requester_name">
-                                    <option>Kennedy Calvins <strong>-</strong> (k.odhiambo@centum.co.ke)
-                                        <strong>-</strong> (+254727497792)
-                                    </option>
-                                    <option>Isaac Kagechu <strong>-</strong> (i.kagechu@centum.co.ke) <strong>-</strong>
-                                        +254715445007
-                                    </option>
+                                <select class="js-example-basic-single w-100" name="requester_id">
+                                    @foreach(App\Models\User::all() as $user)
+                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    @endforeach
+                                    <option>
                                 </select>
 
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-sm-10" id="#">
+                            <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Asset Name</label></strong>
                                 <select class="js-example-basic-single w-100" name="asset_name">
-{{--                                    @foreach ($categories as $category)--}}
-{{--                                        @foreach ($category->assets as $asset)--}}
-{{--                                            <option class="assets category_{{$category->id}}"--}}
-{{--                                                    value="{{$asset->id}}">{{$asset->name}}</option>--}}
-{{--                                        @endforeach--}}
-{{--                                    @endforeach--}}
+                                    @foreach(App\Models\Asset::all() as $asset)
+                                        <option value="{{ $asset->id }}">{{ $asset->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -190,14 +181,13 @@
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Mode of Communication</label></strong>
-                                <select class="js-example-basic-single w-100" name="mode_communication">
-                                    <option>Email Address</option>
-                                    <option>Phone Call</option>
-                                    <option>Microsoft Teams</option>
-                                    <option>SMS</option>
-                                    <option>Verbal</option>
-                                    <option>WhatsApp</option>
+                                <select class="js-example-basic-single w-100" name="asset_name">
+
+                                @foreach(App\Models\Channel::all() as $channel)
+                                    <option value="{{ $channel->id }}">{{ $channel->channel_name }}</option>
+                                @endforeach
                                 </select>
+
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -207,8 +197,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"
-                                                       id="membershipRadios1" value="option1" checked>
+                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option1">
                                                 Low
                                             </label>
                                         </div>
@@ -216,8 +205,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"
-                                                       id="membershipRadios2" value="option2">
+                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option2">
                                                 Medium
                                             </label>
                                         </div>
@@ -225,8 +213,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"
-                                                       id="membershipRadios2" value="option3">
+                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option3">
                                                 High
                                             </label>
                                         </div>
@@ -234,8 +221,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-check">
                                             <label class="form-check-label">
-                                                <input type="radio" class="form-check-input"
-                                                       id="membershipRadios2" value="option4">
+                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option4">
                                                 Urgent
                                             </label>
                                         </div>
@@ -248,30 +234,24 @@
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Please describe the issue in detail</label></strong>
-                                <textarea id="editor" name="description"></textarea>
+                                <label for="editor"></label><textarea id="editor" name="description"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-group col-sm-10"><strong><label class="text-primary">Multi-File
-                                        Attachment</label></strong>
 
-                                <div class="row form-group">
-                                    <div class="col-12 col-md-12">
-                                        <div class="control-group" id="fields">
-                                            <div class="controls">
-                                                <div class="entry input-group upload-input-group">
-                                                    <input class="form-control" name="files[]" type="file">
-                                                    <button class="btn btn-upload btn-success btn-add"
-                                                            type="button">
-                                                        Add Attachment <i class="fa fa-plus"> </i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="form-group col-sm-10">
+                                <strong><label class="text-primary">File upload</label></strong>
+                                {{--                                            <input type="file" name="attachment" class="file-upload-default">--}}
+                                <div class="input-group col-xs-12">
+                                    <input type="file" class="form-control file-upload-info"
+                                           placeholder="Upload Image" name="attachment"><span
+                                        class="input-group-append">
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <hr class="border border-primary">
 
@@ -290,54 +270,54 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn l-bg-blue-dark float-right" style="color: #fff" data-toggle="modal" data-target="#exampleModal">
-                        Proceed to Delegate
+                    <button type="submit" class="btn l-bg-blue-dark float-right" style="color: #fff" data-toggle="modal" data-target="#exampleModal">
+                        Submit Ticket
                     </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header l-bg-cherry" style="border-radius: 5px;padding: 1rem;">
-                                    <h5 class="modal-title" id="exampleModalLabel">Assign an Agent</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                                        <span aria-hidden="true" style="color: #fff;">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label id="ticket-label" for="exampleFormControlSelect3"><strong>Kindly Select an Agent</strong></label>
-                                        <input type="text" id="ticket" name="ticket" hidden>
-                                        <select name="agent" class="form-control form-control-sm" id="exampleFormControlSelect3"
-                                                required>
+{{--                    <!-- Modal -->--}}
+{{--                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"--}}
+{{--                         aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--                        <div class="modal-dialog" role="document">--}}
+{{--                            <div class="modal-content">--}}
+{{--                                <div class="modal-header l-bg-cherry" style="border-radius: 5px;padding: 1rem;">--}}
+{{--                                    <h5 class="modal-title" id="exampleModalLabel">Assign an Agent</h5>--}}
+{{--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >--}}
+{{--                                        <span aria-hidden="true" style="color: #fff;">&times;</span>--}}
+{{--                                    </button>--}}
+{{--                                </div>--}}
+{{--                                <div class="modal-body">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label id="ticket-label" for="exampleFormControlSelect3"><strong>Kindly Select an Agent</strong></label>--}}
+{{--                                        <input type="text" id="ticket" name="ticket" hidden>--}}
+{{--                                        <select name="agent" class="form-control form-control-sm" id="exampleFormControlSelect3"--}}
+{{--                                                required>--}}
 {{--                                            @foreach($users as $user)--}}
 {{--                                                <option value="{{ $user->id }}"> {{ $user->name }} - {{ ($user->email) }} ---}}
 {{--                                                    {{$user->phone_number}}--}}
 {{--                                                </option>--}}
 {{--                                            @endforeach--}}
-                                        </select>
-                                    </div>
-                                    <hr class="border border-primary">
-                                    <div class="form-group">
-                                        <div class="form-check">
-                                            <strong>
-                                                <label class="form-check-label">
-                                                    <input type="checkbox" class="form-check-input" name="phone_number"
-                                                           value="true">
-                                                    Send SMS to the selected agent
-                                                </label>
-                                            </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn l-bg-cherry" style="color: #fff">Delegate</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                    <hr class="border border-primary">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <div class="form-check">--}}
+{{--                                            <strong>--}}
+{{--                                                <label class="form-check-label">--}}
+{{--                                                    <input type="checkbox" class="form-check-input" name="phone_number"--}}
+{{--                                                           value="true">--}}
+{{--                                                    Send SMS to the selected agent--}}
+{{--                                                </label>--}}
+{{--                                            </strong>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="modal-footer">--}}
+{{--                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--}}
+{{--                                    <button type="button" class="btn l-bg-cherry" style="color: #fff">Delegate</button>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </form>
             </div>
         </div>

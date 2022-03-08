@@ -119,8 +119,9 @@
                         <div class="box">
                             <img src="{{ asset('website-assets/img/values-1.png') }}" class="img-fluid" alt="">
                             <h3>Open a support request</h3>
-                            <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis
-                                id.</p>
+                            <p>To raise a ticket, kindly <strong><a href="http://127.0.0.1:8000/login">Login</a></strong> to your <strong><a href="http://127.0.0.1:8000/login">Precision Desk Account</a></strong>.
+                                .</p>
+
                         </div>
                     </div>
 
@@ -128,8 +129,7 @@
                         <div class="box">
                             <img src="{{ asset('website-assets/img/values-2.png') }}" class="img-fluid" alt="">
                             <h3>Manage and view your support request details</h3>
-                            <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit
-                                non.</p>
+                            <p>Track your Ticket History in Real Time.</p>
                         </div>
                     </div>
 
