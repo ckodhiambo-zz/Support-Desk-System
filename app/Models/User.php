@@ -46,9 +46,9 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function companies(): BelongsToMany
+    public function company(): BelongsTo
     {
-        return $this->belongsToMany(Companies::class);
+        return $this->belongsTo(Companies::class);
     }
 
     public function tickets():BelongsToMany

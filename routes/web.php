@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AgentTicketsController;
+use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TypeController;
+use App\Http\Livewire\Admin\AddUserComponent;
 use App\Http\Livewire\Admin\AdminEditCompanyComponent;
 use App\Http\Livewire\Admin\AdminSearchComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
@@ -33,8 +35,10 @@ use App\Http\Livewire\Admin\AdminDashboardComponent;
 //    return view('welcome');
 //});
 
-Route::get('/', HomeComponent::class)->name('home');
 
+Route::get('/home', HomeComponent::class)->name('default-user.home');
+
+Route::get('/', [RouteController::class, 'home'])->name('home');
 
 //For Demo
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -63,6 +67,8 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/custom-ticket-request', CustomRequestTicketComponent::class)->name('admin.custom-ticket-request');
     Route::post('/admin/dashboard/custom-ticket-submit', [CustomRequestTicketComponent::class, 'submitCustomTicket'])->name('admin.custom-ticket.submit');
     Route::get('/admin/dashboard/list-of-users',ListOfUsersComponent::class)->name('admin.list-of-users');
+    Route::get('/admin/dashboard/add-new-user',AddUserComponent::class)->name('admin.new-user');
+    Route::post('/admin/dashboard/add/user',[AddUserComponent::class, 'addUser'])->name('admin.add-new-user');
 });
 
 // --------------------Login-with-Google-------------------------------

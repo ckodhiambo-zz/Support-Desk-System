@@ -21,8 +21,8 @@ class Companies extends Model
     ];
     protected $guarded = [];
 
-    public function users():BelongsToMany
+    public function users():HasMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasMany(User::class, 'company_id');
     }
 }

@@ -51,7 +51,6 @@
                 width: auto;
                 height: auto;
                 max-height: 400px;
-                width: auto;
                 border-radius: 5px;
                 overflow: hidden
             }
@@ -110,7 +109,7 @@
                 height: 45px;
             }
             .l-bg-blue-dark {
-                background: linear-gradient(to right, #4286f4, #373b44) !important;
+                background: linear-gradient(to right, #373b44, #4286f4) !important;
                 color: #fff;
             }
         </style>

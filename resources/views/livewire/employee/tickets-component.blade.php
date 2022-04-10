@@ -68,42 +68,100 @@
                         {{ Session::get('message_sent') }}
                     </div>
                 @endif
+                <div class="row">
+                    <div class="col-md-12 grid-margin transparent">
+                        <div class="row">
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-tale">
+                                    <div class="card-body">
+                                        <p class="mb-4"> Total No. of Assigned Assets</p>
+                                        <p class="fs-30 mb-2">99</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card l-bg-cherry">
+                                    <div class="card-body">
+                                        <p class="mb-4">My total No. of raised Tickets</p>
+                                        <p class="fs-30 mb-2">{{ count($solved_ticket) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-blue">
+                                    <div class="card-body">
+                                        <p class="mb-4">Solved tickets</p>
+                                        <p class="fs-30 mb-2">{{ count($solved) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-danger">
+                                    <div class="card-body">
+                                        <p class="mb-4">Your Unsolved tickets</p>
+                                        <p class="fs-30 mb-2">{{ count($solved_ticket) - count($open) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active text-dark" id="new-tab" data-toggle="tab" href="#new"
-                           role="tab" aria-controls="home" aria-selected="true">New</a>
+                           role="tab" aria-controls="home" aria-selected="true">New
+                                <span class="badge badge-dark">{{ count($new) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-info" id="open-tab" data-toggle="tab" href="#open"
-                           role="tab" aria-controls="home" aria-selected="true">Open</a>
+                           role="tab" aria-controls="home" aria-selected="true">Open
+                            <span class="badge badge-info">{{ count($open) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
-                           role="tab" aria-controls="home" aria-selected="true">In-Progress</a>
+                           role="tab" aria-controls="home" aria-selected="true">In-Progress
+                            <span class="badge badge-primary">{{ count($in_progress) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-warning" id="pending-tab" data-toggle="tab" href="#pending"
-                           role="tab" aria-controls="profile" aria-selected="false">On-Hold</a>
+                           role="tab" aria-controls="profile" aria-selected="false">On-Hold
+                            <span class="badge badge-warning">{{ count($on_hold) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-success" id="solved-tab" data-toggle="tab" href="#solved"
                            role="tab"
-                           aria-controls="contact" aria-selected="false">Solved</a>
+                           aria-controls="contact" aria-selected="false">Solved
+                            <span class="badge badge-success">{{ count($solved) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab"
                            href="#partially-solved"
                            role="tab"
-                           aria-controls="contact" aria-selected="false">Partially Solved</a>
+                           aria-controls="contact" aria-selected="false">
+                            Partially Solved
+                            <span class="badge badge-info">{{ count($partially_solved) }}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
-                           role="tab" aria-controls="contact" aria-selected="false">Cancelled</a>
+                           role="tab" aria-controls="contact" aria-selected="false">Cancelled
+                        <span class="badge badge-danger">{{ count($cancelled) }}</span>
+                            <span class="sr-only">unread messages</span></a>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-info" id="archived-tab" data-toggle="tab" href="#archived"
                            role="tab"
-                           aria-controls="contact" aria-selected="false">Archived</a>
+                           aria-controls="contact" aria-selected="false">Archived
+                        <span class="badge badge-info">{{ count($archived) }}</span>
+                            <span class="sr-only">unread messages</span></a>
+                        </a>
                     </li>
                 </ul>
 

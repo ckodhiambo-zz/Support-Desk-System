@@ -55,7 +55,7 @@ class TicketsComponent extends Component
             }
         });
 
-        return view('livewire.employee.tickets-component', compact('new','open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-employee-dashboard');
+        return view('livewire.employee.tickets-component', compact('solved_ticket', 'new','open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-employee-dashboard');
     }
 
 
