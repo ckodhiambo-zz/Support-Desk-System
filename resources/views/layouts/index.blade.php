@@ -90,6 +90,16 @@
                                                 Out</a></a></li>
                                 </ul>
                             </li>
+                        @elseif(Auth::user()->user_type==='NaboStaff')
+                            <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
+                                        class="bi bi-chevron-down"></i></a>
+                                <ul>
+                                    <li><a href="{{ route('nabostaff.dashboard') }}">My Dashboard</a></li>
+                                    <li><a href="#"><a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
+                                                Out</a></a></li>
+                                </ul>
+                            </li>
 {{--                            <li><a class="getstarted scrollto" href="{{route('register')}}">Create User Account</a></li>--}}
 
                         @elseif(Auth::user()->user_type==='Agent')

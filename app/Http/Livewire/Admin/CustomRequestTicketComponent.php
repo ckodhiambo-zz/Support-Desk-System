@@ -8,6 +8,7 @@ use App\Models\status;
 use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -56,6 +57,15 @@ class CustomRequestTicketComponent extends Component
         $ticket->status()->associate($status);
 
         $ticket->save();
+
+        // Set status
+        DB::table('ticket_timestamps')->insert([
+            'ticket_id' => $ticket->id,
+            'old_status' => 'None',
+            'new_status' => 'New',
+            'created_at' => now()->toDateTimeString(),
+            'updated_at' => now()->toDateTimeString()
+        ]);
 
        Mail::to($ticket->requester->email)->send(new CustomEmailRequest($ticket));
 

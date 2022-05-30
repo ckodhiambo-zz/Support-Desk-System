@@ -180,7 +180,7 @@
                                                     style="color: #e5eaf5; line-height: 140%; text-align: center; word-wrap: break-word;">
                                                     <p style="font-size: 14px; line-height: 140%;"><span
                                                             style="font-size: 20px; line-height: 28px;"><strong><span
-                                                                    style="line-height: 28px; font-size: 20px;">Status Update of Ticket ID-#23&nbsp; </span></strong>
+                                                                    style="line-height: 28px; font-size: 20px;">Status Update of Ticket ID-#{{$ticket->id}}&nbsp; </span></strong>
                                   </span>
                                                     </p>
                                                 </div>

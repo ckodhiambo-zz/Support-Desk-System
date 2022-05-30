@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AgentTicketsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\TypeController;
@@ -10,6 +12,7 @@ use App\Http\Livewire\Admin\AdminSearchComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
 use App\Http\Livewire\Admin\CustomRequestTicketComponent;
 use App\Http\Livewire\Admin\EditTicketDetailsComponent;
+use App\Http\Livewire\Admin\FromEmailTicketComponent;
 use App\Http\Livewire\Admin\ListOfUsersComponent;
 use App\Http\Livewire\Admin\TicketDetailsComponent;
 use App\Http\Livewire\Admin\TicketReportsComponent;
@@ -26,6 +29,9 @@ use App\Http\Livewire\Employee\MyRaisedTicketDetailsComponent;
 use App\Http\Livewire\Employee\MySolvedTicketsComponent;
 //use App\Http\Livewire\Employee\SolvedTicketsComponent;
 use App\Http\Livewire\Employee\TicketsComponent;
+use App\Http\Livewire\Nabo\ExternalTicketComponent;
+use App\Http\Livewire\Nabo\ListOfTicketsComponent;
+use App\Http\Livewire\Nabo\NaboDashboardComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
@@ -35,10 +41,13 @@ use App\Http\Livewire\Admin\AdminDashboardComponent;
 //    return view('welcome');
 //});
 
+Route::get('/', [HomeController::class,'welcome']);
 
 Route::get('/home', HomeComponent::class)->name('default-user.home');
 
 Route::get('/', [RouteController::class, 'home'])->name('home');
+Route::get('/signin',[AuthController::class,'signin']);
+Route::get('/callback',[AuthController::class,'callback']);
 
 //For Demo
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -69,6 +78,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/list-of-users',ListOfUsersComponent::class)->name('admin.list-of-users');
     Route::get('/admin/dashboard/add-new-user',AddUserComponent::class)->name('admin.new-user');
     Route::post('/admin/dashboard/add/user',[AddUserComponent::class, 'addUser'])->name('admin.add-new-user');
+    Route::get('/admin/dashboard/tickets-from-emails',FromEmailTicketComponent::class)->name('admin.tickets-from-email');
 });
 
 // --------------------Login-with-Google-------------------------------
@@ -96,4 +106,10 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
 
 });
 
+//For Nabo
+Route::middleware(['auth:sanctum','verified','authnabo'])->group(function (){
+    Route::get('/nabocapital/internal-ticket',NaboDashboardComponent::class)->name('nabostaff.dashboard');
+    Route::get('/nabocapital/my-tickets',ListOfTicketsComponent::class)->name('my-nabo-tickets.dashboard');
+    Route::get('/nabocapital/IT-support-ticket', ExternalTicketComponent::class)->name('nabostaff.external');
+});
 

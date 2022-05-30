@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Precision Desk</title>
+    <!-- plugins:css -->
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
@@ -18,11 +22,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
-    <!-- End plugin css for this page -->
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
+
     @livewireStyles
 </head>
 
@@ -31,8 +33,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-            <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('website-assets/img/tier_data.png') }}" alt="" style="width: 100%;height: 50px">
+            <a href="{{ route('nabostaff.dashboard') }}" class="logo d-flex align-items-center">
+                <img src="{{ asset('website-assets/img/nabo-capital-logo.jpg') }}" alt="" style="width: 100%;height: 50px">
 
             </a>
         </div>
@@ -132,18 +134,6 @@
             </button>
         </div>
     </nav>
-    <main role="main" class="container">
-        @if(session('error'))
-            <div class="alert alert-danger" role="alert">
-                <p class="mb-3">{{ session('error') }}</p>
-                @if(session('errorDetail'))
-                    <pre class="alert-pre border bg-light p-2"><code>{{ session('errorDetail') }}</code></pre>
-                @endif
-            </div>
-        @endif
-
-        @yield('content')
-    </main>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
@@ -189,9 +179,7 @@
                     <div class="add-items d-flex px-3 mb-0">
                         <form class="form w-100">
                             <div class="form-group d-flex">
-                                <label>
-                                    <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
-                                </label>
+                                <input type="text" class="form-control todo-list-input" placeholder="Add To-do">
                                 <button type="submit" class="add btn btn-primary todo-list-add-btn" id="add-task">Add
                                 </button>
                             </div>
@@ -346,58 +334,36 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('admin/dashboard')?'active':'' }}"
-                       href="{{ url('admin/dashboard') }}">
+                    <a class="nav-link"
+                       href="{{ route('nabostaff.dashboard') }}">
                         <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
+                        <span class="menu-title">Internal Ticket</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link #" href="{{ route('nabostaff.external') }}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">External Ticket</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link #" href="{{ route('my-nabo-tickets.dashboard') }}">
+                        <i class="icon-book menu-icon"></i>
+                        <span class="menu-title">My Tickets</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
                        aria-controls="reports">
-                        <i class="ti-file menu-icon"></i>
-                        <span class="menu-title">Tickets</span>
+                        <i class="icon-head menu-icon"></i>
+                        <span class="menu-title">Account Center</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="reports">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link {{ request()->is('/admin/dashboard/my-assigned-tickets') ?? 'active' }}"
-                                   href="{{ route('ticket.assigned-tickets') }}"> My Assigned Tickets</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{route('admin.ticket-report')}}"> Ticket
-                                    Reports </a></li>
-                            <li class="nav-item"><a class="nav-link"
-                                                    href="{{ url('admin/dashboard/tickets-from-emails') }}"> From
-                                    Email </a></li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="nav-item {{ Request::is('admin/dashboard/custom-ticket-request')?'active':'' }}">
-                    <a class="nav-link" href="{{ url('admin/dashboard/custom-ticket-request') }}">
-                        <i class="icon-paragraph menu-icon"></i>
-                        <span class="menu-title">Custom ticket request</span>
-                    </a>
-                </li>
-                {{--                <li class="nav-item">--}}
-                {{--                    <a class="nav-link" href="{{ route('admin.list-of-users') }}">--}}
-                {{--                        <i class="icon-help menu-icon"></i>--}}
-                {{--                        <span class="menu-title">Manage Users</span>--}}
-                {{--                    </a>--}}
-                {{--                </li>--}}
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
-                       aria-controls="accounts">
-                        <i class="icon-head menu-icon"></i>
-                        <span class="menu-title">Manage Users</span>
-                        <i class="menu-arrow"></i>
-                    </a>
-                    <div class="collapse" id="accounts">
-                        <ul class="nav flex-column sub-menu">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('admin.new-user') }}"> Add User</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('admin.list-of-users') }}"> View
-                                    Users </a></li>
+                                <a class="nav-link" href="#"> Privacy and Security</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
                         </ul>
                     </div>
                 </li>
@@ -426,7 +392,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
-    {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
+    <!-- plugins:js -->
+    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
@@ -441,15 +408,13 @@
     <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
     <script src="{{ asset('assets/js/template.js') }}"></script>
     <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
-
-
     @livewireScripts
     <!-- End custom js for this page-->
-
 </div>
 </body>
 </html>

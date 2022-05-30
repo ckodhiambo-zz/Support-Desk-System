@@ -145,7 +145,7 @@
                                 <strong><label class="text-primary">Type of Issue</label></strong>
                                 <select class="js-example-basic-single w-100" name="incident_name">
                                     @foreach(App\Models\Incidents::all() as $incident)
-                                    <option value="{{ $incident->id }}">{{ $incident->incident_name }}</option>
+                                    <option value="{{ $incident->incident_name }}">{{ $incident->incident_name }}</option>
                                     @endforeach
 
                                 </select>

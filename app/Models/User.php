@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google_id',
+        'user_type',
     ];
 
     protected $hidden = [
@@ -38,7 +39,7 @@ class User extends Authenticatable
 
 
     protected $casts = [
-        'email_verified_at' => 'datetime',
+            'email_verified_at' => 'datetime',
     ];
 
 

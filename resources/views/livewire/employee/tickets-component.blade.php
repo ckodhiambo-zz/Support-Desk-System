@@ -75,7 +75,7 @@
                                 <div class="card card-tale">
                                     <div class="card-body">
                                         <p class="mb-4"> Total No. of Assigned Assets</p>
-                                        <p class="fs-30 mb-2">99</p>
+                                        <p class="fs-30 mb-2">N/A</p>
                                     </div>
                                 </div>
                             </div>

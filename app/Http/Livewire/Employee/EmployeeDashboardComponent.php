@@ -5,13 +5,14 @@ namespace App\Http\Livewire\Employee;
 use App\Mail\RaisedTicketMail;
 use App\Mail\RequesterFirstNotification;
 use App\Models\Asset;
-use App\Models\AssetType;
+//use App\Models\AssetType;
 use App\Models\Category;
 use App\Models\status;
 use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -61,6 +62,15 @@ class EmployeeDashboardComponent extends Component
         $ticket->status()->associate($status);
 
         $ticket->save();
+
+        // Set status
+        DB::table('ticket_timestamps')->insert([
+            'ticket_id' => $ticket->id,
+            'old_status' => 'None',
+            'new_status' => 'New',
+            'created_at' => now()->toDateTimeString(),
+            'updated_at' => now()->toDateTimeString()
+        ]);
 
         Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
 

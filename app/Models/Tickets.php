@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class   Tickets extends Model
 {
     use HasFactory;
 
-
-
     protected $guarded = ['status_id', 'requester_id', 'channel_id'];
-
 
 
     public function asset(): BelongsToMany
@@ -44,9 +42,13 @@ class   Tickets extends Model
         return $this->belongsTo(User::class);
     }
 
-    public  function channels():BelongsToMany
+    public function channels(): BelongsToMany
     {
         return $this->belongsToMany(Channel::class);
     }
 
+    public function timestamps():HasMany
+    {
+        return $this->hasMany(Timestamp::class);
+    }
 }

@@ -228,10 +228,13 @@
                                         Email
                                     </th>
                                     <th>
-                                        Created_at
+                                        Phone No.
                                     </th>
                                     <th>
-                                        Phone No.
+                                        Role
+                                    </th>
+                                    <th>
+                                        Created_at
                                     </th>
                                     <th>
                                         Action
@@ -252,10 +255,16 @@
                                             {{ $user->email }}
                                         </td>
                                         <td>
-                                            {{ $user->created_at }}
+                                            {{ $user->phone_number ?? 'Not Available'  }}</td>
+
+                                        <td>
+                                            <label class="badge badge-primary"
+                                                   style=" font-size: 0.9em;"><strong>{{ $user->user_type }}</strong></label>
+
                                         </td>
                                         <td>
-                                            {{ $user->phone_number }}</td>
+                                            {{ $user->created_at }}
+                                        </td>
                                         <td>
                                             {{--                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"--}}
                                             {{--                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>--}}

@@ -115,6 +115,7 @@
             .input-group > .form-control:not(:last-child) {
                 height: 45px;
             }
+
             .l-bg-blue-dark {
                 background: linear-gradient(to right, #4286f4, #373b44) !important;
                 color: #fff;
@@ -161,8 +162,9 @@
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Phone Number</label></strong>
                                 <input type="tel" class="form-control form-control-sm"
-                                       placeholder="+254-XXX-XXX-XXX" name="phone"
-                                       aria-label="Phone" minlength="12">
+                                       placeholder="+254-XXX-XXX-XXX" name="phone_number"
+                                       pattern="+254[0-9]{1}[0-9]{1}[0-9]{3}[0-9]{4}"
+                                       aria-label="Phone" required>
                             </div>
                         </div>
 
@@ -170,11 +172,9 @@
                             <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Role</label></strong>
                                 <select class="js-example-basic-single w-100" name="user_type">
-{{--                                    @foreach(App\Models\Asset::all() as $asset)--}}
-                                        <option value="Administrator">Administrator</option>
-                                        <option value="Agent">Agent</option>
-                                        <option value="default_user">Default-User</option>
-{{--                                    @endforeach--}}
+                                    <option value="Administrator">Administrator</option>
+                                    <option value="Agent">Agent</option>
+                                    <option value="default_user">Default-User</option>
                                 </select>
                             </div>
                         </div>
@@ -185,7 +185,7 @@
                                 <strong><label class="text-primary">Company</label></strong>
                                 <select class="js-example-basic-single w-100" name="company">
                                     @foreach(App\Models\Companies::all() as $company)
-                                    <option value="{{ $company->id }}">{{ $company->company_name }}</option>
+                                        <option value="{{ $company->id }}">{{ $company->company_name }}</option>
                                     @endforeach
                                 </select>
 
@@ -215,23 +215,28 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn l-bg-cherry float-right" style="color: #fff" data-toggle="modal" data-target="#exampleModal">
+                    <button type="submit" class="btn l-bg-cherry float-right" style="color: #fff" data-toggle="modal"
+                            data-target="#exampleModal">
                         Save details
                     </button>
                 </form>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
     <script src="https://cdn.tiny.cloud/1/vpqzq33el3188md9mtcyw5u3k62x5cz13rs8of0d0714ifnd/tinymce/5/tinymce.min.js"
             referrerpolicy="origin"></script>
     <script src="{{ asset('js/script.js') }}"></script>
-
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Plugin js for this page -->
     <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>

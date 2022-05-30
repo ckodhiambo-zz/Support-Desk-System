@@ -12,17 +12,17 @@ class Companies extends Model
     use HasFactory;
 
     protected $fillable = [
-//        'user_id',
         'company_name',
-//        'company_address',
-//        'company_phone',
-//        'country',
-//        'logo'
     ];
-    protected $guarded = [];
+    protected $guarded = ['company_id'];
 
     public function users():HasMany
     {
         return $this->hasMany(User::class, 'company_id');
+    }
+
+    public function departments():HasMany
+    {
+        return $this->hasMany(Department::class,'company_id');
     }
 }

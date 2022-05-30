@@ -20,8 +20,9 @@ class AddUserComponent extends Component
         $user = new User([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
             'password' => Hash::make(12345678),
-            'user_type' => $request->input('role')
+            'user_type' => $request->input('user_type')
         ]);
 
         Companies::find($request->input('company'))->users()->save($user);

@@ -20,6 +20,10 @@ class RouteController extends Controller
             {
                 return redirect()->route('ticket.agent-assigned-tickets');
             }
+            if (Auth::user()->user_type == 'default_user')
+            {
+                return redirect()->route('employee.dashboard');
+            }
         }
 
         return redirect()->route('default-user.home');

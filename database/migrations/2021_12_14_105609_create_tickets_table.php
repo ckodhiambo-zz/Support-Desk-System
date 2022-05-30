@@ -13,7 +13,7 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->string('asset_name');
             $table->string('issue');
-            $table->string('attachment');
+            $table->string('attachment')->nullable();
             $table->string('subject');
             $table->string('description');
             $table->string('priority')->nullable();

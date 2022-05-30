@@ -17,7 +17,10 @@ class DatabaseSeeder extends Seeder
             IncidentSeeder::class,
             CategorySeeder::class,
             StatusSeeder::class,
-            ChannelSeeder::class
+            ChannelSeeder::class,
+            TierSeeder::class,
+            DepartmentSeeder::class,
+            PrioritySeeder::class
         ]);
     }
 }

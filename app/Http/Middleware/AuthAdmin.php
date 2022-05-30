@@ -11,10 +11,9 @@ class AuthAdmin
 
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->user_type === 'Administrator')
-        {
+        if (Auth::user()->user_type === 'Administrator') {
             return $next($request);
-        }else{
+        } else {
             session()->flush();
             return redirect()->route('login');
         }

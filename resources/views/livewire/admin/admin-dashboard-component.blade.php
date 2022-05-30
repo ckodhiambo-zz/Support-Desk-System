@@ -23,7 +23,22 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
+                background: linear-gradient(to right, #8d188e, #0d47a1) !important;
+                color: #fff;
+            }
+
+            .l-bg-red {
+                background: linear-gradient(to right, #e03e2d, #ea4c89) !important;
+                color: #fff;
+            }
+
+            .l-bg-cyan {
+                background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+                color: #fff;
+            }
+
+            .l-bg-green {
+                background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
                 color: #fff;
             }
         </style>
@@ -59,51 +74,39 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
-                <div class="card tale-bg">
-                    <div class="card-people mt-auto">
-                        <img src="{{ asset('assets/images/dashboard/people.svg') }}" alt="people">
-                        <div class="weather-info">
-                            <div class="d-flex">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 grid-margin transparent">
+            <div class="col-md-12 grid-margin transparent">
                 <div class="row">
-                    <div class="col-md-6 mb-4 stretch-card transparent">
+                    <div class="col-md-3 mb-4 stretch-card transparent">
                         <div class="card l-bg-cherry">
                             <div class="card-body">
-                                <p class="mb-4">Total No. of Tickets</p>
-                                <p class="fs-30 mb-2">{{$alltickets->count()}}</p>
+                                <p class="mb-4"><strong>Total No. of Tickets</strong></p>
+                                <p class="fs-30 mb-2"><strong>{{\App\Models\Tickets::all()->count()}}</strong></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 mb-4 stretch-card transparent">
-                        <div class="card card-tale">
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card l-bg-green">
                             <div class="card-body">
-                                <p class="mb-4"> Total No. of Assigned Tickets</p>
-                                <p class="fs-30 mb-2">6</p>
+                                <p class="mb-4"><strong>Assigned Tickets</strong></p>
+                                <p class="fs-30 mb-2">
+                                    <strong>{{\App\Models\Tickets::where('status_id', '!=', 1)->count()}}</strong></p>
                             </div>
                         </div>
                     </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
-                        <div class="card card-light-blue">
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card l-bg-red">
                             <div class="card-body">
-                                <p class="mb-4">Total No. of Unassigned Tickets</p>
-                                <p class="fs-30 mb-2">12</p>
+                                <p class="mb-4"><strong>Unassigned Tickets</strong></p>
+                                <p class="fs-30 mb-2">
+                                    <strong>{{\App\Models\Tickets::where('status_id', 1)->count()}}</strong></p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 stretch-card transparent">
-                        <div class="card card-light-danger">
+                    <div class="col-md-3 mb-4 stretch-card transparent">
+                        <div class="card l-bg-cyan">
                             <div class="card-body">
-                                <p class="mb-4">Total No. of Users</p>
-                                <p class="fs-30 mb-2">7</p>
+                                <p class="mb-4"><strong>Total No. of Users</strong></p>
+                                <p class="fs-30 mb-2"><strong>{{ \App\Models\User::all()->count() }}</strong></p>
                             </div>
                         </div>
                     </div>
@@ -187,14 +190,17 @@
                                                             aria-haspopup="true" aria-expanded="false">
                                                         Actions
                                                     </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
+                                                    <div class="dropdown-menu"
+                                                         aria-labelledby="dropdownMenuSizeButton3">
                                                         <h6 class="dropdown-header"><strong>Actions</strong></h6>
                                                         <button class="dropdown-item text-success" href="#"
                                                                 data-toggle="modal"
-                                                                data-target="#ticketModal" data-ticket-id="{{ $item->id }}">
+                                                                data-target="#ticketModal"
+                                                                data-ticket-id="{{ $item->id }}">
                                                             -- Assign / Edit Agent--
                                                         </button>
-                                                        <a class="dropdown-item text-info" href="#">-- View Details --</a>
+                                                        <a class="dropdown-item text-info" href="#">-- View Details
+                                                            --</a>
                                                         <div class="dropdown-divider"></div>
                                                         <a class="dropdown-item" href="#" style="color: red">Archive</a>
                                                     </div>
@@ -206,7 +212,8 @@
                                 </table>
                                 <br>
                                 <a href="{{ route('admin.all-tickets') }}">
-                                    <button type="submit" class="btn btn-info btn-sm ti-files">&nbsp; <strong>VIEW ALL TICKETS</strong></button>
+                                    <button type="submit" class="btn btn-info btn-sm ti-files">&nbsp; <strong>VIEW ALL
+                                            TICKETS</strong></button>
                                 </a>
                             </div>
                         </div>
@@ -248,6 +255,48 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group col-sm-12">
+                                    <strong><label class="text-primary">Select Priority</label></strong>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option1">
+                                                    Low
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option2">
+                                                    Medium
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option3">
+                                                    High
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option4">
+                                                    Urgent
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <hr class="border-primary">
                         <div class="form-group">
                             <div class="form-check">
@@ -271,12 +320,16 @@
     </div>
 
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
+            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+            crossorigin="anonymous"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 
     <!-- plugins:js -->
@@ -321,9 +374,9 @@
         });
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#example').DataTable();
-        } );
+        });
     </script>
     </body>
     </html>
