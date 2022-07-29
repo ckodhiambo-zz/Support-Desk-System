@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\AssetType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,7 +19,8 @@ class DatabaseSeeder extends Seeder
             ChannelSeeder::class,
             TierSeeder::class,
             DepartmentSeeder::class,
-            PrioritySeeder::class
+            PrioritySeeder::class,
+            LeaveReasonSeeder::class,
         ]);
     }
 }

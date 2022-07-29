@@ -36,7 +36,7 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('website-assets/img/tier_data.png') }}" alt="" style="width: 100%;height: 50px">
+                <img src="{{ asset('assets/images/admi-logo.png') }}" alt="" style="width: 100%;height: 50px">
 
             </a>
         </div>
@@ -58,64 +58,11 @@
                 </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                       data-toggle="dropdown">
-                        <i class="icon-bell mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                         aria-labelledby="notificationDropdown">
-                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="ti-info-alt mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">Just now
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="ti-settings mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    Private message
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="ti-user mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    2 days ago
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="{{ asset('assets/images/faces/face28.jpg') }}" alt="profile"/>
+                        <img src="{{ asset('assets/images/user.png') }}" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                        <a class="dropdown-item" href="#">
-                            <i class="ti-settings text-primary"></i>
-                            Companies
-                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="ti-power-off text-primary"></i>
@@ -338,41 +285,48 @@
         </div>
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
+
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('ticket.agent-assigned-tickets') }}">
                         <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('agent.ticket-report') }}">
-                        <i class="icon-bar-graph menu-icon"></i>
-                        <span class="menu-title ">My Tickets Reports</span>
+                        <span class="menu-title">Assigned Tickets</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#accounts" aria-expanded="false"
                        aria-controls="accounts">
                         <i class="icon-head menu-icon"></i>
-                        <span class="menu-title">Account Center</span>
+                        <span class="menu-title">Tickets Center</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="accounts">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> Privacy and Security</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
+                                <a class="nav-link" href="{{route('agent.ticket-form')}}">Ticket Form</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('agent.my-raised-tickets')}}">My Raised Tickets</a>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('agent.ticket-report') }}">My
+                                    Tickets Reports</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">
+                    <a class="nav-link" href="{{ route('agent.account-center') }}">
+                        <i class="icon-grid menu-icon"></i>
+                        <span class="menu-title">Account Center</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="icon-paper menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
+
             </ul>
         </nav>
         <!-- partial -->
@@ -382,18 +336,10 @@
         <!-- page-body-wrapper-ends -->
     </div>
     <!-- container-scroller -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
-            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-            crossorigin="anonymous"></script>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- plugins:js -->
-    {{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->

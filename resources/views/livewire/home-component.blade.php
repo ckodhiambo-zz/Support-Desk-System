@@ -4,21 +4,11 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 d-flex flex-column justify-content-center">
-                    <h1 data-aos="fade-up">We offer modern IT Service Management solutions for growing your
-                        business</h1>
+                <div class="col-lg-6 d-flex flex-column justify-content-center ">
+                    <h1 class="text-danger" data-aos="fade-up">Redefining ADMI's IT Service Management</h1>
                     <h2 data-aos="fade-up" data-aos-delay="400">Making your experience helpful and enjoyable by focusing
                         on technology and customer experience
                     </h2>
-                    <div data-aos="fade-up" data-aos-delay="600">
-                        <div class="text-center text-lg-start">
-                            <a href="#about"
-                               class="btn-get-started scrollto d-inline-flex align-items-center l-bg-cherry justify-content-center align-self-center">
-                                <span>Book a Demo</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
                     <img src="{{ asset('website-assets/img/hero-img.png') }}" class="img-fluid" alt="">
@@ -119,7 +109,7 @@
                         <div class="box">
                             <img src="{{ asset('website-assets/img/values-1.png') }}" class="img-fluid" alt="">
                             <h3>Open a support request</h3>
-                            <p>To raise a ticket, kindly <strong><a href="http://127.0.0.1:8000/login">Login</a></strong> to your <strong><a href="http://127.0.0.1:8000/login">Precision Desk Account</a></strong>.
+                            <p>To raise a ticket, kindly <strong><a href="https://nabo.precision.ke/login   ">Login</a></strong> to your <strong><a href="https://desk.precision.ke" target="_blank">Precision Desk Account</a></strong>.
                                 .</p>
 
                         </div>
@@ -416,7 +406,7 @@
                                 <div class="col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
                                     <i class="ri-magic-line"></i>
                                     <div>
-                                        <h4>Ticket Tagging</h4>
+                                        <h4>Service Level Agreements</h4>
                                         <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat
                                             pacta</p>
                                     </div>
@@ -748,7 +738,7 @@
                                     <div class="error-message"></div>
                                     <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                                    <button type="submit" class="l-bg-cherry">Send Message</button>
+                                    <button type="submit" class="lg-bg-nabo">Send Message</button>
                                 </div>
 
                             </div>

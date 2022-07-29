@@ -14,4 +14,8 @@ class Timestamp extends Model
     {
         return $this->belongsTo(Tickets::class);
     }
+    public function Nabotickets():BelongsTo
+    {
+        return $this->belongsTo(NaboTickets::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Nabo;
 
+use App\Models\NaboTickets;
 use App\Models\Tickets;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;

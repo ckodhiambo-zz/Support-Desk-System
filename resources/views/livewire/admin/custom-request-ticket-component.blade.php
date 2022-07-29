@@ -7,22 +7,20 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Custom Ticket | Precision Desk</title>
-        <!-- Plugin css for this page -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-              crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous">
-        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- plugins:css -->
 
+        <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+        <!-- endinject -->
+        <!-- Plugin css for this page -->
         <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
         <!-- endinject -->
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
         <style>
             .l-bg-cherry {
                 background: linear-gradient(to right, #8d188e,#0d47a1) !important;
@@ -113,6 +111,7 @@
                 color: #fff;
             }
         </style>
+        @livewireStyles
     </head>
 
     <body>
@@ -145,7 +144,7 @@
                                 <strong><label class="text-primary">Type of Issue</label></strong>
                                 <select class="js-example-basic-single w-100" name="incident_name">
                                     @foreach(App\Models\Incidents::all() as $incident)
-                                    <option value="{{ $incident->incident_name }}">{{ $incident->incident_name }}</option>
+                                        <option value="{{ $incident->incident_name }}">{{ $incident->incident_name }}</option>
                                     @endforeach
 
                                 </select>
@@ -182,9 +181,9 @@
                                 <strong><label class="text-primary">Mode of Communication</label></strong>
                                 <select class="js-example-basic-single w-100" name="asset_name">
 
-                                @foreach(App\Models\Channel::all() as $channel)
-                                    <option value="{{ $channel->id }}">{{ $channel->channel_name }}</option>
-                                @endforeach
+                                    @foreach(App\Models\Channel::all() as $channel)
+                                        <option value="{{ $channel->id }}">{{ $channel->channel_name }}</option>
+                                    @endforeach
                                 </select>
 
                             </div>
@@ -193,38 +192,18 @@
                             <div class="form-group col-sm-12">
                                 <strong><label class="text-primary">Ticket Priority</label></strong>
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option1">
-                                                Low
-                                            </label>
+                                    @foreach(App\Models\Priority::all() as $priority)
+                                        <div class="col-sm-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="radio" class="form-check-input"
+                                                           name="priority_name" id="{{ $priority->id }}"
+                                                           value="{{ $priority->id }}">
+                                                    {{ $priority->priority_name }}
+                                                </label>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option2">
-                                                Medium
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option3">
-                                                High
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="Option4">
-                                                Urgent
-                                            </label>
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -253,12 +232,10 @@
 
                     </div>
                     <hr class="border border-primary">
-
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
                                 <div class="form-check">
-
                                     <strong> <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" name="phone_number"
                                                    value="true">
@@ -273,82 +250,34 @@
                         Submit Ticket
                     </button>
 
-{{--                    <!-- Modal -->--}}
-{{--                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"--}}
-{{--                         aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--                        <div class="modal-dialog" role="document">--}}
-{{--                            <div class="modal-content">--}}
-{{--                                <div class="modal-header l-bg-cherry" style="border-radius: 5px;padding: 1rem;">--}}
-{{--                                    <h5 class="modal-title" id="exampleModalLabel">Assign an Agent</h5>--}}
-{{--                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >--}}
-{{--                                        <span aria-hidden="true" style="color: #fff;">&times;</span>--}}
-{{--                                    </button>--}}
-{{--                                </div>--}}
-{{--                                <div class="modal-body">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <label id="ticket-label" for="exampleFormControlSelect3"><strong>Kindly Select an Agent</strong></label>--}}
-{{--                                        <input type="text" id="ticket" name="ticket" hidden>--}}
-{{--                                        <select name="agent" class="form-control form-control-sm" id="exampleFormControlSelect3"--}}
-{{--                                                required>--}}
-{{--                                            @foreach($users as $user)--}}
-{{--                                                <option value="{{ $user->id }}"> {{ $user->name }} - {{ ($user->email) }} ---}}
-{{--                                                    {{$user->phone_number}}--}}
-{{--                                                </option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                    <hr class="border border-primary">--}}
-{{--                                    <div class="form-group">--}}
-{{--                                        <div class="form-check">--}}
-{{--                                            <strong>--}}
-{{--                                                <label class="form-check-label">--}}
-{{--                                                    <input type="checkbox" class="form-check-input" name="phone_number"--}}
-{{--                                                           value="true">--}}
-{{--                                                    Send SMS to the selected agent--}}
-{{--                                                </label>--}}
-{{--                                            </strong>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="modal-footer">--}}
-{{--                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--}}
-{{--                                    <button type="button" class="btn l-bg-cherry" style="color: #fff">Delegate</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
                 </form>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-            crossorigin="anonymous"></script>
+
+    <!-- plugins:js -->
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('assets/js/template.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
+    <!-- End custom js for this page-->
     <script src="https://cdn.tiny.cloud/1/vpqzq33el3188md9mtcyw5u3k62x5cz13rs8of0d0714ifnd/tinymce/5/tinymce.min.js"
             referrerpolicy="origin"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
-    <script>
-        $(function () {
-            $(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-                var controlForm = $('.controls:first'),
-                    currentEntry = $(this).parents('.entry:first'),
-                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
-                newEntry.find('input').val('');
-                controlForm.find('.entry:not(:last) .btn-add')
-                    .removeClass('btn-add').addClass('btn-remove')
-                    .removeClass('btn-success').addClass('btn-danger')
-                    .html('Remove <span class="fa fa-trash"> </span>');
-            }).on('click', '.btn-remove', function (e) {
-                $(this).parents('.entry:first').remove();
-                e.preventDefault();
-                return false;
-            });
-        });
-    </script>
+{{--    <script src="{{ asset('js/script.js') }}"></script>--}}
+
     <script>
         tinymce.init({
             selector: 'textarea#editor',
@@ -363,29 +292,8 @@
             toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
             menubar: false
         });
-    </script>
-
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/template.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <!-- endinject -->
-
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
-    <!-- End plugin js for this page -->
-    <!-- Custom js for this page-->
-    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
-    <script src="{{ asset('assets/js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/js/select2.js') }}"></script>
-    <!-- End custom js for this page-->
-
+    </script>    <!-- End custom js for this page-->
+    @livewireScripts
     </body>
     </html>
 </div>

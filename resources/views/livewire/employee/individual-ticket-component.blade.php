@@ -124,7 +124,6 @@
                                                                             style="font-size: medium">
                                                                             TD-{{ $ticket->id }}</h6>
                                                                     </td>
-
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="text-muted">Subject</td>
@@ -138,7 +137,7 @@
                                                                     <td class="text-muted">Asset</td>
                                                                     <td class="">
                                                                         <h6 class="font-weight-500"
-                                                                            style="font-size: medium">{{ \App\Models\Asset::find($ticket->asset_name)->name }}</h6>
+                                                                            style="font-size: medium">{{ \App\Models\Asset::find($ticket->asset_name)->name  ?? 'N/A' }}</h6>
                                                                     </td>
 
                                                                 </tr>
@@ -146,7 +145,7 @@
                                                                     <td class="text-muted">Incident/Issue</td>
                                                                     <td class="">
                                                                         <h6 class="font-weight-500"
-                                                                            style="font-size: medium">{{ $ticket->issue }}</h6>
+                                                                            style="font-size: medium">{{ $ticket->issue ?? 'N/A' }}</h6>
                                                                     </td>
 
                                                                 </tr>

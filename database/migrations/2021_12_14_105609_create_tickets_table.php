@@ -11,11 +11,11 @@ class CreateTicketsTable extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('asset_name');
-            $table->string('issue');
+            $table->string('asset_name')->nullable();
+            $table->string('issue')->nullable();
             $table->string('attachment')->nullable();
             $table->string('subject');
-            $table->string('description');
+            $table->longText('description');
             $table->string('priority')->nullable();
             $table->string('admin_reason')->nullable();
             $table->timestamps();

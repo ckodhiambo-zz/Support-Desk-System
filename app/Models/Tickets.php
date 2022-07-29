@@ -8,24 +8,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class   Tickets extends Model
+class Tickets extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['status_id', 'requester_id', 'channel_id'];
+    protected $guarded = ['status_id', 'requester_id', 'channel_id', 'attachment', 'delegatee_id'];
 
 
     public function asset(): BelongsToMany
     {
         return $this->belongsToMany(Asset::class);
     }
-
-//    public function status(): BelongsToMany
-//    {
-//        return $this->belongsToMany(status::class);
-//    }
-
-    /////////////////////////////////////////
 
     public function status(): BelongsTo
     {
@@ -42,13 +35,19 @@ class   Tickets extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function delegatee(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function channels(): BelongsToMany
     {
         return $this->belongsToMany(Channel::class);
     }
 
-    public function timestamps():HasMany
+    public function timestamps(): HasMany
     {
         return $this->hasMany(Timestamp::class);
     }
+
 }

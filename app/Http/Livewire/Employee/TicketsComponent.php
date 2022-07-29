@@ -59,6 +59,4 @@ class TicketsComponent extends Component
     }
 
 
-
-
 }

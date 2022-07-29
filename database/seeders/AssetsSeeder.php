@@ -76,11 +76,6 @@ class AssetsSeeder extends Seeder
         Asset::firstorcreate([
             'name' => 'Zoom'
         ])->categories()->attach([2]);
-
-        Asset::firstorcreate([
-            'name' => 'Other/Not found my pick'
-        ])->categories()->attach([2]);
-
         /*Hardware*/
         Asset::firstorcreate([
             'name' => 'Boardroom-Microphone'
@@ -172,6 +167,10 @@ class AssetsSeeder extends Seeder
         Asset::firstorcreate([
             'name' => 'Television'
         ])->categories()->attach([1]);
+        Asset::firstorcreate([
+            'name' => 'Other/Not found my pick'
+        ])->categories()->attach([2]);
+
 
     }
 }

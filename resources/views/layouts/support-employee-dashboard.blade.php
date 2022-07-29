@@ -34,7 +34,7 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a href="{{ route('employee.dashboard') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('website-assets/img/tier_data.png') }}" alt="" style="width: 100%;height: 50px">
+                <img src="{{ asset('assets/images/admi-logo.png') }}" alt="" style="width: 100%;height: 50px">
 
             </a>
         </div>
@@ -108,7 +108,7 @@
                 </li>
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="{{ asset('assets/images/faces/face28.jpg') }}" alt="profile"/>
+                        <img src="{{ asset('assets/images/user.png') }}" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -261,7 +261,7 @@
                             All</small>
                     </div>
                     <ul class="chat-list">
-                        <li class="list active">
+                        <li class="list">
                             <div class="profile"><img src="{{ asset('assets/images/faces/face1.jpg') }}"
                                                       alt="image"><span
                                     class="online"></span></div>
@@ -334,14 +334,14 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->is('/employee/dashboard') ?? 'active' }}"
+                    <a class="nav-link"
                        href="{{ route('employee.dashboard') }}">
                         <i class="icon-grid menu-icon"></i>
                         <span class="menu-title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link #" href="{{route('employee.my-tickets')}}">
+                    <a class="nav-link" href="{{route('employee.my-tickets')}}">
                         <i class="icon-book menu-icon"></i>
                         <span class="menu-title">My Tickets</span>
                     </a>

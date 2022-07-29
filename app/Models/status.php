@@ -21,4 +21,8 @@ class status extends Model
     {
         return $this->hasMany(Tickets::class);
     }
+    public function Nabotickets():BelongsToMany
+    {
+        return $this->belongsToMany(NaboTickets::class);
+    }
 }

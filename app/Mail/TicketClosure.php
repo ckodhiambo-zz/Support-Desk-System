@@ -20,6 +20,5 @@ class TicketClosure extends Mailable
     public function build()
     {
         return $this->subject('Ticket Status Update!')->view('notification.ticket-closure-requester');
-
     }
 }

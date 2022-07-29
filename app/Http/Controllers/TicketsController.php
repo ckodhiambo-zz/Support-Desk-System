@@ -49,9 +49,4 @@ class TicketsController extends Controller
         return redirect('/admin/dashboard/my-assigned-tickets');
     }
 
-//    public function downloadPDF()
-//    {
-//        $pdf = Pdf::loadView('livewire.employee.individual-ticket-component');
-//        return $pdf->download('Ticket-Details.pdf');
-//    }
 }

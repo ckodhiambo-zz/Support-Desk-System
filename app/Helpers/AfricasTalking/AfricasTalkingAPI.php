@@ -8,32 +8,13 @@ use AfricasTalking\SDK\AfricasTalking;
 
 class AfricasTalkingAPI
 {
-    /**
-    * Guzzle client initialization.
-    *
-    * @var AfricasTalking
-    */
+
     protected $AT;
 
-    /**
-     * AfricasTalking APIs application username.
-     *
-     * @var string
-     */
     protected $username;
 
-    /**
-     * AfricasTalking APIs application key.
-     *
-     * @var string
-     */
     protected $apiKey;
 
-    /**
-     * Make the initializations required to make calls to the AT APIs
-     * and throw the necessary exception if there are any missing required
-     * configurations.
-     */
     public function __construct()
     {
         $this->username = env('AT_USERNAME');

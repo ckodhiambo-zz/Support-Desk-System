@@ -7,19 +7,14 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>SkyDash | Home</title>
-        <!-- Plugin css for this page -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
               crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-              crossorigin="anonymous">
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
+        <!-- endinject -->
 
-        <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
@@ -27,7 +22,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e,#0d47a1) !important;
+                background: linear-gradient(to right, #8d188e, #0d47a1) !important;
                 color: #fff;
             }
         </style>
@@ -40,24 +35,25 @@
                 <div class="card card-outline-primary">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-12">
                                 <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
                                     <div class="card-header l-bg-cherry" style="border-radius: 10px">
                                         <h5>List of All Tickets</h5>
                                     </div>
                                 </div>
                             </div>
-                            <p class="card-description">
-                                The tickets are <code>.in a descending order</code>
-                            </p>
-
+                            <div class="col-12">
+                                <p class="card-description">
+                                    The tickets are <code>.in a descending order</code>
+                                </p>
+                            </div>
                             @if(Session::has('message_sent'))
-                                <div class="alert alert-info" role="alert">
+                                <div class="alert alert-success" role="alert">
                                     {{ Session::get('message_sent') }}
                                 </div>
                             @endif
                             <div class="table-responsive">
-                                <table id="example2" class="table table-striped">
+                                <table class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th>
@@ -67,7 +63,7 @@
                                             Requester
                                         </th>
                                         <th>
-                                            Asset
+                                            Subject
                                         </th>
                                         <th>
                                             Agent
@@ -93,7 +89,7 @@
                                                 {{ $item->requester->name }}
                                             </td>
                                             <td>
-                                                {{ \App\Models\Asset::find($item->asset_name)->name }}
+                                                {{ $item->subject }}
                                             </td>
                                             <td>
                                                 {{ $item->solver ? $item->solver->name : 'Not Assigned' }}
@@ -105,24 +101,24 @@
                                                 {{ $item->created_at }}
                                             </td>
                                             <td>
-                                                <div class="dropdown">
-                                                    <button class="btn btn-primary dropdown-toggle" type="button"
-                                                            id="dropdownMenuSizeButton3" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                        Actions
+
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-danger btn-sm">Action</button>
+                                                    <button type="button"
+                                                            class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                                            data-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
+                                                        <span class="sr-only">Toggle Dropdown</span>
                                                     </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                                                        <h6 class="dropdown-header"><strong>Actions</strong></h6>
-                                                        <button class="dropdown-item text-primary" href="#"
-                                                                data-toggle="modal"
-                                                                data-target="#ticketModal" data-ticket-id="{{ $item->id }}">
-                                                            <strong> -- Assign / Edit Agent--
-                                                            </strong>
-                                                        </button>
-                                                        <a class="dropdown-item text-info" href="#">
-                                                            <strong>-- View Details --</strong>  </a>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="#"
+                                                           data-toggle="modal"
+                                                           data-target="#ticketModal"
+                                                           data-ticket-id="{{ $item->id }}">Assign an Agent</a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#" style="color: red">Archive</a>
+                                                        <a class="dropdown-item" href="#">View Ticket Details</a>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="#">Cancel Ticket</a>
                                                     </div>
                                                 </div>
                                             </td>
@@ -130,9 +126,18 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
+                        <br>
+                        <div class="col-md-12">
 
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-end">
+                                    {{ $alltickets->links() }}
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -189,12 +194,31 @@
             </div>
         </div>
     </div>
-    </body>
-    </html>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <!-- plugins:js -->
+    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('assets/js/template.js') }}"></script>
+    <script src="{{ asset('assets/js/settings.js') }}"></script>
+    <script src="{{ asset('assets/js/todolist.js') }}"></script>
+    <!-- endinject -->
+
+    <!-- End custom js for this page-->
     <script>
         $(document).ready(function () {
             $("#ticketModal").on("show.bs.modal", function (e) {
@@ -202,9 +226,9 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#example2').DataTable();
-        });
-    </script>
+    @livewireScripts
+
+    </body>
+    </html>
+
 </div>

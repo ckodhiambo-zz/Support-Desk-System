@@ -3,43 +3,53 @@
 use App\Http\Controllers\AgentTicketsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\NaboTicketsController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\TicketsController;
-use App\Http\Controllers\TypeController;
 use App\Http\Livewire\Admin\AddUserComponent;
+use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\Admin\AdminEditCompanyComponent;
+use App\Http\Livewire\Admin\AdminIndividualTicketComponent;
 use App\Http\Livewire\Admin\AdminSearchComponent;
+use App\Http\Livewire\Admin\AdminViewTicketDetailsComponent;
 use App\Http\Livewire\Admin\AssignedTicketsComponent;
 use App\Http\Livewire\Admin\CustomRequestTicketComponent;
 use App\Http\Livewire\Admin\EditTicketDetailsComponent;
 use App\Http\Livewire\Admin\FromEmailTicketComponent;
+use App\Http\Livewire\Admin\KnowledgeCenterComponent;
+use App\Http\Livewire\Admin\LibraryComponent;
 use App\Http\Livewire\Admin\ListOfUsersComponent;
+use App\Http\Livewire\Admin\MyRaisedTicketComponent;
 use App\Http\Livewire\Admin\TicketDetailsComponent;
+use App\Http\Livewire\Admin\TicketFormComponent;
 use App\Http\Livewire\Admin\TicketReportsComponent;
+use App\Http\Livewire\Admin\UserProfile;
+use App\Http\Livewire\Agent\AccountCenterComponent;
 use App\Http\Livewire\Agent\AgentAssignedTicketsComponent;
-use App\Http\Livewire\Agent\AgentDashboardComponent;
 use App\Http\Livewire\Agent\AgentEditTicketDetailsComponent;
+use App\Http\Livewire\Agent\AgentIndividualTicketComponent;
 use App\Http\Livewire\Agent\AgentTicketReportsComponent;
+use App\Http\Livewire\Agent\MyRaisedTicketsComponent;
+use App\Http\Livewire\Agent\MyTicketsComponent;
 use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
 use App\Http\Livewire\Demo\DemoDashboardComponent;
 use App\Http\Livewire\Employee\EmployeeDashboardComponent;
 use App\Http\Livewire\Employee\IndividualTicketComponent;
-use App\Http\Livewire\Employee\MyRaisedTicketDetailsComponent;
 use App\Http\Livewire\Employee\MySolvedTicketsComponent;
-//use App\Http\Livewire\Employee\SolvedTicketsComponent;
 use App\Http\Livewire\Employee\TicketsComponent;
-use App\Http\Livewire\Nabo\ExternalTicketComponent;
-use App\Http\Livewire\Nabo\ListOfTicketsComponent;
-use App\Http\Livewire\Nabo\NaboDashboardComponent;
-use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\HomeComponent;
-use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Nabo\ExternalTicketComponent;
+use App\Http\Livewire\Nabo\FirstUserPage;
+use App\Http\Livewire\Nabo\ListOfTicketsComponent;
+use App\Http\Livewire\Nabo\MyTicketDetailsComponent;
+use App\Http\Livewire\Nabo\NaboAssignedTicketsComponent;
+use App\Http\Livewire\Nabo\NaboDashboardComponent;
+use App\Http\Livewire\Nabo\NaboEditTicketDetailsComponent;
+use App\Http\Livewire\Nabo\NaboRaisedTicketsComponent;
+use App\Http\Livewire\Nabo\TierDataTicketDetailsComponent;
+use Illuminate\Support\Facades\Route;
 
-
-//Route::get('/', function () {
-//    return view('welcome');
-//});
 
 Route::get('/', [HomeController::class,'welcome']);
 
@@ -57,6 +67,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/demo/dashboard', DemoDashboardComponent::class)->name('demo.dashboard');
 });
+
+Route::post('user/edit', [RouteController::class, 'editUser'])->name('user.edit');
 
 
 //For Admin
@@ -79,6 +91,16 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/add-new-user',AddUserComponent::class)->name('admin.new-user');
     Route::post('/admin/dashboard/add/user',[AddUserComponent::class, 'addUser'])->name('admin.add-new-user');
     Route::get('/admin/dashboard/tickets-from-emails',FromEmailTicketComponent::class)->name('admin.tickets-from-email');
+    Route::get('/admin/dashboard/ticket-form',TicketFormComponent::class)->name('admin.ticket-form');
+    Route::get('/admin/dashboard/my-tickets',MyRaisedTicketComponent::class)->name('admin.my-raised-tickets');
+    Route::post('/admin/ticket/submit', [TicketFormComponent::class, 'submitTicket'])->name('admin.ticket.submit');
+    Route::get('/admin/dashboard/my-tickets/details/{ticket}', AdminIndividualTicketComponent::class)->name('admin.my-ticket-detail');
+    Route::get('/admin/dashboard/list-of-users/user-profile/{user}', UserProfile::class)->name('admin.user-profile');
+    Route::get('/admin/dashboard/ticket-details/{ticket}',AdminViewTicketDetailsComponent::class)->name('admin.view-ticket-details');
+    Route::get('/admin/dashboard/knowledge-center-articles',KnowledgeCenterComponent::class)->name('admin.knowledge-based-center');
+    Route::get('/admin/dashboard/knowledge-library',LibraryComponent::class)->name('admin.library-list');
+    Route::post('/admin/delegator/set', [AssignedTicketsComponent::class, 'setDelegatee'])->name('delegator.set');
+
 });
 
 // --------------------Login-with-Google-------------------------------
@@ -92,6 +114,12 @@ Route::middleware(['auth:sanctum', 'verified', 'authagent'])->group(function () 
     Route::get('/agent/dashboard/my-assigned-tickets/details/{ticket}', AgentEditTicketDetailsComponent::class)->name('agent.edit-ticket');
     Route::post('/agent/dashboard/my-assigned-tickets/update/{ticket}', [AgentTicketsController::class, 'updateStatus'])->name('agent.update-ticket');
     Route::get('/agent/dashboard/ticket-reports', AgentTicketReportsComponent::class)->name('agent.ticket-report');
+    Route::get('/agent/dashboard/ticket-form',MyTicketsComponent::class)->name('agent.ticket-form');
+    Route::get('/agent/dashboard/my-raised-tickets',MyRaisedTicketsComponent::class)->name('agent.my-raised-tickets');
+    Route::post('/agent/ticket/submit', [MyTicketsComponent::class, 'submitTicket'])->name('agent.ticket.submit');
+    Route::get('/agent/dashboard/my-raised-tickets/details/{ticket}', AgentIndividualTicketComponent::class)->name('agent.my-ticket-detail');
+    Route::get('/agent/dashboard/account-center',AccountCenterComponent::class)->name('agent.account-center');
+
 });
 
 //For Employee
@@ -99,7 +127,6 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
     Route::get('/employee/dashboard', EmployeeDashboardComponent::class)->name('employee.dashboard');
     Route::get('/employee/dashboard/my-tickets', TicketsComponent::class)->name('employee.my-tickets');
     Route::post('/employee/ticket/submit', [EmployeeDashboardComponent::class, 'submitTicket'])->name('employee.ticket.submit');
-//    Route::get('/employee/dashboard/my-tickets/{ticket}', MyRaisedTicketDetailsComponent::class)->name('employee.ticket-details');
     Route::get('/employee/dashboard/my-solved-tickets',MySolvedTicketsComponent::class)->name('employee.my-solved-tickets');
     Route::get('/employee/dashboard/my-tickets/details/{ticket}', IndividualTicketComponent::class)->name('employee.ticket-detail');
     Route::get('/employee/dashboard/my-tickets/details/download-PDF/{ticket}',[IndividualTicketComponent::class,'downloadPDF'])->name('employee.download-pdf');
@@ -109,7 +136,18 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
 //For Nabo
 Route::middleware(['auth:sanctum','verified','authnabo'])->group(function (){
     Route::get('/nabocapital/internal-ticket',NaboDashboardComponent::class)->name('nabostaff.dashboard');
-    Route::get('/nabocapital/my-tickets',ListOfTicketsComponent::class)->name('my-nabo-tickets.dashboard');
+    Route::get('/nabocapital/my-tickets',ListOfTicketsComponent::class)->name('my-IT-tickets.dashboard');
+    Route::get('/nabocapital/my-tickets/details/{ticket}',TierDataTicketDetailsComponent::class)->name('nabo.it-td-ticket-details');
     Route::get('/nabocapital/IT-support-ticket', ExternalTicketComponent::class)->name('nabostaff.external');
+    Route::get('/nabocapital/raised-nb-tickets',NaboRaisedTicketsComponent::class)->name('nabostaff.my-raised-nb-tickets');
+    Route::get('/nabocapital/assigned-nb-tickets', NaboAssignedTicketsComponent::class)->name('nabostaff.my-assigned-nb-tickets');
+    Route::post('/nabocapital/ticket/submit',[NaboDashboardComponent::class,'submitTicket'])->name('nabo.ticket-submit');
+    Route::get('/nabocapital/raised-nb-tickets/details/{ticket}',MyTicketDetailsComponent::class)->name('nabo.ticket-detail');
+    Route::get('/nabocapital/assigned-nb-tickets/details/{ticket}', NaboEditTicketDetailsComponent::class)->name('nabo.edit-ticket');
+    Route::post('/nabocapital/assigned-nb-tickets/update/{ticket}', [NaboTicketsController::class, 'updateStatus'])->name('nabo.update-ticket');
+    Route::post('/nabocapital/internal-ticket/submit', [ExternalTicketComponent::class, 'submitTicket'])->name('nabo.IT-ticket.submit');
+    Route::get('/nabocapital/update-user-profile',FirstUserPage::class)->name('nabo.update-user-profile');
+
+
 });
 

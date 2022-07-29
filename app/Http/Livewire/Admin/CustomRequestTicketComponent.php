@@ -70,6 +70,7 @@ class CustomRequestTicketComponent extends Component
        Mail::to($ticket->requester->email)->send(new CustomEmailRequest($ticket));
 
 
+
 //     Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
 //
 //        Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));

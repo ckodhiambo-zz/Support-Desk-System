@@ -111,7 +111,7 @@
                     <li class="nav-item">
                         <a class="nav-link active text-dark" id="new-tab" data-toggle="tab" href="#new"
                            role="tab" aria-controls="home" aria-selected="true">New
-                                <span class="badge badge-dark">{{ count($new) }}</span>
+                            <span class="badge badge-dark">{{ count($new) }}</span>
                             <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
@@ -124,12 +124,6 @@
                         <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
                            role="tab" aria-controls="home" aria-selected="true">In-Progress
                             <span class="badge badge-primary">{{ count($in_progress) }}</span>
-                            <span class="sr-only">unread messages</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning" id="pending-tab" data-toggle="tab" href="#pending"
-                           role="tab" aria-controls="profile" aria-selected="false">On-Hold
-                            <span class="badge badge-warning">{{ count($on_hold) }}</span>
                             <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
@@ -151,7 +145,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
                            role="tab" aria-controls="contact" aria-selected="false">Cancelled
-                        <span class="badge badge-danger">{{ count($cancelled) }}</span>
+                            <span class="badge badge-danger">{{ count($cancelled) }}</span>
                             <span class="sr-only">unread messages</span></a>
                         </a>
                     </li>
@@ -159,7 +153,7 @@
                         <a class="nav-link text-info" id="archived-tab" data-toggle="tab" href="#archived"
                            role="tab"
                            aria-controls="contact" aria-selected="false">Archived
-                        <span class="badge badge-info">{{ count($archived) }}</span>
+                            <span class="badge badge-info">{{ count($archived) }}</span>
                             <span class="sr-only">unread messages</span></a>
                         </a>
                     </li>
@@ -175,10 +169,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -199,10 +190,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -231,10 +219,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -255,16 +240,13 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-info"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
@@ -287,10 +269,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -311,10 +290,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -335,61 +311,7 @@
 
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="pending" role="tabpanel" aria-labelledby="pending-tab">
-                        <div class="table-responsive">
-                            <table id="example17" class="table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>
-                                        T-ID
-                                    </th>
-                                    <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
-                                    </th>
-                                    <th>
-                                        Created_at
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
 
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($on_hold as $ticket)
-                                    <tr>
-                                        <td class="py-1">
-                                            {{ $ticket->id }}
-                                        </td>
-                                        <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
-                                        </td>
-                                        <td>
-                                            {{ $ticket->created_at }}
-                                        </td>
-                                        <td>
-                                            <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
-                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                     <div class="tab-pane fade" id="partially-solved" role="tabpanel"
                          aria-labelledby="partially-solved-tab">
                         <div class="table-responsive">
@@ -400,10 +322,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -424,10 +343,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -457,10 +373,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -481,10 +394,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -514,10 +424,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -538,16 +445,13 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-danger"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
@@ -570,10 +474,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -594,16 +495,13 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-info"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
@@ -623,9 +521,15 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
     <script>

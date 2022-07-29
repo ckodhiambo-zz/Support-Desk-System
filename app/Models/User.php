@@ -28,6 +28,11 @@ class User extends Authenticatable
         'password',
         'google_id',
         'user_type',
+        'phone_number',
+    ];
+
+    protected $guarded = [
+        'phone_number',
     ];
 
     protected $hidden = [
@@ -47,14 +52,28 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    public function tier()
+    {
+        return $this->belongsTo(Tier::class);
+    }
+
     public function company(): BelongsTo
     {
         return $this->belongsTo(Companies::class);
     }
 
+    public function department():BelongsTo
+    {
+        return $this->belongsTo(Department::class);
+    }
+
     public function tickets():BelongsToMany
     {
         return $this->belongsToMany(Tickets::class);
+    }
+    public function Nabotickets():BelongsToMany
+    {
+        return $this->belongsToMany(NaboTickets::class);
     }
 
     ///////////////////////////////////////////////
@@ -67,5 +86,24 @@ class User extends Authenticatable
     public function solved(): HasMany
     {
         return $this->hasMany(Tickets::class, 'solver_id');
+    }
+
+    public function delegated():HasMany
+    {
+        return $this->hasMany(Tickets::class, 'delegatee_id');
+    }
+    public function naborequested(): HasMany
+    {
+        return $this->hasMany(NaboTickets::class, 'requester_id');
+    }
+
+    public function nabosolved(): HasMany
+    {
+        return $this->hasMany(NaboTickets::class, 'solver_id');
+    }
+
+    public function reason():BelongsTo
+    {
+        return $this->belongsTo(LeaveReason::class);
     }
 }

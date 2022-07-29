@@ -92,7 +92,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {{--                                @foreach($alltickets as $item)--}}
+                                {{--                                @foreach($ticket as $item)--}}
                                 <tr>
                                     <td class="py-1">
                                         {{--                                            {{ $item->id }}--}}
@@ -133,7 +133,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                {{--                                @endforeach--}}
+{{--                                                                @endforeach--}}
                                 </tbody>
                             </table>
                             <br>

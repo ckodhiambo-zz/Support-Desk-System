@@ -17,6 +17,7 @@ class AdminDashboardComponent extends Component
 {
     public function render()
     {
+//        dd(now()->diff(Tickets::find(1)->created_at));
         $alltickets = Tickets::orderBy('id', 'DESC')->paginate(5);
 
         $users = User::where('user_type', 'Agent')->orWhere('user_type', 'Administrator')->get();
@@ -43,7 +44,7 @@ class AdminDashboardComponent extends Component
         if ($request->input('phone_number') == 'true') {
             $at = new AfricasTalkingAPI();
 
-            $response = $at->sms($user->phone_number, 'Precision Desk - Dear ' . $user->name . ', You have been assigned ticket-id #' . $ticket->id . ' from: '.$ticket->requester->name.'. Kindly login to your portal for more info: support.tierdata.co.ke.');
+            $response = $at->sms($user->phone_number, 'Precision Desk - Dear ' . $user->name . ', Ticket-id #5 from: ' . $ticket->requester->name . ' is an overdue ticket and has been escalated to you. The assigned agent is Kennedy Odhiambo (U-26). Kindly login to your portal for more info: https://desk.precision.ke/.');
 
             if ($response['status'] == 'success') {
                 return back()->with('message_sent', 'An email and SMS notification has been sent successfully to the assigned agent!');

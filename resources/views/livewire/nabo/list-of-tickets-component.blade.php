@@ -60,7 +60,7 @@
                     <div class="col">
                         <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
                             <div class="card-header lg-bg-nabo" style="border-radius: 10px">
-                                <h5>{{ auth()->user()->name }}'s Internal Tickets</h5>
+                                <h5>{{ auth()->user()->name }}'s raised Tickets</h5>
                             </div>
                         </div>
                     </div>
@@ -172,10 +172,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -196,10 +193,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -209,7 +203,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -252,10 +246,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -265,7 +256,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -284,10 +275,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -308,10 +296,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -321,7 +306,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -342,10 +327,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -366,10 +348,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -379,7 +358,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -399,10 +378,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -423,10 +399,7 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
@@ -436,7 +409,7 @@
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -456,10 +429,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -480,20 +450,17 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-danger"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -512,10 +479,7 @@
                                         T-ID
                                     </th>
                                     <th>
-                                        Issue
-                                    </th>
-                                    <th>
-                                        Asset
+                                        Subject
                                     </th>
                                     <th>
                                         Created_at
@@ -536,20 +500,17 @@
                                             {{ $ticket->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->issue }}
-                                        </td>
-                                        <td>
-                                            {{ \App\Models\Asset::find($ticket->asset_name)->name }}
+                                            {{ $ticket->subject }}
                                         </td>
                                         <td>
                                             {{ $ticket->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-info"
+                                            <label class="badge badge-dark"
                                                    style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('employee.ticket-detail', $ticket)}}"
+                                            <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>

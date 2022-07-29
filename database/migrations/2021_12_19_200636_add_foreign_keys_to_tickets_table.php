@@ -17,6 +17,9 @@ class AddForeignKeysToTicketsTable extends Migration
             $table->bigInteger('requester_id')->unsigned();
             $table->foreign('requester_id')->references('id')->on('users');
 
+            $table->bigInteger('delegatee_id')->unsigned()->nullable();
+            $table->foreign('delegatee_id')->references('id')->on('users');
+
             $table->bigInteger('solver_id')->unsigned()->nullable();
             $table->foreign('solver_id')->references('id')->on('users');
 

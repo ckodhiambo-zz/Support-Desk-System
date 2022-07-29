@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tier;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,8 +26,35 @@ class RouteController extends Controller
             {
                 return redirect()->route('employee.dashboard');
             }
+            if (Auth::user()->user_type == 'NaboStaff')
+            {
+                return redirect()->route('nabostaff.dashboard');
+            }
         }
 
         return redirect()->route('default-user.home');
+    }
+
+    public function editUser(Request $request)
+    {
+        $phone = $request->input('phone_number');
+        $tier = $request->input('tier');
+        $user_type = $request->input('user_type');
+
+        $user = User::find($request->input('user_id'));
+
+        $user->update(['phone_number' => $phone]);
+
+        // Save tier
+        $tier = Tier::find($tier);
+
+        if ($tier != null)
+        {
+            $user->tier()->associate($tier);
+
+            $user->save();
+        }
+
+        return redirect()->back();
     }
 }

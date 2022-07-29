@@ -19,118 +19,9 @@
         <!-- endinject -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
-            /*body {*/
-            /*    margin: 0;*/
-            /*}*/
+            .lg-bg-nabo {
 
-            /*.spanner {*/
-            /*    position: absolute;*/
-            /*    top: 50%;*/
-            /*    left: 0;*/
-            /*    background: #2a2a2a55;*/
-            /*    width: 100%;*/
-            /*    display: block;*/
-            /*    text-align: center;*/
-            /*    height: 300px;*/
-            /*    color: #FFF;*/
-            /*    transform: translateY(-50%);*/
-            /*    z-index: 1000;*/
-            /*    visibility: hidden;*/
-            /*}*/
-
-            /*.overlay {*/
-            /*    position: fixed;*/
-            /*    width: 100%;*/
-            /*    height: 100%;*/
-            /*    background: rgba(0, 0, 0, 0.5);*/
-            /*    visibility: hidden;*/
-            /*}*/
-
-            /*.loader,*/
-            /*.loader:before,*/
-            /*.loader:after {*/
-            /*    border-radius: 50%;*/
-            /*    width: 2.5em;*/
-            /*    height: 2.5em;*/
-            /*    -webkit-animation-fill-mode: both;*/
-            /*    animation-fill-mode: both;*/
-            /*    -webkit-animation: load7 1.8s infinite ease-in-out;*/
-            /*    animation: load7 1.8s infinite ease-in-out;*/
-            /*}*/
-
-            /*.loader {*/
-            /*    color: #ffffff;*/
-            /*    font-size: 10px;*/
-            /*    margin: 80px auto;*/
-            /*    position: relative;*/
-            /*    text-indent: -9999em;*/
-            /*    -webkit-transform: translateZ(0);*/
-            /*    -ms-transform: translateZ(0);*/
-            /*    transform: translateZ(0);*/
-            /*    -webkit-animation-delay: -0.16s;*/
-            /*    animation-delay: -0.16s;*/
-            /*}*/
-
-            /*.loader:before,*/
-            /*.loader:after {*/
-            /*    content: '';*/
-            /*    position: absolute;*/
-            /*    top: 0;*/
-            /*}*/
-
-            /*.loader:before {*/
-            /*    left: -3.5em;*/
-            /*    -webkit-animation-delay: -0.32s;*/
-            /*    animation-delay: -0.32s;*/
-            /*}*/
-
-            /*.loader:after {*/
-            /*    left: 3.5em;*/
-            /*}*/
-
-            /*@-webkit-keyframes load7 {*/
-            /*    0%,*/
-            /*    80%,*/
-            /*    100% {*/
-            /*        box-shadow: 0 2.5em 0 -1.3em;*/
-            /*    }*/
-            /*    40% {*/
-            /*        box-shadow: 0 2.5em 0 0;*/
-            /*    }*/
-            /*}*/
-
-            /*@keyframes load7 {*/
-            /*    0%,*/
-            /*    80%,*/
-            /*    100% {*/
-            /*        box-shadow: 0 2.5em 0 -1.3em;*/
-            /*    }*/
-            /*    40% {*/
-            /*        box-shadow: 0 2.5em 0 0;*/
-            /*    }*/
-            /*}*/
-
-            /*.show {*/
-            /*    visibility: visible;*/
-            /*}*/
-
-            /*.spanner, .overlay {*/
-            /*    opacity: 0;*/
-            /*    -webkit-transition: all 0.3s;*/
-            /*    -moz-transition: all 0.3s;*/
-            /*    transition: all 0.3s;*/
-            /*}*/
-
-            /*.spanner.show, .overlay.show {*/
-            /*    opacity: 1*/
-            /*}*/
-
-            .l-bg-cherry {
-                background: linear-gradient(to right, #8d188e, #f09) !important;
-                color: #fff;
-            }
-            .l-bg-green-dark {
-                background: linear-gradient(to right, #0a504a, #38ef7d) !important;
+                background: linear-gradient(to right, #142c3c, #6acfeb) !important;
                 color: #fff;
             }
         </style>
@@ -174,8 +65,8 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
-                                        <div class="card-header l-bg-green-dark" style="border-radius: 10px">
-                                            <h5>External Ticket Form</h5>
+                                        <div class="card-header lg-bg-nabo " style="border-radius: 10px">
+                                            <h5>Support Ticket Form</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -183,37 +74,28 @@
                             <p class="card-description text-info">
                                 Kindly fill in the necessary details inline with your request.
                             </p>
-                            <form class="forms-sample" action="{{ route('employee.ticket.submit') }}" method="post">
+                            <form class="forms-sample" enctype="multipart/form-data" action="{{ route('nabo.IT-ticket.submit') }}" method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <strong><label class="text-primary">Ticket Subject</label></strong>
                                             <input type="text" class="form-control form-control-sm"
-                                                   placeholder="Ticket Subject" name="subject"
-                                                   aria-label="Username">
+                                                   placeholder="e.g Login Issue" name="subject"
+                                                   aria-label="Subject">
                                         </div>
                                     </div>
-
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group" id="">
-                                            <strong><label class="text-primary">Asset Name</label></strong>
+                                            <strong><label class="text-primary">Asset/Item</label></strong>
                                             <select class="js-example-basic-single w-100" name="asset_name">
-                                                <option class=""
-                                                        value=""></option>
+                                                @foreach(App\Models\Asset::all() as $asset)
+                                                    <option value="{{ $asset->id }}">{{ $asset->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <strong><label class="text-primary">Item of Issue</label></strong>
-                                            <input type="text" class="form-control form-control-sm"
-                                                   placeholder="e.g. APX Permissions" name="subject"
-                                                   aria-label="Username">
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -240,7 +122,8 @@
 
                                 </div>
 
-                                <button type="submit" class="btn l-bg-green-dark mr-2 float-right" style="color: #fff;border: none">Send
+                                <button type="submit" class="btn lg-bg-nabo mr-2 float-right"
+                                        style="color: #fff;border: none">Send
                                     Request
                                 </button>
 
@@ -315,3 +198,5 @@
     </body>
     </html>
 </div>
+
+

@@ -239,7 +239,7 @@
                                                             style="font-size: 22px; line-height: 35.2px;">Hi, </span>
                                                     </p>
                                                     <p style="font-size: 14px; line-height: 160%;"><span
-                                                            style="font-size: 18px; line-height: 28.8px;">A new support ticket of subject <strong>- {{ $ticket ['subject'] }} -</strong>&nbsp; has been raised by {{ auth()->user()->name }}. Please click on the button below to view more details of the ticket in regard to assigning an agent. </span>
+                                                            style="font-size: 18px; line-height: 28.8px;">A new support ticket of subject <strong>- {{ $ticket ['subject'] }} -</strong>&nbsp; has been raised by <strong>{{ auth()->user()->name }}</strong>. Please click on the button below to view more details of the ticket in regard to assigning an agent. </span>
                                                     </p>
                                                 </div>
 

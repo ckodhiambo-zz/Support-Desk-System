@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Employee;
 use App\Mail\RaisedTicketMail;
 use App\Mail\RequesterFirstNotification;
 use App\Models\Asset;
+
 //use App\Models\AssetType;
 use App\Models\Category;
 use App\Models\status;
@@ -39,19 +40,23 @@ class EmployeeDashboardComponent extends Component
         $asset_name = $request->input('asset_name');
         $incident_name = $request->input('incident_name');
         $description = $request->input('description');
-        $attachment = $request->file('attachment');
 
-        $destinationPath = 'files/tickets/attachments/';
-
-        $path = Storage::put($destinationPath, $attachment);
 
         $ticket = new Tickets([
             'asset_name' => $asset_name,
             'issue' => $incident_name,
-            'attachment' => $path,
             'subject' => $subject,
             'description' => $description
         ]);
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $ext = $file->getClientOriginalExtension();
+            //Current time and file extension
+            $filename = time() . '.' . $ext;
+            $file->move('assets/attachment', $filename);
+            $ticket->attachment = $filename;
+        }
 
         $requester = Auth::user();
 
@@ -72,14 +77,15 @@ class EmployeeDashboardComponent extends Component
             'updated_at' => now()->toDateTimeString()
         ]);
 
-        Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
+        Mail::to('calvinsken89@gmail.com')
+            ->cc('ckodhiambo1@gmail.com')
+            ->send(new RaisedTicketMail($ticket));
 
         Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));
 
-        return redirect('/employee/dashboard/my-tickets')->with('message_sent','Your ticket has been successfully raised and an email sent to our team!');
+        return redirect('/employee/dashboard/my-tickets')->with('message_sent', 'Your ticket has been successfully raised and an email sent to our team!');
 
     }
-
 
 
 }

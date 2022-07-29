@@ -19,112 +19,6 @@
         <!-- endinject -->
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
-            /*body {*/
-            /*    margin: 0;*/
-            /*}*/
-
-            /*.spanner {*/
-            /*    position: absolute;*/
-            /*    top: 50%;*/
-            /*    left: 0;*/
-            /*    background: #2a2a2a55;*/
-            /*    width: 100%;*/
-            /*    display: block;*/
-            /*    text-align: center;*/
-            /*    height: 300px;*/
-            /*    color: #FFF;*/
-            /*    transform: translateY(-50%);*/
-            /*    z-index: 1000;*/
-            /*    visibility: hidden;*/
-            /*}*/
-
-            /*.overlay {*/
-            /*    position: fixed;*/
-            /*    width: 100%;*/
-            /*    height: 100%;*/
-            /*    background: rgba(0, 0, 0, 0.5);*/
-            /*    visibility: hidden;*/
-            /*}*/
-
-            /*.loader,*/
-            /*.loader:before,*/
-            /*.loader:after {*/
-            /*    border-radius: 50%;*/
-            /*    width: 2.5em;*/
-            /*    height: 2.5em;*/
-            /*    -webkit-animation-fill-mode: both;*/
-            /*    animation-fill-mode: both;*/
-            /*    -webkit-animation: load7 1.8s infinite ease-in-out;*/
-            /*    animation: load7 1.8s infinite ease-in-out;*/
-            /*}*/
-
-            /*.loader {*/
-            /*    color: #ffffff;*/
-            /*    font-size: 10px;*/
-            /*    margin: 80px auto;*/
-            /*    position: relative;*/
-            /*    text-indent: -9999em;*/
-            /*    -webkit-transform: translateZ(0);*/
-            /*    -ms-transform: translateZ(0);*/
-            /*    transform: translateZ(0);*/
-            /*    -webkit-animation-delay: -0.16s;*/
-            /*    animation-delay: -0.16s;*/
-            /*}*/
-
-            /*.loader:before,*/
-            /*.loader:after {*/
-            /*    content: '';*/
-            /*    position: absolute;*/
-            /*    top: 0;*/
-            /*}*/
-
-            /*.loader:before {*/
-            /*    left: -3.5em;*/
-            /*    -webkit-animation-delay: -0.32s;*/
-            /*    animation-delay: -0.32s;*/
-            /*}*/
-
-            /*.loader:after {*/
-            /*    left: 3.5em;*/
-            /*}*/
-
-            /*@-webkit-keyframes load7 {*/
-            /*    0%,*/
-            /*    80%,*/
-            /*    100% {*/
-            /*        box-shadow: 0 2.5em 0 -1.3em;*/
-            /*    }*/
-            /*    40% {*/
-            /*        box-shadow: 0 2.5em 0 0;*/
-            /*    }*/
-            /*}*/
-
-            /*@keyframes load7 {*/
-            /*    0%,*/
-            /*    80%,*/
-            /*    100% {*/
-            /*        box-shadow: 0 2.5em 0 -1.3em;*/
-            /*    }*/
-            /*    40% {*/
-            /*        box-shadow: 0 2.5em 0 0;*/
-            /*    }*/
-            /*}*/
-
-            /*.show {*/
-            /*    visibility: visible;*/
-            /*}*/
-
-            /*.spanner, .overlay {*/
-            /*    opacity: 0;*/
-            /*    -webkit-transition: all 0.3s;*/
-            /*    -moz-transition: all 0.3s;*/
-            /*    transition: all 0.3s;*/
-            /*}*/
-
-            /*.spanner.show, .overlay.show {*/
-            /*    opacity: 1*/
-            /*}*/
-
             .l-bg-cherry {
                 background: linear-gradient(to right, #8d188e, #f09) !important;
                 color: #fff;
@@ -137,12 +31,13 @@
             <div class="row">
                 <div class="col-md-12 grid-margin">
                     <div class="row">
-                        <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                            <h3 class="font-weight-bold">Welcome {{ auth()->user()->name }}!</h3>
+                        <div class="col-12 col-xl-9 mb-4 mb-xl-0">
+                            <h3 class="font-weight-bold">Hi {{ auth()->user()->name }}, you can raise an IT support
+                                ticket here!</h3>
                             <h6 class="font-weight-normal mb-0">All systems are running smoothly!<span
                                     class="text-primary"></span></h6>
                         </div>
-                        <div class="col-12 col-xl-4">
+                        <div class="col-12 col-xl-3">
                             <div class="justify-content-end d-flex">
                                 <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
                                     <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button"
@@ -170,7 +65,7 @@
                                 <div class="col">
                                     <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
                                         <div class="card-header l-bg-cherry" style="border-radius: 10px">
-                                            <h5>Ticket Form</h5>
+                                            <h5>Support Ticket Form</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -178,64 +73,34 @@
                             <p class="card-description text-info">
                                 Kindly fill in the necessary details inline with your request.
                             </p>
-                            <form class="forms-sample" action="{{ route('employee.ticket.submit') }}" method="post">
+                            <form class="forms-sample" action="{{ route('employee.ticket.submit') }}" enctype="multipart/form-data"  method="post">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <strong><label class="text-primary">Ticket Subject</label></strong>
                                             <input type="text" class="form-control form-control-sm"
-                                                   placeholder="Ticket Subject" name="subject"
-                                                   aria-label="Username">
+                                                   placeholder="e.g Login Issue" name="subject"
+                                                   aria-label="Subject">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <strong><label class="text-primary">Asset Category</label></strong>
-                                            <select class="js-example-basic-single w-100" name="asset_category"
-                                                    id="category_id">
-                                                @foreach ($categories as $category)
-                                                    <option
-                                                        value="{{$category->id}}">{{$category->category_name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group" id="category_{{$category->id}}">
-                                            <strong><label class="text-primary">Asset Name</label></strong>
+                                        <div class="form-group" id="">
+                                            <strong><label class="text-primary">Asset/Item</label></strong>
                                             <select class="js-example-basic-single w-100" name="asset_name">
-                                                @foreach ($categories as $category)
-                                                    @foreach ($category->assets as $asset)
-                                                        <option class="assets category_{{$category->id}}"
-                                                                value="{{$asset->id}}">{{$asset->name}}</option>
-                                                    @endforeach
+                                                @foreach(App\Models\Asset::all() as $asset)
+                                                    <option value="{{ $asset->id }}">{{ $asset->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <strong><label class="text-primary">Type of Issue</label></strong>
-                                            <select class="js-example-basic-single w-100" name="incident_name">
-                                                <option value="Access Right Request">Access Right Request</option>
-                                                <option value="Not booting">Not booting</option>
-                                                <option value="Spillage">Spillage</option>
-                                                <option value="Too slow/Hanging">Too slow/Hanging</option>
-                                                <option value="Restarts/Shuts down without permission">Restarts/Shuts
-                                                    down
-                                                    without permission
-                                                </option>
-                                            </select>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <strong><label class="text-primary" for="exampleTextarea1">Detailed description</label></strong>
+                                            <strong><label class="text-primary" for="exampleTextarea1">Detailed
+                                                    description</label></strong>
                                             <textarea class="form-control" id="exampleTextarea1" name="description"
                                                       rows="4" required></textarea>
                                         </div>
@@ -256,15 +121,11 @@
 
                                 </div>
 
-                                <button type="submit" class="btn l-bg-cherry mr-2 float-right" style="color: #fff">Send
+                                <button type="submit" class="btn l-bg-cherry mr-2 float-right"
+                                        style="color: #fff;border: none">Send
                                     Request
                                 </button>
 
-{{--                                <div class="overlay"></div>--}}
-{{--                                <div class="spanner">--}}
-{{--                                    <div class="loader"></div>--}}
-{{--                                    <p>Please be patient as we raise your ticket request...</p>--}}
-{{--                                </div>--}}
                             </form>
 
                         </div>
@@ -336,3 +197,5 @@
     </body>
     </html>
 </div>
+
+

@@ -18,7 +18,6 @@ class RaisedTicketMail extends Mailable
         $this->ticket = $ticket;
     }
 
-
     public function build()
     {
         return $this->subject('New Ticket Request!')->view('notification.raisednotification');

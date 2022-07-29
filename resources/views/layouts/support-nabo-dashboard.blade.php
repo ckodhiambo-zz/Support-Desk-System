@@ -34,81 +34,19 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a href="{{ route('nabostaff.dashboard') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('website-assets/img/nabo-capital-logo.jpg') }}" alt="" style="width: 100%;height: 50px">
-
+                <img src="{{ asset('assets/images/admi-logo.png') }}" alt="" style="width: 100%;height: 50px">
             </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
             <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
                 <span class="icon-menu"></span>
             </button>
-            <ul class="navbar-nav mr-lg-2">
-                <li class="nav-item nav-search d-none d-lg-block">
-                    <div class="input-group">
-                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-                        </div>
-                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                               aria-label="search" aria-describedby="search">
-                    </div>
-                </li>
-            </ul>
+
             <ul class="navbar-nav navbar-nav-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
-                       data-toggle="dropdown">
-                        <i class="icon-bell mx-0"></i>
-                        <span class="count"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
-                         aria-labelledby="notificationDropdown">
-                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-success">
-                                    <i class="ti-info-alt mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    Just now
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-warning">
-                                    <i class="ti-settings mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">Settings</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    Private message
-                                </p>
-                            </div>
-                        </a>
-                        <a class="dropdown-item preview-item">
-                            <div class="preview-thumbnail">
-                                <div class="preview-icon bg-info">
-                                    <i class="ti-user mx-0"></i>
-                                </div>
-                            </div>
-                            <div class="preview-item-content">
-                                <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                                <p class="font-weight-light small-text mb-0 text-muted">
-                                    2 days ago
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </li>
+
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                        <img src="{{ asset('assets/images/faces/face28.jpg') }}" alt="profile"/>
+                        <img src="{{ asset('assets/images/user.png') }}" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -325,6 +263,8 @@
                             <small class="text-muted my-auto">47 min</small>
                         </li>
                     </ul>
+
+
                 </div>
                 <!-- chat tab ends -->
             </div>
@@ -334,47 +274,52 @@
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link"
-                       href="{{ route('nabostaff.dashboard') }}">
-                        <i class="icon-grid menu-icon"></i>
-                        <span class="menu-title">Internal Ticket</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link #" href="{{ route('nabostaff.external') }}">
-                        <i class="icon-book menu-icon"></i>
-                        <span class="menu-title">External Ticket</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link #" href="{{ route('my-nabo-tickets.dashboard') }}">
-                        <i class="icon-book menu-icon"></i>
-                        <span class="menu-title">My Tickets</span>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" data-toggle="collapse" href="#reports" aria-expanded="false"
                        aria-controls="reports">
                         <i class="icon-head menu-icon"></i>
-                        <span class="menu-title">Account Center</span>
+                        <span class="menu-title">Nabo Tickets</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="reports">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
-                                <a class="nav-link" href="#"> Privacy and Security</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#"> Settings </a></li>
+                                <a class="nav-link" href="{{ route('nabostaff.dashboard') }}"> NB-Ticket Form</a></li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="{{ route('nabostaff.my-assigned-nb-tickets') }}">Assigned
+                                    Tickets </a></li>
+                            <li class="nav-item"><a class="nav-link"
+                                                    href="{{ route('nabostaff.my-raised-nb-tickets') }}">Raised
+                                    Tickets </a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('logout') }}">
+                    <a class="nav-link" data-toggle="collapse" href="#nabo" aria-expanded="false"
+                       aria-controls="reports">
+                        <i class="icon-head menu-icon"></i>
+                        <span class="menu-title">IT Tickets</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="nabo">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('nabostaff.external') }}">Ticket Form</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('my-IT-tickets.dashboard') }}">Raised
+                                    Tickets </a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="icon-paper menu-icon"></i>
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
             </ul>
         </nav>
+
         <!-- partial -->
         <div class="main-panel">
             {{$slot}}

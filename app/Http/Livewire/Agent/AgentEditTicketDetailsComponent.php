@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Agent;
 
-use App\Models\status;
 use App\Models\Tickets;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 

@@ -34,6 +34,18 @@
             background: linear-gradient(to right, #0d47a1, #8d188e) !important;
             color: #fff;
         }
+        .lg-bg-nabo {
+
+            background: linear-gradient(to right, #142c3c, #6acfeb) !important;
+            color: #fff;
+        }
+
+        .lg-bg-admi {
+
+            background: linear-gradient(to right, #ed6a21, #b82e36) !important;
+            color: #fff;
+        }
+
     </style>
     @livewireStyles
 </head>
@@ -128,10 +140,9 @@
                             @csrf
                         </form>
                     @else
-                        <li><a class="getstarted scrollto l-bg-cherry" href="{{route('login')}}">Sign In</a></li>
+                        <li><a class="getstarted scrollto lg-bg-nabo" href="{{route('login')}}">Sign In</a></li>
                     @endif
                 @endif
-
 
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
