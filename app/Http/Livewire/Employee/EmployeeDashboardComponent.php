@@ -71,14 +71,15 @@ class EmployeeDashboardComponent extends Component
         // Set status
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->name,
             'old_status' => 'None',
             'new_status' => 'New',
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString()
         ]);
 
-        Mail::to('calvinsken89@gmail.com')
-            ->cc('ckodhiambo1@gmail.com')
+        Mail::to('k.odhiambo@centum.co.ke')
+            ->cc('support@centum.co.ke')
             ->send(new RaisedTicketMail($ticket));
 
         Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));

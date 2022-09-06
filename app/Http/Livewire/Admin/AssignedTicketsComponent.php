@@ -3,12 +3,21 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Helpers\AfricasTalking\AfricasTalkingAPI;
+use App\Mail\AdminAssignedAsSolver;
+use App\Mail\AgentAssignedAsSolverEmail;
+use App\Mail\AlertDelegationToRequester;
+use App\Mail\AlertToAgentOnDelegation;
+use App\Mail\AssignedAgentNotificationToAdmin;
+use App\Mail\AssignedAgentNotificationToAgent;
+use App\Mail\DelegatedNotification;
+use App\Mail\NotificationToUserOnAssignedAgent;
 use App\Models\status;
 use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class AssignedTicketsComponent extends Component
@@ -20,12 +29,13 @@ class AssignedTicketsComponent extends Component
         $open = [];
         $in_progress = [];
         $on_hold = [];
-        $partially_solved = [];
+        $temporarily_solved = [];
         $cancelled = [];
         $solved = [];
         $archived = [];
+        $reopened = [];
 
-        $myassignedtickets->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved, &$archived ) {
+        $myassignedtickets->each(function ($item) use (&$open, &$in_progress, &$on_hold, &$temporarily_solved, &$cancelled, &$solved, &$archived, &$reopened) {
             if ($item->status->name == 'Open') {
                 $open[] = $item;
             }
@@ -35,8 +45,8 @@ class AssignedTicketsComponent extends Component
             if ($item->status->name == 'On-Hold') {
                 $on_hold[] = $item;
             }
-            if ($item->status->name == 'Partially_Solved') {
-                $partially_solved[] = $item;
+            if ($item->status->name == 'Temporarily-Solved') {
+                $temporarily_solved[] = $item;
             }
             if ($item->status->name == 'Cancelled') {
                 $cancelled[] = $item;
@@ -47,10 +57,13 @@ class AssignedTicketsComponent extends Component
             if ($item->status->name == 'Archived') {
                 $archived[] = $item;
             }
+            if ($item->status->name == 'Re-Opened') {
+                $reopened[] = $item;
+            }
 
         });
 
-        return view('livewire.admin.assigned-tickets-component', compact('open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.assigned-tickets-component', compact('open', 'in_progress', 'on_hold', 'temporarily_solved', 'cancelled', 'solved', 'archived', 'reopened'))->layout('layouts.support-admin-dashboard');
     }
 
     public function setDelegatee(Request $request)
@@ -63,7 +76,18 @@ class AssignedTicketsComponent extends Component
 
         $new_status = 'Open';
 
-        $ticket->delegatee()->associate($user);
+        // Check for previous solver
+
+        // Set to false means that the ticket is being assigned for the first time
+        $previous_solver = false;
+
+        if ($ticket->solver != null) {
+            // if ticket->solver returns an object then there was a solver already assigned hence this is a delegation
+            // Set to true to mean that the ticket is being delegated
+            $previous_solver = true;
+        }
+
+        $ticket->solver()->associate($user);
 
         $ticket->status()->associate(status::whereName('Open')->first());
 
@@ -81,15 +105,53 @@ class AssignedTicketsComponent extends Component
 
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->name,
             'old_status' => $old_status,
             'new_status' => $new_status,
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString()
         ]);
 
+
+        // if true then the ticket is being delegated
+        if ($previous_solver) {
+            // Send email with details on delegation
+            Mail::to($ticket->solver->email)->send(new DelegatedNotification($ticket));
+
+            if ($ticket->requester->user_type == 'Administrator') {
+                Mail::to($ticket->requester->email)->send(new AlertDelegationToRequester($ticket));
+            }
+            if ($ticket->requester->user_type == 'Agent') {
+                Mail::to($ticket->requester->email)->send(new AlertToAgentOnDelegation($ticket));
+            }
+            if ($ticket->requester->user_type == 'default_user') {
+                Mail::to($ticket->requester->email)->send(new AlertDelegationToRequester($ticket));
+            }
+
+
+        } else {
+
+            if ($ticket->requester->user_type == 'Administrator') {
+                Mail::to($ticket->solver->email)->send(new AgentAssignedAsSolverEmail($ticket));
+            } else {
+                Mail::to($ticket->solver->email)->send(new AdminAssignedAsSolver($ticket));
+
+            }
+
+            if ($ticket->requester->user_type == 'default_user') {
+                Mail::to($ticket->requester->email)->send(new NotificationToUserOnAssignedAgent($ticket));
+            }
+
+            if ($ticket->requester->user_type == 'Agent') {
+                Mail::to($ticket->requester->email)->send(new AssignedAgentNotificationToAgent($ticket));
+            }
+
+            if ($ticket->requester->user_type == 'Administrator') {
+                Mail::to($ticket->requester->email)->send(new AssignedAgentNotificationToAdmin($ticket));
+            }
+
+        }
         return back()->with('message_sent', 'The ticket has been successfully to delegated and email sent!');
-
-
 
     }
 

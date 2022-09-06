@@ -234,7 +234,7 @@
                                                 <div
                                                     style="line-height: 160%; text-align: center; word-wrap: break-word;">
                                                     <p style="font-size: 14px; line-height: 160%;"><span
-                                                            style="font-size: 22px; line-height: 35.2px;">Hi {{ auth()->user()->name }}, </span>
+                                                            style="font-size: 22px; line-height: 35.2px;">Hi {{ $ticket->requester->name }}, </span>
                                                     </p>
                                                     <p style="font-size: 14px; line-height: 160%; text-align: justify;">
                                                         <span style="font-size: 18px; line-height: 28.8px;">Your ticket request<strong> (Ticket ID-#{{ $ticket->id }}) </strong>has been queued. The ticket status now stands as <strong>{{ $ticket->status->name }}</strong>. An agent will be assigned to you shortly. For more details on this ticket, kindly proceed and click the button below.</span>
@@ -269,7 +269,7 @@
                                                                     <center
                                                                         style="color:#FFFFFF;font-family:'Cabin',sans-serif;">
                                                     <![endif]-->
-                                                    <a href="{{ route('nabo.it-td-ticket-details', $ticket)}}" target="_blank"
+                                                    <a href="{{ route('employee.ticket-detail', $ticket)}}" target="_blank"
                                                        style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;">
                                   <span style="display:block;padding:14px 44px 13px;line-height:120%;"><span
                                           style="font-size: 16px; line-height: 19.2px;"><strong><span
@@ -299,7 +299,7 @@
                                                     </p>
                                                     <p style="line-height: 100%; font-size: 14px;">&nbsp;</p>
                                                     <p style="line-height: 100%; font-size: 14px;"><span
-                                                            style="font-size: 18px; line-height: 18px;">Precision Desk Team</span>
+                                                            style="font-size: 18px; line-height: 18px;">IT Helpdesk Team</span>
                                                     </p>
                                                     <p style="line-height: 100%; font-size: 14px;">&nbsp;</p>
                                                 </div>

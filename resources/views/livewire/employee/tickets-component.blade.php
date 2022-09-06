@@ -139,7 +139,7 @@
                            role="tab"
                            aria-controls="contact" aria-selected="false">
                             Partially Solved
-                            <span class="badge badge-info">{{ count($partially_solved) }}</span>
+                            <span class="badge badge-info">{{ count($temporarily_solved) }}</span>
                             <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
@@ -337,7 +337,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($partially_solved as $ticket)
+                                @foreach($temporarily_solved as $ticket)
                                     <tr>
                                         <td class="py-1">
                                             {{ $ticket->id }}

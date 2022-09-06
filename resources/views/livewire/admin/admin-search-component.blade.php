@@ -155,7 +155,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('solver.set') }}" method="post">
+                <form action="{{ route('desk.set') }}" method="post">
                     @csrf
                     <div class="modal-body">
                         <strong>* An email will be sent to the agent assigned *</strong>

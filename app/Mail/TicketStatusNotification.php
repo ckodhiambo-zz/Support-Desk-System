@@ -19,6 +19,6 @@ class TicketStatusNotification extends Mailable
 
     public function build()
     {
-        return $this->subject('Ticket Status Update!')->view('notification.ticket-status-update');
+        return $this->subject('Ticket Status Update!')->view('notification.ticket-status-update-to-default-user');
     }
 }

@@ -5,18 +5,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Precision Desk</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+    <!-- endinject -->
+
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
+    <style>
+        .l-bg-cherry {
+            background: linear-gradient(to right, #8d188e, #0d47a1) !important;
+            color: #fff;
+        }
 
-    <!-- End plugin css for this page -->
+        .l-bg-red {
+            background: linear-gradient(to right, #e03e2d, #ea4c89) !important;
+            color: #fff;
+        }
+
+        .l-bg-cyan {
+            background: linear-gradient(135deg, #289cf5, #84c0ec) !important;
+            color: #fff;
+        }
+
+        .l-bg-green {
+            background: linear-gradient(135deg, #23bdb8 0%, #43e794 100%) !important;
+            color: #fff;
+        }
+    </style>
     @livewireStyles
 </head>
 
@@ -35,6 +57,7 @@
                 <span class="icon-menu"></span>
             </button>
             <ul class="navbar-nav navbar-nav-right">
+                <li class="nav-item nav-profile dropdown">
                 <li class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
                         <img src="{{ asset('assets/images/user.png') }}" alt="profile"/>
@@ -146,6 +169,8 @@
                         <span class="menu-title">Custom ticket request</span>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.list-of-users') }}">
                         <i class="icon-head menu-icon"></i>
@@ -153,12 +178,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.knowledge-based-center') }}">
-                        <i class="icon-book menu-icon"></i>
-                        <span class="menu-title">Knowledge-Center</span>
-                    </a>
-                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -166,6 +187,9 @@
                         <span class="menu-title">Logout</span>
                     </a>
                 </li>
+
+
+
             </ul>
         </nav>
         <!-- partial -->
@@ -176,20 +200,17 @@
     </div>
     <!-- container-scroller -->
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.6/dist/umd/popper.min.js"
-            integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
-            integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-            crossorigin="anonymous"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    @livewireScripts
-    <!-- End custom js for this page-->
-
 </div>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+@livewireScripts
+<!-- End custom js for this page-->
+
 </body>
 </html>

@@ -11,10 +11,11 @@ class EscalationMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $tickets;
-    public function __construct($tickets)
+    public $ticket;
+
+    public function __construct($ticket)
     {
-        $this->tickets = $tickets;
+        $this->ticket = $ticket;
     }
 
     /**
@@ -24,6 +25,6 @@ class EscalationMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Escalation Notification')->view('notification.escalation-mail');
+        return $this->subject('Reminder Notification')->view('notification.escalation-mail')->with(['ticket' => $this->ticket]);
     }
 }

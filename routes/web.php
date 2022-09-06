@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NaboTicketsController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\TicketReOpeningController;
 use App\Http\Controllers\TicketsController;
 use App\Http\Livewire\Admin\AddUserComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
@@ -24,10 +25,13 @@ use App\Http\Livewire\Admin\TicketDetailsComponent;
 use App\Http\Livewire\Admin\TicketFormComponent;
 use App\Http\Livewire\Admin\TicketReportsComponent;
 use App\Http\Livewire\Admin\UserProfile;
+use App\Http\Livewire\Admin\UserSettingsComponent;
 use App\Http\Livewire\Agent\AccountCenterComponent;
 use App\Http\Livewire\Agent\AgentAssignedTicketsComponent;
+use App\Http\Livewire\Agent\AgentCustomTicketComponent;
 use App\Http\Livewire\Agent\AgentEditTicketDetailsComponent;
 use App\Http\Livewire\Agent\AgentIndividualTicketComponent;
+use App\Http\Livewire\Agent\AgentSettingsComponent;
 use App\Http\Livewire\Agent\AgentTicketReportsComponent;
 use App\Http\Livewire\Agent\MyRaisedTicketsComponent;
 use App\Http\Livewire\Agent\MyTicketsComponent;
@@ -35,6 +39,7 @@ use App\Http\Livewire\AssetComponent;
 use App\Http\Livewire\CompanyComponent;
 use App\Http\Livewire\Demo\DemoDashboardComponent;
 use App\Http\Livewire\Employee\EmployeeDashboardComponent;
+use App\Http\Livewire\Employee\EmployeeSettingsComponent;
 use App\Http\Livewire\Employee\IndividualTicketComponent;
 use App\Http\Livewire\Employee\MySolvedTicketsComponent;
 use App\Http\Livewire\Employee\TicketsComponent;
@@ -81,10 +86,12 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/ticket-details', TicketDetailsComponent::class)->name('ticket.details');
     Route::get('/admin/dashboard/my-assigned-tickets', AssignedTicketsComponent::class)->name('ticket.assigned-tickets');
     Route::post('/admin/solver/set', [AdminDashboardComponent::class, 'setSolver'])->name('solver.set');
-    Route::post('/admin/solver/set', [AdminSearchComponent::class, 'setSolver'])->name('solver.set');
+    Route::post('/admin/desk/set', [AdminSearchComponent::class, 'deskSet'])->name('desk.set');
     Route::get('/admin/dashboard/my-assigned-tickets/details/{ticket}', EditTicketDetailsComponent::class)->name('admin.edit-ticket');
-    Route::post('/admin/dashboard/my-assigned-tickets/update/{ticket}', [TicketsController::class, 'updateStatus'])->name('admin.update-ticket');
-    Route::get('/admin/dashboard/ticket-reports', TicketReportsComponent::class)->name('admin.ticket-report');
+    Route::post('/admin/dashboard/my-assigned-tickets/update/{ticket}', [TicketsController::class, 'updateStatus'])->name('admin.update-ticket');Route::get('/admin/dashboard/ticket-reports', TicketReportsComponent::class)->name('admin.ticket-report');
+
+    Route::post('/admin/dashboard/my-tickets/details/update/{ticketItem}', [TicketReOpeningController::class, 'reopenTicket'])->name('admin.reopen-ticket');
+
     Route::get('/admin/dashboard/custom-ticket-request', CustomRequestTicketComponent::class)->name('admin.custom-ticket-request');
     Route::post('/admin/dashboard/custom-ticket-submit', [CustomRequestTicketComponent::class, 'submitCustomTicket'])->name('admin.custom-ticket.submit');
     Route::get('/admin/dashboard/list-of-users',ListOfUsersComponent::class)->name('admin.list-of-users');
@@ -94,12 +101,16 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/dashboard/ticket-form',TicketFormComponent::class)->name('admin.ticket-form');
     Route::get('/admin/dashboard/my-tickets',MyRaisedTicketComponent::class)->name('admin.my-raised-tickets');
     Route::post('/admin/ticket/submit', [TicketFormComponent::class, 'submitTicket'])->name('admin.ticket.submit');
-    Route::get('/admin/dashboard/my-tickets/details/{ticket}', AdminIndividualTicketComponent::class)->name('admin.my-ticket-detail');
+    Route::get('/admin/dashboard/my-tickets/details/{ticket_id}', AdminIndividualTicketComponent::class)->name('admin.my-ticket-detail');
     Route::get('/admin/dashboard/list-of-users/user-profile/{user}', UserProfile::class)->name('admin.user-profile');
     Route::get('/admin/dashboard/ticket-details/{ticket}',AdminViewTicketDetailsComponent::class)->name('admin.view-ticket-details');
     Route::get('/admin/dashboard/knowledge-center-articles',KnowledgeCenterComponent::class)->name('admin.knowledge-based-center');
     Route::get('/admin/dashboard/knowledge-library',LibraryComponent::class)->name('admin.library-list');
     Route::post('/admin/delegator/set', [AssignedTicketsComponent::class, 'setDelegatee'])->name('delegator.set');
+    Route::get('/admin/dashboard/settings', UserSettingsComponent::class)->name('admin.dashboard.settings');
+    Route::post('/admin/dashboard/save-changes', [UserSettingsComponent::class, 'updateProfile'])->name('user.save.changes');
+    Route::post('/admin/my-ticket-rating',[AdminIndividualTicketComponent::class,'addReview'])->name('admin.ticket.rating');
+
 
 });
 
@@ -119,6 +130,14 @@ Route::middleware(['auth:sanctum', 'verified', 'authagent'])->group(function () 
     Route::post('/agent/ticket/submit', [MyTicketsComponent::class, 'submitTicket'])->name('agent.ticket.submit');
     Route::get('/agent/dashboard/my-raised-tickets/details/{ticket}', AgentIndividualTicketComponent::class)->name('agent.my-ticket-detail');
     Route::get('/agent/dashboard/account-center',AccountCenterComponent::class)->name('agent.account-center');
+    Route::get('/agent/dashboard/settings', AgentSettingsComponent::class)->name('agent.dashboard.settings');
+    Route::post('/agent/dashboard/save-changes', [AgentSettingsComponent::class, 'updateProfile'])->name('agent.save.changes');
+    Route::post('/agent/delegator/set', [AgentAssignedTicketsComponent::class, 'agentSetDelegatee'])->name('agent.delegator.set');
+    Route::get('/agent/dashboard/custom-ticket-request', AgentCustomTicketComponent::class)->name('agent.custom-ticket-request');
+    Route::post('/agent/dashboard/custom-ticket-submit', [AgentCustomTicketComponent::class, 'agentCustomTicket'])->name('admin.custom-ticket.submit');
+
+
+
 
 });
 
@@ -130,6 +149,9 @@ Route::middleware(['auth:sanctum', 'verified', 'defaultauth'])->group(function (
     Route::get('/employee/dashboard/my-solved-tickets',MySolvedTicketsComponent::class)->name('employee.my-solved-tickets');
     Route::get('/employee/dashboard/my-tickets/details/{ticket}', IndividualTicketComponent::class)->name('employee.ticket-detail');
     Route::get('/employee/dashboard/my-tickets/details/download-PDF/{ticket}',[IndividualTicketComponent::class,'downloadPDF'])->name('employee.download-pdf');
+    Route::get('/employee/dashboard/settings', EmployeeSettingsComponent::class)->name('employee.dashboard.settings');
+    Route::post('/employee/dashboard/save-changes', [EmployeeSettingsComponent::class, 'updateProfile'])->name('employee.save.changes');
+
 
 });
 

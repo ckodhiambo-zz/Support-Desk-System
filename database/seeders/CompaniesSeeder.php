@@ -10,20 +10,21 @@ class CompaniesSeeder extends Seeder
 
     public function run()
     {
-        Companies::firstorcreate([
-            'company_name' => 'ADMI'
-        ]);
+
         Companies::firstorcreate([
             'company_name' => 'Centum Capital'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'CICP'
+            'company_name' => 'Centum Invstement Company Limited'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'Centum RE'
+            'company_name' => 'Centum Real Estate'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'GBL'
+            'company_name' => 'Greenblade Growers Limited'
+        ]);
+        Companies::firstorcreate([
+            'company_name' => 'Jafari Credit Limited'
         ]);
         Companies::firstorcreate([
             'company_name' => 'Nabo Capital'
@@ -32,17 +33,16 @@ class CompaniesSeeder extends Seeder
             'company_name' => 'Pearl Marina'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'Tier Data Ltd'
+            'company_name' => 'Tier Data Limited'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'Tribus'
-        ]);
-
-        Companies::firstorcreate([
-            'company_name' => 'TRLC'
+            'company_name' => 'Tribus SG'
         ]);
         Companies::firstorcreate([
-            'company_name' => 'VDL'
+            'company_name' => 'Two Rivers Lifestyle Center'
+        ]);
+        Companies::firstorcreate([
+            'company_name' => 'Vipingo Development Limited'
         ]);
         Companies::firstorcreate([
             'company_name' => 'Zohari Leasing'

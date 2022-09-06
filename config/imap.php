@@ -64,7 +64,8 @@ return [
         ],
 
 
-        'gmail' => [ // account identifier
+        'gmail' => [
+            // account identifier
             'host' => 'imap.gmail.com',
             'port' => 993,
             'encryption' => 'ssl',
@@ -73,16 +74,19 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'authentication' => null,
         ],
-
-        'another' => [ // account identifier
-            'host' => '',
-            'port' => 993,
-            'encryption' => false,
-            'validate_cert' => true,
-            'username' => '',
-            'password' => '',
-            'authentication' => null,
-        ]
+//
+//        'outlook' => [
+//            // account identifier
+//            'host' => 'outlook.office365.com',
+//            'port' => 993,
+//            'encryption' => env('MAIL_ENCRYPTION'),
+//            'validate_cert' => false,
+//            'username' => env('MAIL_USERNAME'),
+//            'password' => env('MAIL_PASSWORD'),
+//            'protocol' => 'IMAP',
+//            'authentication' => null,
+//
+//        ]
 
     ],
 

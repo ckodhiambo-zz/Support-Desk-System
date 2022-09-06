@@ -15,7 +15,6 @@ class TicketReportsComponent extends Component
             $query->whereNotIn('name', array( 'Solved', 'Cancelled'));
         })->with('solver')->get()->groupBy('solver.name');
 
-//        dd($tickets_per_user);
 
         $labels = $values = array();
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\WelcomeNewUser;
 use App\Models\User;
 use App\TokenStore\TokenCache;
+use Illuminate\Support\Facades\Mail;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Model;
 use App\Http\Controllers\Controller;
@@ -86,6 +88,10 @@ class AuthController extends Controller
                     'name' => $user->getdisplayName(),
                     'password' => 'secret'
                 ]);
+
+                if ($newUser->wasRecentlyCreated){
+                    Mail::to($newUser->email)->send(new WelcomeNewUser($newUser));
+                }
 
                 auth()->login($newUser);
 

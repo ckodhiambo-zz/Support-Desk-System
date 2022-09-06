@@ -214,8 +214,12 @@
                                                                             New Status
                                                                         </th>
                                                                         <th>
+                                                                            Initiated by
+                                                                        </th>
+                                                                        <th>
                                                                             Date Updated
                                                                         </th>
+
                                                                         <th>Duration</th>
                                                                     </tr>
                                                                     </thead>
@@ -224,6 +228,7 @@
                                                                         <tr>
                                                                             <td>{{ $row->old_status }}</td>
                                                                             <td>{{ $row->new_status }}</td>
+                                                                            <td>{{ $row->user_id }}</td>
                                                                             <td>{{ $row->created_at }}</td>
                                                                             {{--                                                                         Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
 
@@ -246,7 +251,7 @@
                                                                 style="font-size: medium">Requester's reason /
                                                                 description
                                                                 on the ticket</h3>
-                                                            {{--                                                        <div class="card-body">--}}
+
                                                             <blockquote class="blockquote blockquote-info">
                                                                 <p style="text-align: justify">{{ $ticket->description ?? 'No reason currently available'}}</p>
                                                                 <footer
@@ -290,8 +295,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"
             integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
             crossorigin="anonymous"></script>
-{{--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"--}}
-{{--            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>--}}
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js'></script>
     <script type='text/javascript'
             src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js'></script>

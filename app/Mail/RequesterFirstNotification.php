@@ -20,6 +20,6 @@ class RequesterFirstNotification extends Mailable
 
     public function build()
     {
-        return $this->subject('New Support Ticket Request!')->view('notification.requester-email');
+        return $this->subject('New Support Ticket Request!')->view('notification.requester-email')->with(['ticket' => $this->ticket]);
     }
 }

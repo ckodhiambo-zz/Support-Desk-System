@@ -112,7 +112,6 @@
                                                 Out</a></a></li>
                                 </ul>
                             </li>
-{{--                            <li><a class="getstarted scrollto" href="{{route('register')}}">Create User Account</a></li>--}}
 
                         @elseif(Auth::user()->user_type==='Agent')
                             <li class="dropdown"><a href="#"><span>{{ auth()->user()->name }}</span> <i
@@ -134,7 +133,6 @@
                                                 Out</a></a></li>
                                 </ul>
                             </li>
-
                         @endif
                         <form id="logout-form" method="post" action="{{ route('logout') }}">
                             @csrf

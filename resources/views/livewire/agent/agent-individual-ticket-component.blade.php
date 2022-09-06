@@ -214,6 +214,9 @@
                                                                             New Status
                                                                         </th>
                                                                         <th>
+                                                                            Initiated by
+                                                                        </th>
+                                                                        <th>
                                                                             Date Updated
                                                                         </th>
                                                                         <th>Duration</th>
@@ -224,6 +227,7 @@
                                                                         <tr>
                                                                             <td>{{ $row->old_status }}</td>
                                                                             <td>{{ $row->new_status }}</td>
+                                                                            <td>{{ $row->user_id }}</td>
                                                                             <td>{{ $row->created_at }}</td>
                                                                             {{--                                                                         Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
 

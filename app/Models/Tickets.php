@@ -12,7 +12,8 @@ class Tickets extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['status_id', 'requester_id', 'channel_id', 'attachment', 'delegatee_id'];
+    protected $guarded = ['requester_id', 'channel_id', 'attachment', 'delegatee_id'];
+    protected $fillable = ['subject','description','reopening_reason','reopening_status', 'admin_reason'];
 
 
     public function asset(): BelongsToMany
@@ -48,6 +49,11 @@ class Tickets extends Model
     public function timestamps(): HasMany
     {
         return $this->hasMany(Timestamp::class);
+    }
+
+    public function reviews():HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 
 }

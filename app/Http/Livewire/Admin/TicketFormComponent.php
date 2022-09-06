@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Mail\AdminAsRequester;
 use App\Mail\RaisedTicketMail;
 use App\Mail\RequesterFirstNotification;
 use App\Models\status;
@@ -15,7 +16,7 @@ use Livewire\Component;
 
 class TicketFormComponent extends Component
 {
-    public function render(Request $request)
+    public function render()
     {
 
         return view('livewire.admin.ticket-form-component')->layout('layouts.support-admin-dashboard');
@@ -60,15 +61,18 @@ class TicketFormComponent extends Component
         // Set status
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->name,
             'old_status' => 'None',
             'new_status' => 'New',
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString()
         ]);
 
-        Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
+        Mail::to('k.odhiambo@centum.co.ke')
+            ->cc('calvinsken89@gmail.com')
+            ->send(new RaisedTicketMail($ticket));
 
-        Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));
+        Mail::to(Auth::user()->email)->send(new AdminAsRequester($ticket));
 
         return redirect('/admin/dashboard/my-tickets')->with('message_sent','Your ticket has been successfully raised and an email sent to our team!');
     }

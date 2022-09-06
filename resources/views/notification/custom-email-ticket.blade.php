@@ -18,6 +18,11 @@
     <!--<![endif]-->
     <title></title>
 
+
+
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css">
+    <!--<![endif]-->
     <style type="text/css">
         table,
         td {
@@ -93,12 +98,6 @@
             text-decoration: none !important;
         }
     </style>
-
-
-
-    <!--[if !mso]><!-->
-    <link href="https://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css">
-    <!--<![endif]-->
 
 </head>
 

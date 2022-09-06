@@ -234,7 +234,7 @@
                                                 <div
                                                     style="line-height: 160%; text-align: center; word-wrap: break-word;">
                                                     <p style="font-size: 14px; line-height: 160%;"><span
-                                                            style="font-size: 22px; line-height: 35.2px;">Greetings {{$newUser->name}}! </span>
+                                                            style="font-size: 22px; line-height: 35.2px;">Greetings {{$ticket->requester->name}}! </span>
                                                     </p>
                                                     <p style="font-size: 14px; line-height: 160%; text-align: justify;">
                                                         <span style="font-size: 18px; line-height: 28.8px;">We have sent you this email to notify you that your IT support portal account has been created.</span>

@@ -106,4 +106,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(LeaveReason::class);
     }
+
+
 }

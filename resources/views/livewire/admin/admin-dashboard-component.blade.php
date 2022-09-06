@@ -1,25 +1,28 @@
 <div>
-    <!doctype html>
+    {{-- Nothing in the world is as soft and yielding as water. --}}
+    <!DOCTYPE html>
     <html lang="en">
+
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>SkyDash | Home</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-              crossorigin="anonymous">
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Skydash Admin</title>
+        <!-- plugins:css -->
+
         <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
         <!-- endinject -->
-
+        <!-- Plugin css for this page -->
+        <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
         <!-- End plugin css for this page -->
         <!-- inject:css -->
         <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
         <!-- endinject -->
-        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
+        <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
         <style>
             .l-bg-cherry {
                 background: linear-gradient(to right, #8d188e, #0d47a1) !important;
@@ -43,176 +46,642 @@
         </style>
         @livewireStyles
     </head>
+
     <body>
-    <div class="content-wrapper">
+
+    <div class="col-12 grid-margin">
         <div class="row">
-            <div class="col-md-12 grid-margin">
+            <div class="col-md-12 mt-4 grid-margin">
                 <div class="row">
                     <div class="col-12 col-xl-8 mb-4 mb-xl-0">
                         <h3 class="font-weight-bold">Welcome {{ auth()->user()->name }}!</h3>
-                        <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span
-                                class="text-primary">3 unread alerts!</span></h6>
+                        <h6 class="font-weight-normal mb-0">All systems are running smoothly!</h6>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 grid-margin transparent">
+        <div class="card card-outline-primary">
+            <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3 mb-4 stretch-card transparent">
-                        <div class="card l-bg-cherry">
-                            <div class="card-body">
-                                <p class="mb-4"><strong>Total No. of Tickets</strong></p>
-                                <p class="fs-30 mb-2"><strong>{{\App\Models\Tickets::all()->count()}}</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4 stretch-card transparent">
-                        <div class="card l-bg-green">
-                            <div class="card-body">
-                                <p class="mb-4"><strong>Assigned Tickets</strong></p>
-                                <p class="fs-30 mb-2">
-                                    <strong>{{\App\Models\Tickets::where('status_id', '!=', 1)->count()}}</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4 stretch-card transparent">
-                        <div class="card l-bg-red">
-                            <div class="card-body">
-                                <p class="mb-4"><strong>Unassigned Tickets</strong></p>
-                                <p class="fs-30 mb-2">
-                                    <strong>{{\App\Models\Tickets::where('status_id', 1)->count()}}</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-4 stretch-card transparent">
-                        <div class="card l-bg-cyan">
-                            <div class="card-body">
-                                <p class="mb-4"><strong>Total No. of Users</strong></p>
-                                <p class="fs-30 mb-2"><strong>{{ \App\Models\User::all()->count() }}</strong></p>
+                    <div class="col">
+                        <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
+                            <div class="card-header l-bg-cherry" style="border-radius: 10px">
+                                <h5>List of All Tickets</h5>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 grid-margin stretch-card">
-                <br>
-                <div class="card card-outline-primary">
-                    <div class="card-body">
+
+
+                @if(Session::has('message_sent'))
+                    <div class="alert alert-info" role="alert">
+                        {{ Session::get('message_sent') }}
+                    </div>
+                @endif
+                <div class="row">
+                    <div class="col-md-12 grid-margin transparent">
                         <div class="row">
-                            <div class="col-12">
-                                <div class="card border-primary mb-3" style="border-color: #8d188e !important;">
-                                    <div class="card-header l-bg-cherry" style="border-radius: 10px">
-                                        <h5>List of the 5 Latest Tickets</h5>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-tale">
+                                    <div class="card-body">
+                                        <p class="mb-4"> Total No. of Tickets</p>
+                                        <p class="fs-30 mb-2">{{\App\Models\Tickets::all()->count()}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <p class="card-description">
-                                    The tickets are <code>.in a descending order</code>
-                                </p>
-                            </div>
-
-                            <div class="col-12">
-                                @if(Session::has('message_sent'))
-                                    <div class="alert alert-success" role="alert">
-                                        {{ Session::get('message_sent') }}
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card l-bg-cherry">
+                                    <div class="card-body">
+                                        <p class="mb-4">Assigned Tickets</p>
+                                        <p class="fs-30 mb-2">{{\App\Models\Tickets::where('status_id', '!=', 1)->count()}}</p>
                                     </div>
-                                @endif
+                                </div>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            T-ID
-                                        </th>
-                                        <th>
-                                            Requester
-                                        </th>
-                                        <th>
-                                            Subject
-                                        </th>
-                                        <th>
-                                            Agent
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                        <th>
-                                            Created at
-                                        </th>
-                                        <th>
-                                            Action
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($alltickets as $item)
-                                        <tr>
-                                            <td class="py-1">
-                                                {{ $item->id }}
-                                            </td>
-                                            <td>
-                                                {{ $item->requester->name }}
-                                            </td>
-                                            <td>
-                                                {{ $item->subject }}
-                                            </td>
-                                            <td>
-                                                {{ $item->solver ? $item->solver->name : 'Not Assigned' }}
-                                            </td>
-                                            <td>
-                                                {{ $item->status->name }}
-                                            </td>
-                                            <td>
-                                                {{ $item->created_at }}
-                                            </td>
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger btn-sm">Action</button>
-                                                    <button type="button"
-                                                            class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false">
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="#"
-                                                           data-toggle="modal"
-                                                           data-target="#ticketModal"
-                                                           data-ticket-id="{{ $item->id }}">Assign an Agent</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="{{ route('admin.view-ticket-details', $item) }}">View Ticket Details</a>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="#">Cancel Ticket</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <br>
-                                <div class="col-md-12">
-                                    <a href="{{ route('admin.all-tickets') }}">
-                                        <button type="submit" class="btn btn-info btn-sm ti-files">&nbsp; <strong>VIEW
-                                                ALL
-                                                TICKETS</strong></button>
-                                    </a>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-blue">
+                                    <div class="card-body">
+                                        <p class="mb-4">Unassigned Tickets</p>
+                                        <p class="fs-30 mb-2">{{\App\Models\Tickets::where('status_id', 1)->count()}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-danger">
+                                    <div class="card-body">
+                                        <p class="mb-4">Total No. of Users</p>
+                                        <p class="fs-30 mb-2">{{ \App\Models\User::all()->count() }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                     </div>
                 </div>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-dark" id="new-tab" data-toggle="tab" href="#new"
+                           role="tab" aria-controls="home" aria-selected="true">New
+                            <span
+                                class="badge badge-dark">{{\App\Models\Tickets::where('status_id', 1)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-info" id="open-tab" data-toggle="tab" href="#open"
+                           role="tab" aria-controls="home" aria-selected="true">Open
+                            <span
+                                class="badge badge-info">{{\App\Models\Tickets::where('status_id', 2)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" id="reopened-tab" data-toggle="tab" href="#re-opened"
+                           role="tab" aria-controls="home" aria-selected="true">Re-Opened
+                            <span
+                                class="badge badge-danger">{{\App\Models\Tickets::where('status_id', 9)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab" href="#in-progress"
+                           role="tab" aria-controls="home" aria-selected="true">In-Progress
+                            <span
+                                class="badge badge-primary">{{\App\Models\Tickets::where('status_id', 4)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-success" id="solved-tab" data-toggle="tab" href="#solved"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Solved
+                            <span
+                                class="badge badge-success">{{\App\Models\Tickets::where('status_id', 5)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab"
+                           href="#partially-solved"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">
+                            Temporarily solved
+                            <span
+                                class="badge badge-info">{{\App\Models\Tickets::where('status_id', 3)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
+                           role="tab" aria-controls="contact" aria-selected="false">Cancelled
+                            <span
+                                class="badge badge-danger">{{\App\Models\Tickets::where('status_id', 7)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-info" id="archived-tab" data-toggle="tab" href="#archived"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Archived
+                            <span
+                                class="badge badge-info">{{\App\Models\Tickets::where('status_id', 8)->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active " id="new" role="tabpanel" aria-labelledby="new-tab">
+                        <div class="table-responsive">
+                            <table id="new" class="table table-striped" style="width:100%">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        From
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($new as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->requester->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-dark"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger btn-sm">Action</button>
+                                                <button type="button"
+                                                        class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#"
+                                                       data-toggle="modal"
+                                                       data-target="#ticketModal"
+                                                       data-ticket-id="{{ $ticket->id }}">Assign an Agent</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('admin.view-ticket-details', $ticket) }}">View
+                                                        Ticket Details</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" href="#">Cancel Ticket</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                                @endforeach
+
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="open" role="tabpanel" aria-labelledby="open-tab">
+                        <div class="table-responsive">
+                            <table id="example32" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($open as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-info"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger btn-sm">Action</button>
+                                                <button type="button"
+                                                        class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+                                                        data-toggle="dropdown" aria-haspopup="true"
+                                                        aria-expanded="false">
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#"
+                                                       data-toggle="modal"
+                                                       data-target="#ticketModal"
+                                                       data-ticket-id="{{ $ticket->id }}">Delegate Ticket</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('admin.view-ticket-details', $ticket) }}">View
+                                                        Ticket Details</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="re-opened" role="tabpanel" aria-labelledby="reopened-tab">
+                        <div class="table-responsive">
+                            <table id="example32" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($reopened as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-danger"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-danger btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
+                        <div class="table-responsive">
+                            <table id="example16" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($in_progress as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-primary"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="partially-solved" role="tabpanel"
+                         aria-labelledby="partially-solved-tab">
+                        <div class="table-responsive">
+                            <table id="example18" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($temporarily_solved as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-dark"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                            <br>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="solved" role="tabpanel" aria-labelledby="solved-tab">
+                        <div class="table-responsive">
+                            <table id="example6" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($solved as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-success"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                            <br>
+
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="cancelled" role="tabpanel" aria-labelledby="cancelled-tab">
+                        <div class="table-responsive">
+                            <table id="example19" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($cancelled as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-dark"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <br>
+
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
+                        <div class="table-responsive">
+                            <table id="example20" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Assigned Agent
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($archived as $ticket)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->solver->name }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-info"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.view-ticket-details', $ticket) }}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                </tbody>
+                            </table>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
     </div>
-
     <!-- Modal -->
     <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog"
          aria-labelledby="ticketModalLabel" aria-hidden="true">
@@ -264,22 +733,13 @@
             </div>
         </div>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
-
     <!-- plugins:js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page -->
-
+    <script src="{{ asset('assets/vendors/typeahead.js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
@@ -288,17 +748,20 @@
     <script src="{{ asset('assets/js/settings.js') }}"></script>
     <script src="{{ asset('assets/js/todolist.js') }}"></script>
     <!-- endinject -->
-
+    <!-- Custom js for this page-->
+    <script src="{{ asset('assets/js/file-upload.js') }}"></script>
+    <script src="{{ asset('assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('assets/js/select2.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <!-- End custom js for this page-->
-        <script>
+    <script>
         $(document).ready(function () {
-            $("#ticketModal").on("show.bs.modal", function (e) {
-                $('#ticket').val($(e.relatedTarget).data('ticket-id'));
-            });
+            $('#new').dataTable();
         });
     </script>
-
+    <!-- End custom js for this page-->
     @livewireScripts
     </body>
+
     </html>
 </div>

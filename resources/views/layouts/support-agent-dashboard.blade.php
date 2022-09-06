@@ -5,27 +5,26 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Precision Desk</title>
-    <!-- plugins:css -->
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
-    <!-- endinject -->
-    <!-- Plugin css for this page -->
-    <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/js/select.dataTables.min.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/select2/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/select2-bootstrap-theme/select2-bootstrap.min.css') }}">
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
-    <!-- Template Main CSS File -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="{{ asset('website-assets/css/style.css') }}" rel="stylesheet">
+    <style>
+        .l-bg-cherry {
+            background: linear-gradient(to right, #8d188e, #0d47a1) !important;
+            color: #fff;
+        }
+        .form-control:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+        }
+    </style>
 
     @livewireStyles
 </head>
@@ -45,17 +44,6 @@
                 <span class="icon-menu"></span>
             </button>
             <ul class="navbar-nav mr-lg-2">
-                <li class="nav-item nav-search d-none d-lg-block">
-                    <div class="input-group">
-                        <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-                        </div>
-                        <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now"
-                               aria-label="search" aria-describedby="search">
-                    </div>
-                </li>
             </ul>
             <ul class="navbar-nav navbar-nav-right">
                 <li class="nav-item nav-profile dropdown">
@@ -63,12 +51,17 @@
                         <img src="{{ asset('assets/images/user.png') }}" alt="profile"/>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#categoryModal">
+                            <i class="ti-pencil-alt text-primary"></i>
+                            Add Category
+                        </a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="ti-power-off text-primary"></i>
-                            Logout
-                        </a>
+                            <i class="ti-power-off text-primary"></i>Logout</a>
                     </div>
+                    <!-- Category Modal -->
+
                 </li>
                 <form id="logout-form" method="post" action="{{ route('logout') }}"
                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -304,6 +297,9 @@
                     <div class="collapse" id="accounts">
                         <ul class="nav flex-column sub-menu">
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('agent.custom-ticket-request') }}">Custom Ticket</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{route('agent.ticket-form')}}">Ticket Form</a></li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('agent.my-raised-tickets')}}">My Raised Tickets</a>
@@ -333,34 +329,45 @@
         <div class="main-panel">
             {{$slot}}
         </div>
-        <!-- page-body-wrapper-ends -->
+        <!-- Modal -->
+        <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="color:#8d188e !important;">Add a Category</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" style="color:black !important;">&times;</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="name" placeholder="New Category"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger text-white" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn l-bg-cherry text-white">Save Category</button>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
     </div>
     <!-- container-scroller -->
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
-    <!-- plugins:js -->
-    <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page -->
-    <script src="{{ asset('assets/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net/jquery.dataTables.js') }}"></script>
-    <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
-    <script src="{{ asset('assets/js/dataTables.select.min.js') }}"></script>
-
-    <!-- End plugin js for this page -->
-    <!-- inject:js -->
-    <script src="{{ asset('assets/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('assets/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('assets/js/template.js') }}"></script>
-    <script src="{{ asset('assets/js/settings.js') }}"></script>
-    <script src="{{ asset('assets/js/todolist.js') }}"></script>
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
-    <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
-    @livewireScripts
-    <!-- End custom js for this page-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 </div>
 </body>
 </html>

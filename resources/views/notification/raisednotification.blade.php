@@ -271,7 +271,7 @@
                                                                     <center
                                                                         style="color:#FFFFFF;font-family:'Cabin',sans-serif;">
                                                     <![endif]-->
-                                                    <a href="http://127.0.0.1:8000/admin/dashboard"
+                                                    <a href="{{ route('admin.view-ticket-details', $ticket) }}"
                                                        style="box-sizing: border-box;display: inline-block;font-family:'Cabin',sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #FFFFFF; background-color: #ff6600; border-radius: 4px;-webkit-border-radius: 4px; -moz-border-radius: 4px; width:auto; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;"
                                                        target="_blank">
                                   <span style="display:block;padding:14px 44px 13px;line-height:120%;"><span

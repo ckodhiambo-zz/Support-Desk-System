@@ -7,6 +7,7 @@ use App\Mail\TicketStatusNotification;
 use App\Models\status;
 use App\Models\Tickets;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,7 +22,7 @@ class AgentTicketsController extends Controller
         $new_status = $request->input('optionsRadios');
 
         $ticket->update([
-            'admin_reason' => $request->input('description')
+            'admin_reason' => $request->input('admin_reason')
         ]);
 
         $ticket->refresh()->status()->associate(status::whereName($request->input('optionsRadios'))->first())->save();
@@ -39,6 +40,7 @@ class AgentTicketsController extends Controller
         // Update the tickets timestamps table after the main ticket model has been updated to ensure the record makes sense
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->name,
             'old_status' => $old_status,
             'new_status' => $new_status,
             'created_at' => now()->toDateTimeString(),

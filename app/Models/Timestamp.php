@@ -10,6 +10,9 @@ class Timestamp extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['user_id'];
+
+
     public function tickets():BelongsTo
     {
         return $this->belongsTo(Tickets::class);
@@ -18,4 +21,6 @@ class Timestamp extends Model
     {
         return $this->belongsTo(NaboTickets::class);
     }
+
+
 }

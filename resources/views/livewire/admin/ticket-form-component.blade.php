@@ -30,6 +30,42 @@
                 background: linear-gradient(to right, #8d188e, #0d47a1) !important;
                 color: #fff;
             }
+
+
+            .spinner-button {
+                border: 2px solid #000;
+                display: inline-block;
+                padding: 8px 20px 9px;
+                font-size: 15px;
+                color: #000;
+                background-color: transparent
+            }
+            .btn-primary:disabled {
+                color: #fff;
+                background-color: #000;
+                border-color: #000;
+            }
+            .spinner-button:hover {
+                background-color: #000;
+                border: 2px solid #000;
+                color: #fff
+            }
+
+            .spinner-button i {
+                color: #fff
+            }
+
+            .spinner-button:hover i {
+                color: #fff
+            }
+
+            .fa{
+                color:#fff;
+            }
+
+            .fa:hover{
+                color:#fff;
+            }
         </style>
         @livewireStyles
     </head>
@@ -89,12 +125,12 @@
                                             <strong><label class="text-primary">Ticket Subject</label></strong>
                                             <input type="text" class="form-control form-control-sm"
                                                    placeholder="e.g Login Issue" name="subject"
-                                                   aria-label="Subject">
+                                                   aria-label="Subject" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group" id="">
-                                            <strong><label class="text-primary">Asset/Item</label></strong>
+                                            <strong><label class="text-primary">Category</label></strong>
                                             <select class="js-example-basic-single w-100" name="asset_name">
                                                 @foreach(App\Models\Asset::all() as $asset)
                                                     <option value="{{ $asset->id }}">{{ $asset->name }}</option>
@@ -128,11 +164,11 @@
                                     </div>
 
                                 </div>
-
-                                <button type="submit" class="btn l-bg-cherry mr-2 float-right"
-                                        style="color: #fff;border: none">Send
-                                    Request
-                                </button>
+                                    <button id="btnFetch" type="submit"
+                                            class="spinner-button btn l-bg-cherry mr-2 float-right"
+                                            style="color: #fff;border: none">Send
+                                        Request
+                                    </button>
 
                             </form>
 
@@ -170,7 +206,20 @@
     <!-- Custom js for this page-->
     <script src="{{ asset('assets/js/file-upload.js') }}"></script>
     <script src="{{ asset('assets/js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/js/select2.js') }}"></script>
+    {{--    <script src="{{ asset('assets/js/select2.js') }}"></script>--}}
+
+    <script>
+        $(document).ready(function() {
+            $("#btnFetch").click(function() {
+                // disable button
+                $(this).prop("enabled", true);
+                // add spinner to button
+                $(this).html(
+                    '<i class="fa fa-circle-o-notch fa-spin"></i> Processing request...'
+                );
+            });
+        });
+    </script>
 
     @livewireScripts
     </body>

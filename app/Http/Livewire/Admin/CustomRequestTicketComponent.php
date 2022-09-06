@@ -2,12 +2,16 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Mail\AdminCustomEmailRequest;
+use App\Mail\AgentCustomEmailRequest;
 use App\Mail\CustomEmailRequest;
+use App\Mail\RaisedTicketMail;
 use App\Models\Category;
 use App\Models\status;
 use App\Models\Tickets;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -31,22 +35,24 @@ class CustomRequestTicketComponent extends Component
         $subject = $request->input('subject');
         $asset_name = $request->input('asset_name');
         $incident_name = $request->input('incident_name');
-        $channel = $request->input('channel');
         $description = $request->input('description');
-        $attachment = $request->file('attachment');
 
-        $destinationPath = 'files/tickets/attachments/';
-
-        $path = Storage::put($destinationPath, $attachment);
 
         $ticket = new Tickets([
             'asset_name' => $asset_name,
-//            'channel' => $channel,
             'issue' => $incident_name,
-            'attachment' => $path,
             'subject' => $subject,
             'description' => $description
         ]);
+
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $ext = $file->getClientOriginalExtension();
+            //Current time and file extension
+            $filename = time() . '.' . $ext;
+            $file->move('assets/attachment', $filename);
+            $ticket->attachment = $filename;
+        }
 
         $requester = User::find($requester_id);
 
@@ -61,21 +67,35 @@ class CustomRequestTicketComponent extends Component
         // Set status
         DB::table('ticket_timestamps')->insert([
             'ticket_id' => $ticket->id,
+            'user_id' => Auth::user()->name,
             'old_status' => 'None',
             'new_status' => 'New',
             'created_at' => now()->toDateTimeString(),
             'updated_at' => now()->toDateTimeString()
         ]);
 
-       Mail::to($ticket->requester->email)->send(new CustomEmailRequest($ticket));
+
+        Mail::to('k.odhiambo@centum.co.ke')
+            ->cc('support@centum.co.ke')
+            ->send(new RaisedTicketMail($ticket));
+
+        if ($ticket->requester->user_type == 'Administrator') {
+            Mail::to($ticket->requester->email)->send(new AdminCustomEmailRequest($ticket));
+        }
+
+        else if ($ticket->requester->user_type == 'Agent') {
+            Mail::to($ticket->requester->email)->send(new AgentCustomEmailRequest($ticket));
+
+        }
+
+        else{
+
+            Mail::to($ticket->requester->email)->send(new CustomEmailRequest($ticket));
+
+        }
 
 
+            return redirect('/admin/dashboard')->with('message_sent', 'You have successfully created a custom ticket!');
 
-//     Mail::to('calvinsken89@gmail.com')->send(new RaisedTicketMail($ticket));
-//
-//        Mail::to(Auth::user()->email)->send(new RequesterFirstNotification($ticket));
-
-        return redirect('/admin/dashboard')->with('message_sent', 'You have successfully created a custom ticket!');
-
+        }
     }
-}

@@ -8,12 +8,13 @@ use Livewire\Component;
 
 class MyRaisedTicketComponent extends Component
 {
-    public $ticket;
+    public $ticket_id;
 
-    public function mount(Tickets $ticket)
+    public function mount(Tickets $ticket_id)
     {
-        $this->ticket = $ticket;
+        $this->ticket_id = $ticket_id;
     }
+
     public function render()
     {
         // Fetch user object
@@ -22,12 +23,13 @@ class MyRaisedTicketComponent extends Component
         $open = [];
         $in_progress = [];
         $on_hold = [];
-        $partially_solved = [];
+        $temporarily_solved = [];
         $cancelled = [];
         $solved = [];
         $archived = [];
+        $reopened = [];
 
-        $solved_ticket ->each(function ($item) use (&$new, &$open, &$in_progress, &$on_hold, &$partially_solved, &$cancelled, &$solved, &$archived) {
+        $solved_ticket->each(function ($item) use (&$new, &$open, &$in_progress, &$on_hold, &$temporarily_solved, &$cancelled, &$solved, &$archived, &$reopened) {
             if ($item->status->name == 'New') {
                 $new[] = $item;
             }
@@ -40,8 +42,8 @@ class MyRaisedTicketComponent extends Component
             if ($item->status->name == 'On-Hold') {
                 $on_hold[] = $item;
             }
-            if ($item->status->name == 'Partially_Solved') {
-                $partially_solved[] = $item;
+            if ($item->status->name == 'Temporarily-Solved') {
+                $temporarily_solved[] = $item;
             }
             if ($item->status->name == 'Cancelled') {
                 $cancelled[] = $item;
@@ -52,8 +54,11 @@ class MyRaisedTicketComponent extends Component
             if ($item->status->name == 'Archived') {
                 $archived[] = $item;
             }
+            if ($item->status->name == 'Re-Opened') {
+                $reopened[] = $item;
+            }
         });
 
-        return view('livewire.admin.my-raised-ticket-component', compact('solved_ticket', 'new','open', 'in_progress','on_hold','partially_solved','cancelled','solved','archived'))->layout('layouts.support-admin-dashboard');
+        return view('livewire.admin.my-raised-ticket-component', compact('solved_ticket', 'new', 'open', 'in_progress', 'on_hold', 'temporarily_solved', 'cancelled', 'solved', 'archived', 'reopened'))->layout('layouts.support-admin-dashboard');
     }
 }

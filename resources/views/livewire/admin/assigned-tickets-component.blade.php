@@ -71,11 +71,54 @@
                                 </div>
                             @endif
                         </div>
+                        <div class="row">
+                            <div class="col-md-12 grid-margin transparent">
+                                <div class="row">
+                                    <div class="col-md-4 mb-4 stretch-card transparent">
+                                        <div class="card card-tale">
+                                            <div class="card-body">
+                                                <p class="mb-4"> My Total No. of Assigned Tickets</p>
+                                                <strong>
+                                                    <p class="fs-30 mb-2">{{\App\Models\Tickets::all()->count()}}</p>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4 stretch-card transparent">
+                                        <div class="card l-bg-cherry">
+                                            <div class="card-body">
+                                                <p class="mb-4">My Total No. of Resolved Tickets</p>
+                                                <strong>
+                                                    <p class="fs-30 mb-2">{{ count($solved) }}</p>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4 stretch-card transparent">
+                                        <div class="card l-bg-red">
+                                            <div class="card-body">
+                                                <p class="mb-4">My Total No. of Unresolved Tickets</p>
+                                                <strong>
+                                                    <p class="fs-30 mb-2">{{\App\Models\Tickets::where('status_id', 1)->count()}}</p>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active text-primary" id="open-tab" data-toggle="tab" href="#open"
                                    role="tab" aria-controls="home" aria-selected="true">Open <span
                                         class="badge badge-info">{{ count($open) }}</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-danger" id="in-progress-tab" data-toggle="tab"
+                                   href="#re-opened"
+                                   role="tab" aria-controls="home" aria-selected="true">Re-Opened<span
+                                        class="badge badge-danger">{{ count($reopened) }}</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-primary" id="in-progress-tab" data-toggle="tab"
@@ -93,8 +136,8 @@
                                 <a class="nav-link text-dark" id="partially-solved-tab" data-toggle="tab"
                                    href="#partially-solved"
                                    role="tab"
-                                   aria-controls="contact" aria-selected="false">Partially Solved <span
-                                        class="badge badge-dark">{{ count($partially_solved) }}</span></a>
+                                   aria-controls="contact" aria-selected="false">Temporarily Solved <span
+                                        class="badge badge-dark">{{ count($temporarily_solved) }}</span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-danger" id="cancelled-tab" data-toggle="tab" href="#cancelled"
@@ -110,8 +153,9 @@
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active " id="open" role="tabpanel" aria-labelledby="open-tab">
-                                <div class="table-respons   ive">
+                            <div class="tab-pane fade show active " id="open" role="tabpanel"
+                                 aria-labelledby="open-tab">
+                                <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
@@ -122,10 +166,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Email
-                                            </th>
-                                            <th class="text-primary">
-                                                Asset
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -148,23 +189,19 @@
                                                     {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $ticket->requester->email }}
-                                                </td>
-                                                <td>
                                                     {{ $ticket->subject }}
                                                 </td>
                                                 <td>
-                                                    <label class="badge badge-primary"
-                                                           style=" font-size: 0.9em;"><strong>{{ $ticket->status->name }}</strong></label>
+                                                    <label class="badge badge-danger"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                                 </td>
                                                 <td>
                                                     {{ $ticket->created_at }}
                                                 </td>
                                                 <td>
-{{--                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"--}}
-{{--                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>--}}
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-danger btn-sm">Action</button>
+                                                        <button type="button" class="btn btn-danger btn-sm">Action
+                                                        </button>
                                                         <button type="button"
                                                                 class="btn btn-danger dropdown-toggle dropdown-toggle-split"
                                                                 data-toggle="dropdown" aria-haspopup="true"
@@ -177,7 +214,9 @@
                                                                data-target="#ticketModal"
                                                                data-ticket-id="{{ $ticket->id }}">Delegate Ticket</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="{{ route('admin.edit-ticket', $ticket) }}">View Ticket Details</a>
+                                                            <a class="dropdown-item"
+                                                               href="{{ route('admin.edit-ticket', $ticket) }}">View
+                                                                Ticket Details</a>
                                                         </div>
                                                     </div>
                                                 </td>
@@ -185,79 +224,10 @@
                                         @endforeach
                                         </tbody>
                                     </table>
-{{--                                    <!-- Modal -->--}}
-{{--                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"--}}
-{{--                                         aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--                                        <div class="modal-dialog" role="document">--}}
-{{--                                            <div class="modal-content">--}}
-{{--                                                <div class="modal-header">--}}
-{{--                                                    <h5 class="modal-title" id="exampleModalLabel">Edit--}}
-{{--                                                        Ticket Status from <strong class="text-primary">Open</strong>--}}
-{{--                                                        to:</h5>--}}
-{{--                                                    <button type="button" class="close" data-dismiss="modal"--}}
-{{--                                                            aria-label="Close">--}}
-{{--                                                        <span aria-hidden="true">&times;</span>--}}
-{{--                                                    </button>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="modal-body">--}}
-{{--                                                    <div class="row">--}}
-{{--                                                        <div class="col-md-4">--}}
-{{--                                                            <div class="form-check form-check-info">--}}
-{{--                                                                <label class="form-check-label">--}}
-{{--                                                                    <input type="radio" class="form-check-input"--}}
-{{--                                                                           name="optionsRadios" id="optionsRadios1"--}}
-{{--                                                                           value="">--}}
-{{--                                                                    On-Hold--}}
-{{--                                                                </label>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-md-4">--}}
-{{--                                                            <div class="form-check form-check-success">--}}
-{{--                                                                <label class="form-check-label">--}}
-{{--                                                                    <input type="radio" class="form-check-input"--}}
-{{--                                                                           name="optionsRadios" id="optionsRadios1"--}}
-{{--                                                                           value="">--}}
-{{--                                                                    Solved--}}
-{{--                                                                </label>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-
-{{--                                                    </div>--}}
-{{--                                                    <div class="row">--}}
-{{--                                                        <div class="col-md-4">--}}
-{{--                                                            <div class="form-check form-check-danger">--}}
-{{--                                                                <label class="form-check-label">--}}
-{{--                                                                    <input type="radio" class="form-check-input"--}}
-{{--                                                                           name="optionsRadios" id="optionsRadios1"--}}
-{{--                                                                           value="">--}}
-{{--                                                                    Cancelled--}}
-{{--                                                                </label>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                        <div class="col-md-4">--}}
-{{--                                                            <div class="form-check form-check-secondary">--}}
-{{--                                                                <label class="form-check-label">--}}
-{{--                                                                    <input type="radio" class="form-check-input"--}}
-{{--                                                                           name="optionsRadios" id="optionsRadios1"--}}
-{{--                                                                           value="">--}}
-{{--                                                                    Closed--}}
-{{--                                                                </label>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="modal-footer">--}}
-{{--                                                    <button type="button" class="btn btn-danger" data-dismiss="modal">--}}
-{{--                                                        Close--}}
-{{--                                                    </button>--}}
-{{--                                                    <button type="button" class="btn btn-primary">Save changes</button>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="in-progress" role="tabpanel" aria-labelledby="in-progress-tab">
+                            <div class="tab-pane fade" id="re-opened" role="tabpanel"
+                                 aria-labelledby="in-progress-tab">
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <thead>
@@ -269,10 +239,63 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
+                                                Subject
                                             </th>
                                             <th class="text-primary">
-                                                Agent
+                                                Status
+                                            </th>
+                                            <th class="text-primary">
+                                                Created at
+                                            </th>
+                                            <th class="text-primary">
+                                                Action
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($reopened as $ticket)
+                                            <tr>
+                                                <td>
+                                                    {{ $ticket->id }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->requester->name }}
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->subject }}
+                                                </td>
+                                                <td>
+                                                    <label class="badge badge-danger"
+                                                           style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                </td>
+                                                <td>
+                                                    {{ $ticket->created_at }}
+                                                </td>
+                                                <td>
+                                                    <a href="{{ route('admin.edit-ticket', $ticket) }}"
+                                                       class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="in-progress" role="tabpanel"
+                                 aria-labelledby="in-progress-tab">
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-primary">
+                                                T-ID
+                                            </th>
+                                            <th class="text-primary">
+                                                Requester
+                                            </th>
+                                            <th class="text-primary">
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -295,13 +318,10 @@
                                                     {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $ticket->requester->email }}
-                                                </td>
-                                                <td>
                                                     {{ $ticket->subject }}
                                                 </td>
                                                 <td>
-                                                    <label class="badge badge-warning"
+                                                    <label class="badge badge-danger"
                                                            style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                                 </td>
                                                 <td>
@@ -330,10 +350,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
-                                            </th>
-                                            <th class="text-primary">
-                                                Agent
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -347,7 +364,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($on_hold as $ticket)
+                                        @foreach($temporarily_solved as $ticket)
                                             <tr>
                                                 <td>
                                                     {{ $ticket->id }}
@@ -356,13 +373,10 @@
                                                     {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $ticket->requester->email }}
-                                                </td>
-                                                <td>
                                                     {{ $ticket->subject }}
                                                 </td>
                                                 <td>
-                                                    <label class="badge badge-warning"
+                                                    <label class="badge badge-danger"
                                                            style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                                 </td>
                                                 <td>
@@ -392,10 +406,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
-                                            </th>
-                                            <th class="text-primary">
-                                                Agent
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -409,24 +420,20 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($partially_solved as $ticket)
+                                        @foreach($temporarily_solved as $ticket)
                                             <tr>
-                                                <td class="py-1">
+                                                <td>
                                                     {{ $ticket->id }}
                                                 </td>
                                                 <td>
                                                     {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $ticket->requester->email }}
-                                                </td>
-                                                <td>
                                                     {{ $ticket->subject }}
                                                 </td>
                                                 <td>
-                                                    <label class="badge badge-warning"
+                                                    <label class="badge badge-danger"
                                                            style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
-
                                                 </td>
                                                 <td>
                                                     {{ $ticket->created_at }}
@@ -454,10 +461,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
-                                            </th>
-                                            <th class="text-primary">
-                                                Agent
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -480,13 +484,10 @@
                                                     {{ $ticket->requester->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $ticket->requester->email }}
-                                                </td>
-                                                <td>
                                                     {{ $ticket->subject }}
                                                 </td>
                                                 <td>
-                                                    <label class="badge badge-success"
+                                                    <label class="badge badge-danger"
                                                            style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
                                                 </td>
                                                 <td>
@@ -516,10 +517,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
-                                            </th>
-                                            <th class="text-primary">
-                                                Agent
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -541,9 +539,6 @@
                                                 </td>
                                                 <td>
                                                     {{ $ticket->requester->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $ticket->requester->email }}
                                                 </td>
                                                 <td>
                                                     {{ $ticket->subject }}
@@ -579,10 +574,7 @@
                                                 Requester
                                             </th>
                                             <th class="text-primary">
-                                                Asset
-                                            </th>
-                                            <th class="text-primary">
-                                                Agent
+                                                Subject
                                             </th>
                                             <th class="text-primary">
                                                 Status
@@ -603,9 +595,6 @@
                                                 </td>
                                                 <td>
                                                     {{ $ticket->requester->name }}
-                                                </td>
-                                                <td>
-                                                    {{ $ticket->requester->email }}
                                                 </td>
                                                 <td>
                                                     {{ $ticket->subject }}

@@ -17,7 +17,7 @@ class StatusSeeder extends Seeder
             'name' => 'Open'
         ]);
         status::firstorcreate([
-            'name' => 'Partially_Solved'
+            'name' => 'Temporarily-Solved'
         ]);
         status::firstorcreate([
             'name' => 'In-Progress'
@@ -33,6 +33,9 @@ class StatusSeeder extends Seeder
         ]);
         status::firstorcreate([
             'name' => 'Archived'
+        ]);
+        status::firstorcreate([
+            'name' => 'Re-Opened'
         ]);
     }
 }

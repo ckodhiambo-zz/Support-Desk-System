@@ -59,15 +59,24 @@
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active text-primary" id="new-tab" data-toggle="tab" href="#new"
-                           role="tab" aria-controls="home" aria-selected="true">Administrators</a>
+                           role="tab" aria-controls="home" aria-selected="true">Administrators
+                        <span
+                            class="badge badge-info">{{\App\Models\User::where('user_type', 'Administrator')->count()}}</span>
+                        <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-info" id="in-progress-tab" data-toggle="tab" href="#agents"
-                           role="tab" aria-controls="home" aria-selected="true">Agents</a>
+                           role="tab" aria-controls="home" aria-selected="true">Agents
+                            <span
+                                class="badge badge-info">{{\App\Models\User::where('user_type', 'Agents')->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-success" id="open-tab" data-toggle="tab" href="#open"
-                           role="tab" aria-controls="home" aria-selected="true">Default Users</a>
+                           role="tab" aria-controls="home" aria-selected="true">Default Users
+                            <span
+                                class="badge badge-info">{{\App\Models\User::where('user_type', 'default_user')->count()}}</span>
+                            <span class="sr-only">unread messages</span></a>
                     </li>
 
                 </ul>

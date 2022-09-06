@@ -46,11 +46,14 @@
     <body>
     <div class="col-12 grid-margin">
         <br>
-        <button type="button" class="btn btn-outline-dribbble btn-sm  btn-icon-text float-right"
-                style="margin-right: 8px" data-toggle="modal" data-target="#exampleModal">
-            Change Ticket Status
-            <i class="ti-pencil btn-icon-append"></i>
-        </button>
+        @if( $ticket->status->name != 'Solved')
+
+            <button type="button" class="btn btn-outline-dribbble btn-sm  btn-icon-text float-right"
+                    style="margin-right: 8px" data-toggle="modal" data-target="#exampleModal">
+                Change Ticket Status
+                <i class="ti-pencil btn-icon-append"></i>
+            </button>
+        @endif
         <button type="button" class="btn btn-outline-dribbble btn-sm  btn-icon-text float-right"
                 style="margin-right: 8px" onclick="PrintPDF();">
             PDF
@@ -120,7 +123,7 @@
                                                                     <td class="text-muted">Phone</td>
                                                                     <td class="">
                                                                         <h6 class="font-weight-500"
-                                                                            style="font-size: medium">0727497792</h6>
+                                                                            style="font-size: medium">{{ $ticket->requester->phone_number ?? 'Not Available' }}</h6>
                                                                     </td>
 
                                                                 </tr>
@@ -232,6 +235,9 @@
                                                                             New Status
                                                                         </th>
                                                                         <th>
+                                                                            Initiated By
+                                                                        </th>
+                                                                        <th>
                                                                             Date Updated
                                                                         </th>
                                                                         <th>Duration</th>
@@ -242,6 +248,7 @@
                                                                         <tr>
                                                                             <td>{{ $row->old_status }}</td>
                                                                             <td>{{ $row->new_status }}</td>
+                                                                            <td>{{ $row->user_id }}</td>
                                                                             <td>{{ $row->created_at }}</td>
                                                                             {{--                                                                         Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
 
@@ -258,14 +265,14 @@
                                                 </div>
                                                 <hr class="border border-primary">
                                                 <div class="row">
-                                                    <div class="col-md-6 border-right border-info">
+                                                    <div class="col-md-6 border-right border-primary">
                                                         <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                            <h3 class="font-weight-100 mb-xl-4 text-info"
+                                                            <h3 class="font-weight-100 mb-xl-4 text-danger"
                                                                 style="font-size: medium">Requester's reason /
                                                                 description
                                                                 on the ticket</h3>
                                                             {{--                                                        <div class="card-body">--}}
-                                                            <blockquote class="blockquote blockquote-info">
+                                                            <blockquote class="blockquote blockquote-danger">
                                                                 <p style="text-align: justify">{{ $ticket->description ?? 'No reason currently available'}}</p>
                                                                 <footer
                                                                     class="blockquote-footer">{{ $ticket->requester->name }}</footer>
@@ -287,6 +294,50 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if( $ticket->status->name == 'Solved' &&  $ticket->rstatus == true)
+                                                    <hr class="border border-primary">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 border-right border-danger">
+                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                                <div class="col-sm-12"><h3
+                                                                        class="font-weight-100 mb-xl-4 text-success"
+                                                                        style="font-size: medium">
+                                                                        Comment/Feedback on the Ticket</h3></div>
+
+                                                                <blockquote class="blockquote blockquote-success">
+                                                                    <p style="text-align: justify">No Feedback/Comment
+                                                                        was provided</p>
+                                                                    <footer
+                                                                        class="blockquote-footer">{{  $ticket->requester->name }}</footer>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if( $ticket->reopening_status == true)
+                                                    <hr class="border border-primary">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 border-right border-danger">
+                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                                <div class="col-sm-12">
+                                                                    <strong><h3
+                                                                            class="font-weight-100 mb-xl-4 text-dark"
+                                                                            style="font-size: medium">
+                                                                            Statement on the Re-Opening of the
+                                                                            ticket:</h3></strong>
+                                                                </div>
+                                                                <blockquote class="blockquote blockquote-dark">
+                                                                    <p style="text-align: justify">{{  $ticket->reopening_reason }}</p>
+                                                                    <footer
+                                                                        class="blockquote-footer">{{  $ticket->requester->name }}</footer>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -330,8 +381,8 @@
                                     <div class="form-check form-check-primary">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input" name="optionsRadios"
-                                                   id="On-Hold" value="On-Hold">
-                                            On-Hold
+                                                   id="Temporarily-Solved" value="Temporarily-Solved">
+                                            Temporarily-Solved
                                         </label>
                                     </div>
                                 </div>
@@ -363,7 +414,7 @@
                                     <div class="form-group">
                                         <strong><label for="exampleTextarea1">Kindly indicate the reason for status
                                                 change if applicable</label></strong>
-                                        <textarea class="form-control" id="exampleTextarea1" name="description"
+                                        <textarea class="form-control" id="exampleTextarea1" name="admin_reason"
                                                   rows="4" required></textarea>
                                     </div>
                                 </div>

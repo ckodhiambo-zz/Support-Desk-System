@@ -141,12 +141,11 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
-                                <strong><label class="text-primary">Type of Issue</label></strong>
-                                <select class="js-example-basic-single w-100" name="incident_name">
-                                    @foreach(App\Models\Incidents::all() as $incident)
-                                        <option value="{{ $incident->incident_name }}">{{ $incident->incident_name }}</option>
+                                <strong><label class="text-primary">Category</label></strong>
+                                <select class="js-example-basic-single w-100" name="asset_name">
+                                    @foreach(App\Models\Asset::all() as $asset)
+                                        <option value="{{ $asset->id }}">{{ $asset->name }}</option>
                                     @endforeach
-
                                 </select>
                             </div>
                         </div>
@@ -166,18 +165,6 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group col-sm-10">
-                                <strong><label class="text-primary">Asset Name</label></strong>
-                                <select class="js-example-basic-single w-100" name="asset_name">
-                                    @foreach(App\Models\Asset::all() as $asset)
-                                        <option value="{{ $asset->id }}">{{ $asset->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group col-sm-10">
                                 <strong><label class="text-primary">Mode of Communication</label></strong>
                                 <select class="js-example-basic-single w-100" name="asset_name">
 
@@ -188,6 +175,10 @@
 
                             </div>
                         </div>
+
+                    </div>
+                    <div class="row">
+
                         <div class="col-md-6">
                             <div class="form-group col-sm-12">
                                 <strong><label class="text-primary">Ticket Priority</label></strong>
@@ -207,14 +198,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group col-sm-10">
-                                <strong><label class="text-primary">Please describe the issue in detail</label></strong>
-                                <label for="editor"></label><textarea id="editor" name="description"></textarea>
-                            </div>
-                        </div>
                         <div class="col-md-6">
 
                             <div class="form-group col-sm-10">
@@ -230,6 +213,14 @@
                             </div>
                         </div>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group col-sm-10">
+                                <strong><label class="text-primary">Please describe the issue in detail</label></strong>
+                                <label for="editor"></label><textarea id="editor" name="description"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <hr class="border border-primary">
                     <div class="row">
@@ -276,8 +267,6 @@
     <!-- End custom js for this page-->
     <script src="https://cdn.tiny.cloud/1/vpqzq33el3188md9mtcyw5u3k62x5cz13rs8of0d0714ifnd/tinymce/5/tinymce.min.js"
             referrerpolicy="origin"></script>
-{{--    <script src="{{ asset('js/script.js') }}"></script>--}}
-
     <script>
         tinymce.init({
             selector: 'textarea#editor',

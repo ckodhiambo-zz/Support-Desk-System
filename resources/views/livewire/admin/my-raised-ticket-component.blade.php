@@ -123,8 +123,8 @@
                            href="#partially-solved"
                            role="tab"
                            aria-controls="contact" aria-selected="false">
-                            Partially Solved
-                            <span class="badge badge-info">{{ count($partially_solved) }}</span>
+                            Temporarily-Solved
+                            <span class="badge badge-info">{{ count($temporarily_solved) }}</span>
                             <span class="sr-only">unread messages</span></a>
                     </li>
                     <li class="nav-item">
@@ -139,6 +139,14 @@
                            role="tab"
                            aria-controls="contact" aria-selected="false">Archived
                             <span class="badge badge-info">{{ count($archived) }}</span>
+                            <span class="sr-only">unread messages</span></a>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-warning" id="reopened-tab" data-toggle="tab" href="#reopened"
+                           role="tab"
+                           aria-controls="contact" aria-selected="false">Re-Opened
+                            <span class="badge badge-warning">{{ count($reopened) }}</span>
                             <span class="sr-only">unread messages</span></a>
                         </a>
                     </li>
@@ -169,23 +177,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($new as $ticket)
+                                @foreach($new as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
                                             <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -219,23 +227,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($open as $ticket)
+                                @foreach($open as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
                                             <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -269,23 +277,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($in_progress as $ticket)
+                                @foreach($in_progress as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                            <label class="badge badge-primary"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -322,23 +330,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($partially_solved as $ticket)
+                                @foreach($temporarily_solved as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                            <label class="badge badge-info"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -373,23 +381,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($solved as $ticket)
+                                @foreach($solved as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
-                                            <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                            <label class="badge badge-success"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -424,27 +432,78 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($cancelled as $ticket)
+                                @foreach($cancelled as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
                                             <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="reopened" role="tabpanel" aria-labelledby="reopened-tab">
+                        <div class="table-responsive">
+                            <table id="example20" class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        T-ID
+                                    </th>
+                                    <th>
+                                        Subject
+                                    </th>
+                                    <th>
+                                        Created_at
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($reopened as $ticket_id)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{ $ticket_id->id }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket_id->subject }}
+                                        </td>
+                                        <td>
+                                            {{ $ticket_id->created_at }}
+                                        </td>
+                                        <td>
+                                            <label class="badge badge-warning"
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
+                                               class="btn btn-outline-info btn-sm btn-fw">View Details</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
 
@@ -474,23 +533,23 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($archived as $ticket)
+                                @foreach($archived as $ticket_id)
                                     <tr>
                                         <td class="py-1">
-                                            {{ $ticket->id }}
+                                            {{ $ticket_id->id }}
                                         </td>
                                         <td>
-                                            {{ $ticket->subject }}
+                                            {{ $ticket_id->subject }}
                                         </td>
                                         <td>
-                                            {{ $ticket->created_at }}
+                                            {{ $ticket_id->created_at }}
                                         </td>
                                         <td>
                                             <label class="badge badge-dark"
-                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket->status->name }}</strong></label>
+                                                   style=" font-size: 0.9em;color: white"><strong>{{ $ticket_id->status->name }}</strong></label>
                                         </td>
                                         <td>
-                                            <a href="{{ route('admin.my-ticket-detail', $ticket)}}"
+                                            <a href="{{ route('admin.my-ticket-detail', $ticket_id)}}"
                                                class="btn btn-outline-info btn-sm btn-fw">View Details</a>
                                         </td>
                                     </tr>
@@ -501,6 +560,7 @@
 
                         </div>
                     </div>
+
                 </div>
 
             </div>

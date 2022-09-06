@@ -23,7 +23,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}"/>
         <style>
             .l-bg-cherry {
-                background: linear-gradient(to right, #f09, #8d188e) !important;
+                background: linear-gradient(to right, #8d188e, #0d47a1) !important;
                 color: #fff;
             }
         </style>
@@ -38,7 +38,6 @@
             PDF
             <i class="ti-download btn-icon-append"></i>
         </button>
-
 
         <br>
         <br>
@@ -102,7 +101,7 @@
                                                                     <td class="text-muted">Phone</td>
                                                                     <td class="">
                                                                         <h6 class="font-weight-500"
-                                                                            style="font-size: medium">0727497792</h6>
+                                                                            style="font-size: medium">{{ $ticket->requester->phone_number ?? 'Not Available' }}</h6>
                                                                     </td>
 
                                                                 </tr>
@@ -134,18 +133,10 @@
 
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="text-muted">Asset</td>
+                                                                    <td class="text-muted">Category</td>
                                                                     <td class="">
                                                                         <h6 class="font-weight-500"
                                                                             style="font-size: medium">{{ \App\Models\Asset::find($ticket->asset_name)->name  ?? 'N/A' }}</h6>
-                                                                    </td>
-
-                                                                </tr>
-                                                                <tr>
-                                                                    <td class="text-muted">Incident/Issue</td>
-                                                                    <td class="">
-                                                                        <h6 class="font-weight-500"
-                                                                            style="font-size: medium">{{ $ticket->issue ?? 'N/A' }}</h6>
                                                                     </td>
 
                                                                 </tr>
@@ -214,6 +205,9 @@
                                                                             New Status
                                                                         </th>
                                                                         <th>
+                                                                            Initiated By
+                                                                        </th>
+                                                                        <th>
                                                                             Date Updated
                                                                         </th>
                                                                         <th>Duration</th>
@@ -224,6 +218,7 @@
                                                                         <tr>
                                                                             <td>{{ $row->old_status }}</td>
                                                                             <td>{{ $row->new_status }}</td>
+                                                                            <td>{{ $row->user_id }}</td>
                                                                             <td>{{ $row->created_at }}</td>
                                                                             {{--                                                                         Calculate the difference in days and concat with difference in hours in minutes between the times in the current iteration and previous provided you are not at the first record--}}
 
@@ -240,14 +235,13 @@
                                                 </div>
                                                 <hr class="border border-primary">
                                                 <div class="row">
-                                                    <div class="col-md-6 border-right border-info">
+                                                    <div class="col-md-6 border-right border-primary">
                                                         <div class="table-responsive mb-3 mb-md-0 mt-3">
-                                                            <h3 class="font-weight-100 mb-xl-4 text-info"
+                                                            <h3 class="font-weight-100 mb-xl-4 text-danger"
                                                                 style="font-size: medium">Requester's reason /
                                                                 description
                                                                 on the ticket</h3>
-                                                            {{--                                                        <div class="card-body">--}}
-                                                            <blockquote class="blockquote blockquote-info">
+                                                            <blockquote class="blockquote blockquote-danger">
                                                                 <p style="text-align: justify">{{ $ticket->description ?? 'No reason currently available'}}</p>
                                                                 <footer
                                                                     class="blockquote-footer">{{ $ticket->requester->name }}</footer>
@@ -269,6 +263,50 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @if( $ticket->status->name == 'Solved' &&  $ticket->rstatus == true)
+                                                    <hr class="border border-primary">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 border-right border-danger">
+                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                                <div class="col-sm-12"><h3
+                                                                        class="font-weight-100 mb-xl-4 text-success"
+                                                                        style="font-size: medium">
+                                                                        Comment/Feedback on the Ticket</h3></div>
+
+                                                                <blockquote class="blockquote blockquote-success">
+                                                                    <p style="text-align: justify">No Feedback/Comment
+                                                                        was provided</p>
+                                                                    <footer
+                                                                        class="blockquote-footer">{{  $ticket->requester->name }}</footer>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                                @if( $ticket->reopening_status == true)
+                                                    <hr class="border border-primary">
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 border-right border-danger">
+                                                            <div class="table-responsive mb-3 mb-md-0 mt-3">
+                                                                <div class="col-sm-12">
+                                                                    <strong><h3
+                                                                            class="font-weight-100 mb-xl-4 text-dark"
+                                                                            style="font-size: medium">
+                                                                            Statement on the Re-Opening of the
+                                                                            ticket:</h3></strong>
+                                                                </div>
+                                                                <blockquote class="blockquote blockquote-dark">
+                                                                    <p style="text-align: justify">{{  $ticket->reopening_reason }}</p>
+                                                                    <footer
+                                                                        class="blockquote-footer">{{  $ticket->requester->name }}</footer>
+                                                                </blockquote>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -280,6 +318,7 @@
             </div>
         </div>
 
+
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -288,7 +327,7 @@
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            integrity="sha384-JZR6open4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
     <!-- plugins:js -->
@@ -313,6 +352,7 @@
             });
         });
     </script>
+
     @livewireScripts
     </body>
     </html>
