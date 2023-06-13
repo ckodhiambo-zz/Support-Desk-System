@@ -32,16 +32,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Two Rivers Water](https://water.tworivers.co.ke/)**
 - **[Nabo Capital](https://www.nabocapital.com/)**
 - **[Jafari Credit Limited](https://jafaricredit.co.ke/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+
 
 
 ## Security Vulnerabilities
