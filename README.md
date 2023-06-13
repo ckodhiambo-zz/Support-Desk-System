@@ -31,7 +31,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Tier Data Limited](https://tierdata.co.ke/)**
 - **[Two Rivers Water](https://water.tworivers.co.ke/)**
 - **[Nabo Capital](https://www.nabocapital.com/)**
-- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Jafari Credit Limited](https://jafaricredit.co.ke/)**
 - **[Cyber-Duck](https://cyber-duck.co.uk)**
 - **[Many](https://www.many.co.uk)**
 - **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
