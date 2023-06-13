@@ -27,7 +27,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 
 ### Premium Users
 
-- **[Vehikl](https://vehikl.com/)**
+- **[Centum Investment PLC](https://centum.co.ke/)** 
 - **[Tighten Co.](https://tighten.co)**
 - **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
 - **[64 Robots](https://64robots.com)**
