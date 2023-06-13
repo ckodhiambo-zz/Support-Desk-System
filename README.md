@@ -28,8 +28,8 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 ### Premium Users
 
 - **[Centum Investment PLC](https://centum.co.ke/)** 
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[Tier Data Limited](https://tierdata.co.ke/)**
+- **[Two Rivers Water](https://water.tworivers.co.ke/)**
 - **[64 Robots](https://64robots.com)**
 - **[Cubet Techno Labs](https://cubettech.com)**
 - **[Cyber-Duck](https://cyber-duck.co.uk)**
@@ -43,18 +43,11 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Lendio](https://lendio.com)**
 - **[Romega Software](https://romegasoftware.com)**
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within the system, please send an e-mail to Centum Investment PLC/Tier Data Limited via [support@centum.co.ke](support@centum.co.ke). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The product is licensed under the [Tier Data Limited](https://tierdata.co.ke/).
