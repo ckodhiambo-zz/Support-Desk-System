@@ -30,7 +30,7 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 - **[Centum Investment PLC](https://centum.co.ke/)** 
 - **[Tier Data Limited](https://tierdata.co.ke/)**
 - **[Two Rivers Water](https://water.tworivers.co.ke/)**
-- **[64 Robots](https://64robots.com)**
+- **[Nabo Capital](https://www.nabocapital.com/)**
 - **[Cubet Techno Labs](https://cubettech.com)**
 - **[Cyber-Duck](https://cyber-duck.co.uk)**
 - **[Many](https://www.many.co.uk)**
